@@ -1,0 +1,13 @@
+﻿# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Heavy Original Archive Files (keep repository lean under 30MB)
+assets/archive/
+
+# Editor & Temp files
+*.tmp
+*.log
+.vscode/
+.idea/

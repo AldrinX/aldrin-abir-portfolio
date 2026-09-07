@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aldrin Abir — Creative Video Editor &amp; Content Designer</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Aldrin Abir — Creative Video Editor &amp; Content Designer" />
+  <meta name="description" content="Portfolio of Aldrin Abir: Creative Video Editor &amp; Content Designer. Specializing in commercial video production, talking-head edits, motion graphics, and brand identity." />
+  <meta name="keywords" content="Aldrin Abir, Video Editor, Content Designer, Motion Graphics, Premiere Pro, After Effects, Canva, Color Grading, Video Production, Brand Storytelling" />
+  <meta name="author" content="Aldrin Abir" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#03080c" />
+  <meta name="msapplication-TileColor" content="#03080c" />
+
+  <!-- Favicon & Touch Icon Suite -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aldrin Abir Portfolio" />
+  <meta property="og:title" content="Aldrin Abir — Creative Video Editor &amp; Content Designer" />
+  <meta property="og:description" content="Turning ideas into polished commercial visuals. Commercial shoots, video editing, social media creatives, and motion graphics." />
+  <meta property="og:image" content="assets/og_preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Aldrin Abir Creative Portfolio &amp; Showreel Preview" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aldrin Abir — Creative Video Editor &amp; Content Designer" />
+  <meta name="twitter:description" content="Turning ideas into polished commercial visuals. Commercial shoots, video editing, social media creatives, and motion graphics." />
+  <meta name="twitter:image" content="assets/og_preview.jpg" />
+
+  <!-- JSON-LD Structured Data: Schema.org Person & CreativeWork -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aldrin Abir",
+    "jobTitle": "Creative Video Editor & Content Designer",
+    "description": "Creative designer and video editor focused on turning raw ideas into polished commercial visual content.",
+    "email": "mailto:aldrinabir@gmail.com",
+    "knowsAbout": [
+      "Video Editing",
+      "Motion Graphics",
+      "Color Grading",
+      "Brand Identity",
+      "Social Media Marketing",
+      "Creative Direction"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Creative Design & Video Editing Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Production & Editing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motion Graphics & VFX" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity Systems" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Ad Campaigns" } }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts: Plus Jakarta Sans + Arimo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Accessible Skip to Content Link -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Top Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Custom Magnetic Cursor (Desktop) -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <span class="cursor-label"></span>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 0 · HERO (Cinematic 3D Video Banner + Canva Scrubber)
+  ============================================================ -->
+  <header class="hero-section" id="hero">
+    <!-- Full-Bleed Video Background Container -->
+    <div class="hero-video-wrapper">
+      <video
+        id="heroVideo"
+        class="hero-bg-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="assets/hero_poster.jpg"
+        width="1920"
+        height="1080"
+        preload="auto"
+        controlslist="nodownload nofullscreen noremoteplayback"
+        disablepictureinpicture
+        oncontextmenu="return false;"
+      >
+        <source src="assets/hero_banner.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Center Play/Pause Control Button -->
+    <button type="button" class="hero-center-play-btn" id="heroPlayToggle" aria-label="Toggle video playback" data-cursor="PLAY">
+      <svg class="hero-icon-pause" id="heroIconPause" viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+        <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+        <rect x="14" y="4" width="4" height="16" rx="1.5"/>
+      </svg>
+      <svg class="hero-icon-play" id="heroIconPlay" viewBox="0 0 24 24" width="34" height="34" fill="currentColor" style="display: none;">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </button>
+
+    <!-- Top Right Audio / Sound Toggle -->
+    <button type="button" class="hero-sound-btn" id="heroSoundToggle" aria-label="Toggle video sound" title="Toggle audio sound">
+      <svg class="hero-icon-muted" id="heroIconMuted" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+      </svg>
+      <svg class="hero-icon-unmuted" id="heroIconUnmuted" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display: none;">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+
+    <!-- Top-Left Main Hero Title (Canva Exact White Typography) -->
+    <div class="hero-title-container">
+      <h1 class="hero-main-title">
+        <span class="title-line"><span class="title-line-inner">CREATIVE</span></span>
+        <span class="title-line"><span class="title-line-inner">PORTFOLIO</span></span>
+      </h1>
+    </div>
+
+    <!-- Hero Footer Bar: Interactive Timeline Scrubber & Purpose Labels -->
+    <div class="hero-footer-bar">
+      <!-- Full-Width Interactive Scrubber Bar -->
+      <div class="hero-scrubber-container" id="heroScrubberWrap" title="Click or drag to scrub video">
+        <div class="hero-scrubber-track" id="heroScrubberTrack">
+          <div class="hero-scrubber-progress" id="heroScrubberProgress"></div>
+          <div class="hero-scrubber-thumb" id="heroScrubberThumb"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Tagline Labels -->
+      <div class="hero-footer-labels">
+        <p class="hero-footer-left">VIDEO EDITOR &amp; CONTENT DESIGNER</p>
+        <p class="hero-footer-right">CREATE WITH PURPOSE</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT LANDMARK
+  ============================================================ -->
+  <main id="main-content">
+
+  <!-- ============================================================
+       SLIDE 1 · ABOUT ALDRIN ABIR (Light Theme)
+  ============================================================ -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <!-- Left Column: Title, Tagline, and Nature Note -->
+      <div class="about-left-col" data-reveal>
+        <div class="about-header-group">
+          <h2 class="about-heading">About<br />Aldrin Abir</h2>
+          
+          <p class="about-tagline-italic">
+            Designer with passion for brand storytelling. I create compelling visual experiences through design with purpose
+          </p>
+        </div>
+
+        <div class="about-nature-note" data-reveal>
+          <p class="nature-note-text">
+            Aside from designing, I also find time to enjoy nature where I gets fresh inspiration for future projects.
+          </p>
+          <div class="nature-accent-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Bio and Process Media Showcase -->
+      <div class="about-right-col" data-reveal data-delay="1">
+        <p class="about-main-bio">
+          I’m a <em>Creative Designer</em> focused on turning ideas into polished visual content. From product and talking-head shoots to video editing, social media creatives and print design, I handle the creative process from production to final delivery.
+        </p>
+
+        <!-- Signature Creative Process Showcase Card (Before & After Video) -->
+        <div class="about-process-card" id="aboutProcessCard" data-cursor="PLAY" tabindex="0" role="region" aria-label="Aldrin Abir creative workflow: Before and After video editing demonstration">
+          <video
+            id="aboutProcessVideo"
+            class="about-process-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="assets/ba_landscape_poster.jpg"
+            width="1920"
+            height="1080"
+            preload="metadata"
+            controlslist="nodownload nofullscreen noremoteplayback"
+            disablepictureinpicture
+            oncontextmenu="return false;"
+          >
+            <source src="assets/ba_landscape.mp4" type="video/mp4" />
+          </video>
+          
+          <!-- Interactive Video Controls Overlay -->
+          <div class="about-video-controls-overlay">
+            <button type="button" class="about-play-toggle-btn" id="aboutPlayToggle" aria-label="Play or pause process video">
+              <svg class="about-play-icon" id="aboutPlayIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="about-pause-icon" id="aboutPauseIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display: none;">
+                <rect x="6" y="4" width="4" height="16" rx="1"/>
+                <rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+            </button>
+
+            <button type="button" class="about-sound-toggle-btn" id="aboutSoundToggle" aria-label="Mute or unmute process video">
+              <svg class="about-sound-on-icon" id="aboutSoundOnIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+              <svg class="about-sound-off-icon" id="aboutSoundOffIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="about-card-sheen" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 · PROJECTS (Deep Slate Teal Gallery)
+  ============================================================ -->
+  <section class="projects-section" id="projects">
+    <div class="projects-container">
+      <!-- Projects Header & Rule -->
+      <div class="projects-header-wrap" data-reveal>
+        <h2 class="projects-title">Projects</h2>
+        <div class="projects-rule-line"></div>
+      </div>
+
+      <!-- Masonry Gallery -->
+      <div class="projects-masonry-grid">
+        <!-- Item 1: Beadkeepers Website Mockup -->
+        <div class="project-tile project-tile--web" data-cursor="VIEW" data-reveal>
+          <div class="project-tile-inner">
+            <div class="mockup-beadkeepers">
+              <div class="mockup-header-bar"><span>Beadkeepers</span></div>
+              <div class="mockup-bead-categories">
+                <div class="mockup-cat-item"></div>
+                <div class="mockup-cat-item"></div>
+                <div class="mockup-cat-item"></div>
+                <div class="mockup-cat-item"></div>
+                <div class="mockup-cat-item"></div>
+                <div class="mockup-cat-item"></div>
+              </div>
+            </div>
+            <div class="tile-caption">
+              <span class="tile-tag">UI / E-Commerce</span>
+              <h4 class="tile-name">Beadkeepers Brand Web</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Unboxing Tech Flatlay -->
+        <div class="project-tile" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="project-tile-inner">
+            <div class="unboxing-flatlay-graphic">
+              <div class="flatlay-box"></div>
+              <div class="flatlay-phone"></div>
+              <div class="flatlay-cable"></div>
+            </div>
+            <div class="tile-caption">
+              <span class="tile-tag">Content Creation</span>
+              <h4 class="tile-name">Device Unboxing Series</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Cosmetics Product Shoot -->
+        <div class="project-tile" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="project-tile-inner">
+            <img src="assets/project_cosmetics.jpg" alt="Cosmetic product shoot" class="tile-img" width="534" height="800" loading="lazy" decoding="async" />
+            <div class="tile-caption">
+              <span class="tile-tag">Commercial Video</span>
+              <h4 class="tile-name">Luxury Skincare Brand</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Fashion Editorial Black Coat -->
+        <div class="project-tile project-tile--tall" data-cursor="VIEW" data-reveal>
+          <div class="project-tile-inner">
+            <img src="assets/project_fashion.jpg" alt="Fashion editorial" class="tile-img" width="533" height="800" loading="lazy" decoding="async" />
+            <div class="tile-caption">
+              <span class="tile-tag">Editorial Direction</span>
+              <h4 class="tile-name">High-Fashion Lookbook</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: Multi-Phone Studio Shoot -->
+        <div class="project-tile project-tile--tall" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="project-tile-inner">
+            <img src="assets/project_smartphones.jpg" alt="Smartphone camera production" class="tile-img" width="533" height="800" loading="lazy" decoding="async" />
+            <div class="tile-caption">
+              <span class="tile-tag">Viral Campaign</span>
+              <h4 class="tile-name">Creator Smartphone Shoot</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Video Studio Setup -->
+        <div class="project-tile project-tile--wide" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="project-tile-inner">
+            <img src="assets/editor_frame.jpg" alt="Studio lighting video production" class="tile-img" width="1080" height="1920" loading="lazy" decoding="async" />
+            <div class="tile-caption">
+              <span class="tile-tag">Studio Production</span>
+              <h4 class="tile-name">Lighting &amp; Set Direction</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Impact Numbers -->
+      <div class="projects-stats-bar" data-reveal>
+        <div class="stat-cell">
+          <div class="stat-number-flex">
+            <span class="stat-digit" data-target="50">0</span>
+            <span class="stat-plus-sign">+</span>
+          </div>
+          <span class="stat-caption">Projects Completed</span>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number-flex">
+            <span class="stat-digit" data-target="30">0</span>
+            <span class="stat-plus-sign">+</span>
+          </div>
+          <span class="stat-caption">Happy Clients</span>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number-flex">
+            <span class="stat-digit" data-target="5">0</span>
+          </div>
+          <span class="stat-caption">Years Of Experience</span>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number-flex">
+            <span class="stat-digit" data-target="12">0</span>
+            <span class="stat-plus-sign">+</span>
+          </div>
+          <span class="stat-caption">Brands Elevated</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 · TOOLS & BRAND IDENTITY
+  ============================================================ -->
+  <section class="tools-section" id="tools">
+    <div class="tools-container">
+      <!-- Left Column: Heading, Icons, Problem & Solution -->
+      <div class="tools-left-col" data-reveal>
+        <h2 class="tools-heading">Tools</h2>
+
+        <!-- Software Icons Grid -->
+        <div class="tools-icons-row">
+          <!-- Premiere Pro -->
+          <div class="app-icon-badge app-icon--pr" title="Adobe Premiere Pro">
+            <span>Pr</span>
+          </div>
+          <!-- After Effects -->
+          <div class="app-icon-badge app-icon--ae" title="Adobe After Effects">
+            <span>Ae</span>
+          </div>
+          <!-- DaVinci Resolve -->
+          <div class="app-icon-badge app-icon--davinci" title="DaVinci Resolve">
+            <svg viewBox="0 0 100 100" class="davinci-svg">
+              <circle cx="50" cy="30" r="14" fill="#ff4d4d"/>
+              <circle cx="32" cy="62" r="14" fill="#33ccff"/>
+              <circle cx="68" cy="62" r="14" fill="#ffcc00"/>
+              <circle cx="50" cy="50" r="8" fill="#ffffff"/>
+            </svg>
+          </div>
+          <!-- CapCut -->
+          <div class="app-icon-badge app-icon--capcut" title="CapCut">
+            <svg viewBox="0 0 48 48" class="capcut-svg">
+              <path d="M12 16 L24 24 L12 32 Z" fill="#000000"/>
+              <path d="M36 16 L24 24 L36 32 Z" fill="#000000"/>
+            </svg>
+          </div>
+          <!-- Illustrator -->
+          <div class="app-icon-badge app-icon--ai" title="Adobe Illustrator">
+            <span>Ai</span>
+          </div>
+          <!-- Photoshop -->
+          <div class="app-icon-badge app-icon--ps" title="Adobe Photoshop">
+            <span>Ps</span>
+          </div>
+          <!-- Canva -->
+          <div class="app-icon-badge app-icon--canva" title="Canva">
+            <span class="canva-script-text">Canva</span>
+          </div>
+        </div>
+
+        <!-- Problem Statement -->
+        <div class="statement-card statement-card--problem" data-reveal>
+          <h3 class="statement-label-italic">Problem</h3>
+          <p class="statement-body-text">
+            Brands need visual content that communicates quickly while staying consistent across digital and physical platforms.
+          </p>
+        </div>
+
+        <!-- Solution Statement -->
+        <div class="statement-card statement-card--solution" data-reveal data-delay="1">
+          <h3 class="statement-label-italic">Solution</h3>
+          <p class="statement-body-text">
+            I create purposeful visual content that makes brands stand out. From scroll-stopping social media graphics to promotional creatives and print-ready designs, every piece is crafted to communicate clearly, connect with the right audience, and strengthen the brand’s visual presence.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: 3D Mockup Display (Study in Greece Phone + Anniversary Menu Tablet) -->
+      <div class="tools-right-col" data-reveal data-delay="2">
+        <div class="brand-pill-badge">Brand Identity</div>
+        
+        <div class="brand-mockups-stage">
+          <!-- Smartphone Mockup ("Study in Greece" Campaign Flyer) -->
+          <div class="phone-mockup-frame" data-cursor="VIEW" tabindex="0" role="region" aria-label="Smartphone Mockup: Study in Greece flyer poster">
+            <img src="assets/study_greece_phone.webp" alt="Study in Greece mobile flyer poster" class="phone-screen-img" width="401" height="799" loading="lazy" decoding="async" />
+          </div>
+
+          <!-- Tablet / Print Promo Mockup ("Anniversary Month" Restaurant Menu) -->
+          <div class="flyer-mockup-card" data-cursor="VIEW" tabindex="0" role="region" aria-label="Tablet Mockup: Anniversary Month food menu promotional creative">
+            <img src="assets/anniversary_menu_focused.webp" alt="Anniversary Month food menu promo on tablet" class="flyer-card-img" width="740" height="780" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 · CAMPAIGN CREATIVES SHOWCASE (Electric Cyan BG)
+  ============================================================ -->
+  <section class="campaign-showcase-section" id="campaigns">
+    <div class="campaign-container">
+      <div class="campaign-grid">
+        <!-- Tastebud Patisserie Card -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
+          <div class="campaign-card-inner">
+            <img src="assets/tastebud.webp" alt="Tastebud Patisserie campaign graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <!-- UK Universities Card -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="campaign-card-inner">
+            <img src="assets/uk_uni.webp" alt="Applying to UK Universities graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 · EDIT WITH AI
+  ============================================================ -->
+  <section class="ai-section" id="ai">
+    <div class="ai-container">
+      <!-- Left Column: AI Philosophy Copy -->
+      <div class="ai-left-col" data-reveal>
+        <h2 class="ai-heading">Edit with Ai</h2>
+
+        <p class="ai-paragraph ai-paragraph--intro">
+          Creative editing is evolving fast, and AI opens up new ways to enhance visuals, refine ideas, and create content more efficiently without losing the human creative touch
+        </p>
+
+        <p class="ai-paragraph ai-paragraph--body">
+          I combine traditional editing skills with AI-powered tools to improve visuals, generate creative elements, remove distractions, enhance compositions, and turn simple concepts into polished, engaging content.
+        </p>
+
+        <!-- Interactive AI Tools Terminal / Flow -->
+        <div class="ai-workflow-tags" data-reveal>
+          <span class="ai-chip">Generative Object Removal</span>
+          <span class="ai-chip">4K Neural Upscaling</span>
+          <span class="ai-chip">Smart Color Match</span>
+          <span class="ai-chip">Speech Clarity Enhancer</span>
+          <span class="ai-chip">Automated Scene Edit Detection</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Video Player Container with "Website" Pill -->
+      <div class="ai-right-col" data-reveal data-delay="1">
+        <div class="ai-header-pill">Website</div>
+
+        <div class="ai-player-mockup" data-cursor="PLAY">
+          <img src="assets/editor_frame.jpg" alt="AI video editing demonstration" class="ai-player-poster" width="1600" height="1000" loading="lazy" decoding="async" />
+          
+          <div class="ai-player-overlay">
+            <button type="button" class="ai-play-btn-large" aria-label="Play AI editing demonstration">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+            
+            <!-- Custom Player Controls Bar -->
+            <div class="player-controls-bar">
+              <div class="player-timeline-track">
+                <div class="player-timeline-fill" style="width: 45%;"></div>
+              </div>
+              <div class="player-buttons-flex">
+                <span class="player-time-text">00:15 / 00:30</span>
+                <span class="player-quality-pill">4K HDR · AI Assisted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 · CREATIVE EDITING & VIDEO PRODUCTION
+  ============================================================ -->
+  <section class="split-editing-section" id="production">
+    <div class="split-editing-container">
+      <!-- Left Column: Creative Editing + Points 01 & 02 -->
+      <div class="split-left-col" data-reveal>
+        <div class="split-heading-wrap">
+          <h2 class="split-heading">Creative Editing</h2>
+          <div class="production-pill-badge">Video Production</div>
+        </div>
+
+        <div class="split-numbered-points">
+          <!-- Point 01 -->
+          <div class="split-point-item" data-reveal>
+            <span class="point-big-number">01</span>
+            <p class="point-explanation">
+              Raw footage is only the starting point. Editing determines how the final story feels, flows and connects with the audience.
+            </p>
+          </div>
+
+          <!-- Point 02 -->
+          <div class="split-point-item" data-reveal data-delay="1">
+            <span class="point-big-number">02</span>
+            <p class="point-explanation">
+              transforming raw footage into polished content using pacing, sound, motion, colour, graphics and AI-assisted creative tools where they add value.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Black and White Editor Portrait -->
+      <div class="split-right-col" data-reveal data-delay="2">
+        <div class="editor-portrait-frame" data-cursor="VIEW">
+          <img src="assets/editor_frame.jpg" alt="Aldrin Abir video editor close up" class="editor-portrait-img" width="1080" height="1920" loading="lazy" decoding="async" />
+          <div class="portrait-shadow-vignette"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 · SERVICES (Light Silver Background)
+  ============================================================ -->
+  <section class="services-clean-section" id="services">
+    <div class="services-clean-container">
+      <div class="services-clean-header" data-reveal>
+        <h2 class="services-clean-title">Services</h2>
+        <p class="services-clean-statement">LET’S TURN YOUR IDEA INTO CONTENT WORTH WATCHING</p>
+      </div>
+
+      <!-- 6 Interactive Cyan Pill Buttons (3x2 Grid) -->
+      <div class="services-pills-grid" data-reveal>
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Video Production</span>
+          <span class="pill-arrow">→</span>
+        </a>
+
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Video Editing</span>
+          <span class="pill-arrow">→</span>
+        </a>
+
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Static Content Design</span>
+          <span class="pill-arrow">→</span>
+        </a>
+
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Brand Identity</span>
+          <span class="pill-arrow">→</span>
+        </a>
+
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Ai Content Design</span>
+          <span class="pill-arrow">→</span>
+        </a>
+
+        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
+          <span class="pill-title">Printables</span>
+          <span class="pill-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8 · WIDESCREEN STUDIO CINEMATIC REEL
+  ============================================================ -->
+  <section class="studio-reel-section" id="reel">
+    <div class="studio-reel-frame" data-cursor="PLAY" data-reveal>
+      <img src="assets/studio_frame.jpg" alt="Video editing studio reel preview" class="reel-backdrop-img" width="1920" height="1080" loading="lazy" decoding="async" />
+      <div class="reel-interactive-overlay">
+        <button type="button" class="reel-play-button" aria-label="Play studio showreel">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+        <div class="reel-bottom-info">
+          <span class="reel-meta-tag">Studio Showreel</span>
+          <span class="reel-duration">01:12 · 4K 60FPS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 9 · WEB DESIGN & DIGITAL PROTOTYPES (Cyan Section)
+  ============================================================ -->
+  <section class="digital-products-section" id="web-design">
+    <div class="digital-products-container">
+      <!-- Left: Interactive Website Prototype Scroll Banner -->
+      <div class="prototype-scroll-column" data-reveal>
+        <div class="prototype-scroll-frame" data-cursor="SCROLL">
+          <img src="assets/web_prototype_scroll.webp" alt="Full website landing page prototype scroll" class="prototype-scroll-img" width="612" height="2400" loading="lazy" decoding="async" />
+        </div>
+      </div>
+
+      <!-- Right: Laptop Mockup -->
+      <div class="laptop-mockup-column" data-reveal data-delay="1">
+        <div class="macbook-device-mockup" data-cursor="VIEW">
+          <div class="macbook-top-lid">
+            <div class="macbook-webcam"></div>
+            <div class="macbook-display">
+              <img src="assets/laptop_screen.webp" alt="Website displayed on laptop screen" class="macbook-screen-img" width="800" height="450" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="macbook-bottom-base">
+            <div class="macbook-notch-indent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============================================================
+       INTERACTIVE GLOBAL FOOTER (Inspired by Design Monks)
+       Curved Earth Horizon · Glassmorphism Location Cards · Floating Dock
+  ============================================================ -->
+  <footer class="interactive-earth-footer" id="contact" role="contentinfo">
+    <!-- Earth Globe Video Background Section -->
+    <div class="earth-globe-wrapper">
+      <video
+        id="earthGlobeVideo"
+        class="earth-bg-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="assets/studio_frame.jpg"
+        width="1920"
+        height="1080"
+        preload="metadata"
+        controlslist="nodownload nofullscreen noremoteplayback"
+        disablepictureinpicture
+        oncontextmenu="return false;"
+      >
+        <source src="assets/footer_globe.mp4" type="video/mp4" />
+      </video>
+
+      <div class="earth-atmosphere-vignette"></div>
+      <div class="earth-glow-haze"></div>
+
+      <!-- Globe Overlay Content -->
+      <div class="earth-content-container">
+        <div class="earth-section-badge" data-reveal>
+          <span class="badge-pulse-dot"></span>
+          <span>Global Reach · Worldwide Production</span>
+        </div>
+
+        <h2 class="earth-main-heading" data-reveal data-delay="1">
+          COLLABORATING WITH CLIENTS &amp; TEAMS ACROSS THE GLOBE
+        </h2>
+
+        <!-- 8 Glassmorphism Location Cards Grid (4x2 on desktop) -->
+        <div class="earth-locations-grid" data-reveal data-delay="2">
+          <!-- 1. United States -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">United States</h4>
+            <p class="card-address-text">16 Cove Road, Mount Arlington, NJ 07856</p>
+          </div>
+
+          <!-- 2. Australia -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Australia</h4>
+            <p class="card-address-text">155 Bennett Rd, St Clair NSW 2759</p>
+          </div>
+
+          <!-- 3. South Africa -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">South Africa</h4>
+            <p class="card-address-text">55 Mons Rd, Bellevue East, Johannesburg</p>
+          </div>
+
+          <!-- 4. Singapore -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Singapore</h4>
+            <p class="card-address-text">6 Raffles Blvd, Marina Square</p>
+          </div>
+
+          <!-- 5. Italy -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Italy</h4>
+            <p class="card-address-text">Via Bari, 9, 03043 Cassino, FR</p>
+          </div>
+
+          <!-- 6. Dubai -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Dubai</h4>
+            <p class="card-address-text">AlFattan Downtown - 32d St - Al Satwa</p>
+          </div>
+
+          <!-- 7. Cyprus -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Cyprus</h4>
+            <p class="card-address-text">Estias 5, Strovolos 2001</p>
+          </div>
+
+          <!-- 8. Bangladesh -->
+          <div class="location-glass-card" data-cursor="VIEW">
+            <div class="card-pin-indicator"></div>
+            <h4 class="card-country-name">Bangladesh</h4>
+            <p class="card-address-text">Ventura Iconia, Plot 37 Road 11, Banani, Dhaka</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-Column Links Section -->
+    <div class="footer-directory-wrapper">
+      <div class="footer-columns-grid">
+        <!-- Column 1: Important Links -->
+        <div class="footer-nav-col" data-reveal>
+          <h5 class="footer-col-title">Important Links</h5>
+          <ul class="footer-nav-list">
+            <li><a href="#about" class="footer-nav-link">About Aldrin</a></li>
+            <li><a href="#projects" class="footer-nav-link">Featured Projects</a></li>
+            <li><a href="#tools" class="footer-nav-link">Tools &amp; Pipeline</a></li>
+            <li><a href="#campaigns" class="footer-nav-link">Campaign Creatives</a></li>
+            <li><a href="#web-design" class="footer-nav-link">Digital Prototypes</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Services -->
+        <div class="footer-nav-col" data-reveal data-delay="1">
+          <h5 class="footer-col-title">Services</h5>
+          <ul class="footer-nav-list">
+            <li><a href="#services" class="footer-nav-link">Video Production</a></li>
+            <li><a href="#services" class="footer-nav-link">Creative Video Editing</a></li>
+            <li><a href="#services" class="footer-nav-link">Static Content Design</a></li>
+            <li><a href="#tools" class="footer-nav-link">Brand Identity Systems</a></li>
+            <li><a href="#ai" class="footer-nav-link">Ai Content Design</a></li>
+            <li><a href="#services" class="footer-nav-link">Printables &amp; Merch</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Specialized Industry -->
+        <div class="footer-nav-col" data-reveal data-delay="2">
+          <h5 class="footer-col-title">Specialized Industry</h5>
+          <ul class="footer-nav-list">
+            <li><a href="#projects" class="footer-nav-link">Commercial &amp; Skincare</a></li>
+            <li><a href="#projects" class="footer-nav-link">High-Fashion Lookbooks</a></li>
+            <li><a href="#projects" class="footer-nav-link">Creator Tech Campaigns</a></li>
+            <li><a href="#campaigns" class="footer-nav-link">Food &amp; Hospitality</a></li>
+            <li><a href="#campaigns" class="footer-nav-link">Higher Education Ads</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Compare & Value -->
+        <div class="footer-nav-col" data-reveal data-delay="3">
+          <h5 class="footer-col-title">Why Partner</h5>
+          <ul class="footer-nav-list">
+            <li><span class="footer-static-item">✓ Fast Turnaround Delivery</span></li>
+            <li><span class="footer-static-item">✓ 4K HDR &amp; Color Mastered</span></li>
+            <li><span class="footer-static-item">✓ AI-Accelerated Polish</span></li>
+            <li><span class="footer-static-item">✓ Direct Creator Collaboration</span></li>
+            <li><span class="footer-static-item">✓ End-to-End Direction</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar with Designer Watermark -->
+      <div class="footer-bottom-brand-bar">
+        <div class="brand-signature-wrap">
+          <span class="brand-massive-name">ALDRIN ABIR</span>
+          <p class="brand-signature-sub">Video Editor &amp; Content Designer · Create With Purpose</p>
+        </div>
+
+        <div class="footer-social-pill-group">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill" data-cursor="LINK" aria-label="Aldrin Abir on Instagram">Instagram</a>
+          <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="footer-social-pill" data-cursor="LINK" aria-label="Aldrin Abir on Behance">Behance</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill" data-cursor="LINK" aria-label="Aldrin Abir on LinkedIn">LinkedIn</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-pill" data-cursor="LINK" aria-label="Aldrin Abir on YouTube">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       FLOATING INTERACTIVE DOCK & WIDGETS (Design Monks Style)
+  ============================================================ -->
+  <!-- 1. Floating Center Navigation Dock -->
+  <div class="floating-dock-container" id="floatingDock" aria-label="Quick navigation">
+    <nav class="floating-dock-pill" aria-label="Floating quick links">
+      <a href="#projects" class="dock-item-link" data-cursor="LINK">Projects</a>
+      <a href="#services" class="dock-item-link" data-cursor="LINK">Services</a>
+      <a href="mailto:aldrinabir@gmail.com?subject=Project%20Inquiry%20-%20Creative%20Portfolio" class="dock-cta-btn" id="dockCtaBtn" data-cursor="LINK">
+        <span class="dock-btn-label">Start a Project</span>
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="dock-arrow-svg" aria-hidden="true">
+          <line x1="4" y1="10" x2="16" y2="10"></line>
+          <polyline points="10 4 16 10 10 16"></polyline>
+        </svg>
+      </a>
+      <a href="#about" class="dock-item-link dock-item--optional" data-cursor="LINK">About</a>
+      <a href="#tools" class="dock-item-link dock-item--optional" data-cursor="LINK">Tools</a>
+    </nav>
+  </div>
+
+  <!-- 2. Floating "Back to Top" Pill (Bottom-Left) -->
+  <button type="button" class="floating-back-to-top" id="backToTopBtn" aria-label="Back to top" data-cursor="LINK">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+    <span class="back-to-top-label">Back to Top</span>
+  </button>
+
+  <!-- 3. Floating Live Status / Chat Trigger (Bottom-Right) -->
+  <button type="button" class="floating-status-trigger" id="floatingChatTrigger" aria-label="Available for new projects - contact Aldrin" data-cursor="LINK">
+    <div class="status-online-dot"></div>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+    </svg>
+  </button>
+
+  <!-- ============================================================
+       CONTACT & BOOKING DRAWER MODAL (Glassmorphic Slide-In)
+  ============================================================ -->
+  <div class="contact-drawer-overlay" id="contactDrawerOverlay" aria-hidden="true">
+    <div class="contact-drawer-dialog" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <div class="drawer-badge">
+            <span class="badge-pulse-dot"></span>
+            <span>Direct Collaboration</span>
+          </div>
+          <h3 class="drawer-heading" id="drawerTitle">Start a Project</h3>
+          <p class="drawer-sub">Have a commercial shoot, video editing pipeline, or brand campaign in mind? Let’s create together.</p>
+        </div>
+        <button type="button" class="drawer-close-btn" id="contactDrawerClose" aria-label="Close contact drawer" data-cursor="LINK">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick Copy Bar -->
+      <div class="drawer-quick-bar">
+        <div class="quick-email-pill">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span class="quick-email-text">aldrinabir@gmail.com</span>
+          <button type="button" class="quick-copy-btn" id="quickCopyEmailBtn" aria-label="Copy email address" data-cursor="LINK">Copy</button>
+        </div>
+        <div class="quick-location-pill">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Dhaka · Worldwide Remote</span>
+        </div>
+      </div>
+
+      <!-- Project Inquiry Form -->
+      <form class="drawer-inquiry-form" id="drawerInquiryForm">
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="inquiryName" class="form-label">Your Name / Organization</label>
+            <input type="text" id="inquiryName" name="name" class="form-input" placeholder="e.g. Alex Morgan" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="inquiryContact" class="form-label">Email or WhatsApp</label>
+            <input type="text" id="inquiryContact" name="contact" class="form-input" placeholder="alex@company.com or +1..." autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <span class="form-label" id="servicesGroupLabel">Service Deliverables</span>
+          <div class="service-pill-selector" role="group" aria-labelledby="servicesGroupLabel">
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Video Production & Editing" checked />
+              <span>Video Editing</span>
+            </label>
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Motion Graphics & 3D" />
+              <span>Motion Graphics</span>
+            </label>
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Brand Identity" />
+              <span>Brand Identity</span>
+            </label>
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Social Media Creatives" />
+              <span>Social Ads</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="inquiryBudget" class="form-label">Project Scope / Estimated Budget</label>
+          <select id="inquiryBudget" name="budget" class="form-select">
+            <option value="<$500">&lt; $500 (Single Project / Reel)</option>
+            <option value="$500 - $1,500" selected>$500 – $1,500 (Campaign / Multi-Deliverables)</option>
+            <option value="$1,500 - $3,000">$1,500 – $3,000 (Full Production & Retainer)</option>
+            <option value="$3,000+">$3,000+ (Enterprise / Global Campaign)</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="inquiryBrief" class="form-label">Project Brief &amp; Timeline</label>
+          <textarea id="inquiryBrief" name="brief" class="form-textarea" rows="4" placeholder="Briefly describe your goals, visual references, and timeline..."></textarea>
+        </div>
+
+        <div class="drawer-actions-row">
+          <button type="submit" class="drawer-submit-btn" id="drawerSubmitBtn" data-cursor="LINK">
+            <span>Send Project Inquiry</span>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="10" x2="16" y2="10"></line>
+              <polyline points="10 4 16 10 10 16"></polyline>
+            </svg>
+          </button>
+          <a href="mailto:aldrinabir@gmail.com?subject=Direct%20Inquiry%20-%20Aldrin%20Abir" class="drawer-mailto-fallback" data-cursor="LINK">
+            Open in Email App
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Floating Toast Notification -->
+  <div class="portfolio-toast" id="portfolioToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-indicator"></div>
+    <span class="toast-message" id="toastMessage"></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
