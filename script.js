@@ -6,15 +6,135 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── 1. Top Scroll Progress Bar ────────────────────────────── */
+  /* ── 0. Lenis Ultra-Smooth Inertia Scroll Engine ───────── */
+  let lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential luxury spring decay
+      smoothWheel: true,
+      smoothTouch: false,
+      touchMultiplier: 1.8,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+
+  /* ── 1. Unified 120fps Scroll Pipeline (Zero Layout Thrashing) ── */
   const scrollProgress = document.getElementById('scrollProgress');
-  window.addEventListener('scroll', () => {
+  const topNavBar = document.getElementById('topNavBar');
+  const topNavLinks = document.querySelectorAll('.top-nav-link');
+  const navSections = document.querySelectorAll('section[id]');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const reelScrollTrack = document.getElementById('reelScrollTrack');
+  const reelExpandingContainer = document.getElementById('reelExpandingContainer');
+
+  function updateReelScrollExpansion() {
+    if (!reelScrollTrack || !reelExpandingContainer || window.innerWidth <= 768) return;
+
+    const rect = reelScrollTrack.getBoundingClientRect();
+    const windowH = window.innerHeight;
+    
+    // Calculate scroll progress from 0 when track top enters viewport, to 1
+    const totalTrackDist = rect.height - windowH;
+    if (totalTrackDist <= 0) return;
+
+    const scrolledDist = -rect.top;
+    let progress = Math.max(0, Math.min(1, scrolledDist / (totalTrackDist * 0.75)));
+
+    // Pure hardware-accelerated GPU scale and border-radius (zero layout reflows)
+    const scale = 0.82 + (progress * 0.18);
+    const radius = Math.max(8, 28 - (progress * 20));
+
+    reelExpandingContainer.style.transform = `scale(${scale})`;
+    reelExpandingContainer.style.borderRadius = `${radius}px`;
+  }
+
+  function handleUnifiedScroll(scrollPos) {
+    // 1a. GPU-Accelerated Scroll Progress Bar (scaleX)
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (totalHeight > 0 && scrollProgress) {
-      const progress = (window.scrollY / totalHeight) * 100;
-      scrollProgress.style.width = `${progress}%`;
+      const progress = scrollPos / totalHeight;
+      scrollProgress.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
     }
-  }, { passive: true });
+
+    // 1b. Architectural Top Navigation Elevation
+    if (topNavBar) {
+      if (scrollPos > 40) {
+        topNavBar.classList.add('nav-scrolled');
+      } else {
+        topNavBar.classList.remove('nav-scrolled');
+      }
+    }
+
+    // 1c. Back To Top Button
+    if (backToTopBtn) {
+      if (scrollPos > 450) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+
+    // 1d. Cinematic Showreel GPU Expansion
+    updateReelScrollExpansion();
+  }
+
+  if (lenis) {
+    lenis.on('scroll', (e) => handleUnifiedScroll(e.scroll));
+  }
+  window.addEventListener('scroll', () => handleUnifiedScroll(window.scrollY), { passive: true });
+  handleUnifiedScroll(window.scrollY || 0);
+
+  // 1e. Zero-Layout-Thrashing Active Nav Indicator via IntersectionObserver
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        topNavLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-25% 0px -50% 0px',
+    threshold: 0
+  });
+
+  navSections.forEach(sec => navObserver.observe(sec));
+
+  // 1f. Smooth Scroll Anchor Navigation
+  function scrollToTarget(target) {
+    if (!target) return;
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -65, duration: 1.25 });
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  topNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        scrollToTarget(document.querySelector(href));
+      }
+    });
+  });
+
+  const processTeaserBtn = document.getElementById('processTeaserBtn');
+  if (processTeaserBtn) {
+    processTeaserBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reelSection = document.getElementById('reel');
+      if (reelSection) scrollToTarget(reelSection);
+    });
+  }
 
 
   /* ── 2. Custom Magnetic Cursor with Lerp Physics ──────────── */
@@ -97,21 +217,182 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ── 3. Magnetic CTA Button Physics ────────────────────────── */
-  const ctaBtn = document.getElementById('ctaMagneticBtn');
-  if (ctaBtn && window.innerWidth > 768) {
-    ctaBtn.addEventListener('mousemove', (e) => {
-      const rect = ctaBtn.getBoundingClientRect();
-      const btnCenterX = rect.left + rect.width / 2;
-      const btnCenterY = rect.top + rect.height / 2;
-      const deltaX = (e.clientX - btnCenterX) * 0.28;
-      const deltaY = (e.clientY - btnCenterY) * 0.28;
+  /* ── 2b. Synthesized Ambient Spatial UI Audio FX Engine ──────── */
+  const audioFx = {
+    ctx: null,
+    enabled: true,
+    lastHoverTime: 0,
+    init() {
+      const saved = localStorage.getItem('aldrin_audio_fx');
+      this.enabled = saved !== 'false';
+      this.updateButton();
 
-      ctaBtn.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.04)`;
-    });
+      const toggleBtn = document.getElementById('audioFxToggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.toggle();
+        });
+      }
 
-    ctaBtn.addEventListener('mouseleave', () => {
-      ctaBtn.style.transform = 'translate(0px, 0px) scale(1)';
+      // Micro-haptic sound events on interactive elements
+      document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, .pricing-card, .pricing-addon-label, .faq-category-pill, .faq-trigger, .work-slide, .service-focus-item, .sound-pill, .palette-chip');
+        if (target && !target.dataset.audioBoundHover) {
+          target.dataset.audioBoundHover = 'true';
+          target.addEventListener('mouseenter', () => this.playHover());
+        }
+      }, { passive: true });
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button, .pricing-addon-label, .faq-category-pill, .faq-trigger, .work-slide, .pricing-lock-btn, .service-drawer-cta-btn');
+        if (btn && btn.id !== 'audioFxToggle') {
+          this.playClick();
+        }
+      }, { passive: true });
+    },
+    getCtx() {
+      if (!this.ctx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) this.ctx = new AudioCtx();
+      }
+      if (this.ctx && this.ctx.state === 'suspended') {
+        this.ctx.resume().catch(() => {});
+      }
+      return this.ctx;
+    },
+    playHover() {
+      if (!this.enabled) return;
+      const nowMs = performance.now();
+      if (nowMs - this.lastHoverTime < 60) return; // Debounce rapid hovering
+      this.lastHoverTime = nowMs;
+      try {
+        const ctx = this.getCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(640, now);
+        osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
+        gain.gain.setValueAtTime(0.015, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.045);
+      } catch (err) {}
+    },
+    playClick() {
+      if (!this.enabled) return;
+      try {
+        const ctx = this.getCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1050, now);
+        osc.frequency.exponentialRampToValueAtTime(280, now + 0.06);
+        gain.gain.setValueAtTime(0.035, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.065);
+      } catch (err) {}
+    },
+    playDrawerOpen() {
+      if (!this.enabled) return;
+      try {
+        const ctx = this.getCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        [392, 523.25, 659.25].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.035);
+          gain.gain.setValueAtTime(0.02, now + idx * 0.035);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.035 + 0.18);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.035);
+          osc.stop(now + idx * 0.035 + 0.2);
+        });
+      } catch (err) {}
+    },
+    playToggle() {
+      if (!this.enabled) return;
+      try {
+        const ctx = this.getCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.setValueAtTime(780, now + 0.06);
+        gain.gain.setValueAtTime(0.03, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      } catch (err) {}
+    },
+    toggle() {
+      this.enabled = !this.enabled;
+      localStorage.setItem('aldrin_audio_fx', this.enabled ? 'true' : 'false');
+      this.updateButton();
+      if (this.enabled) {
+        this.playToggle();
+        if (typeof showToast === 'function') showToast('Spatial UI Audio FX Enabled');
+      } else {
+        if (typeof showToast === 'function') showToast('Spatial UI Audio FX Muted');
+      }
+    },
+    updateButton() {
+      const btn = document.getElementById('audioFxToggle');
+      const statusLbl = document.getElementById('audioStatusLabel');
+      if (!btn) return;
+      if (this.enabled) {
+        btn.classList.remove('is-muted');
+        btn.setAttribute('aria-label', 'Mute UI micro-sound effects');
+        btn.setAttribute('title', 'Audio FX: Enabled (Click to Mute)');
+        if (statusLbl) statusLbl.textContent = 'SOUND ON';
+      } else {
+        btn.classList.add('is-muted');
+        btn.setAttribute('aria-label', 'Enable UI micro-sound effects');
+        btn.setAttribute('title', 'Audio FX: Muted (Click to Enable)');
+        if (statusLbl) statusLbl.textContent = 'MUTED';
+      }
+    }
+  };
+
+  audioFx.init();
+
+
+  /* ── 3. Magnetic CTA Button Physics (Awwwards Style) ────────── */
+  if (window.innerWidth > 768) {
+    const magneticElements = document.querySelectorAll(
+      '#ctaMagneticBtn, .hero-primary-cta, .hero-secondary-cta, .top-nav-cta-btn, .dock-cta-btn, .coverflow-nav-btn'
+    );
+    magneticElements.forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const btnCenterX = rect.left + rect.width / 2;
+        const btnCenterY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - btnCenterX) * 0.22;
+        const deltaY = (e.clientY - btnCenterY) * 0.22;
+        btn.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.03)`;
+        btn.style.transition = 'transform 0.08s ease-out';
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        btn.style.transform = 'translate(0px, 0px) scale(1)';
+      });
     });
   }
 
@@ -468,22 +749,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ── 9. Floating "Back to Top" Button Controller ─────────── */
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  if (backToTopBtn) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 450) {
-        backToTopBtn.classList.add('is-visible');
-      } else {
-        backToTopBtn.classList.remove('is-visible');
-      }
-    }, { passive: true });
-
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
   /* ── 10. Toast Notification System ──────────────────────── */
   const portfolioToast = document.getElementById('portfolioToast');
   const toastMessage = document.getElementById('toastMessage');
@@ -509,7 +774,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openContactDrawer(e) {
     if (e) e.preventDefault();
+    if (typeof audioFx !== 'undefined') audioFx.playDrawerOpen();
     if (contactDrawerOverlay) {
+      if (lenis) lenis.stop();
       contactDrawerOverlay.classList.add('is-active');
       contactDrawerOverlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -520,14 +787,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeContactDrawer() {
     if (contactDrawerOverlay) {
+      if (lenis) lenis.start();
       contactDrawerOverlay.classList.remove('is-active');
       contactDrawerOverlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
   }
 
+  const topNavBookBtn = document.getElementById('topNavBookBtn');
+  const heroStartProjectBtn = document.getElementById('heroStartProjectBtn');
+
   if (chatTrigger) chatTrigger.addEventListener('click', openContactDrawer);
   if (dockCtaBtn) dockCtaBtn.addEventListener('click', openContactDrawer);
+  if (topNavBookBtn) topNavBookBtn.addEventListener('click', openContactDrawer);
+  if (heroStartProjectBtn) heroStartProjectBtn.addEventListener('click', openContactDrawer);
   if (contactDrawerClose) contactDrawerClose.addEventListener('click', closeContactDrawer);
 
   if (contactDrawerOverlay) {
@@ -608,24 +881,1681 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── 12. Smooth Scroll on Dock Navigation Links ──────────── */
-  document.querySelectorAll('.dock-item-link').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  /* ── 14. Interactive Services Focus Wheel (Zero Layout Thrashing) ── */
+  const focusWheel = document.querySelector('[data-focus-wheel]');
+  const focusItems = document.querySelectorAll('[data-focus-item]');
+
+  if (focusWheel && focusItems.length > 0) {
+    let isHoveringList = false;
+
+    const focusObserver = new IntersectionObserver((entries) => {
+      if (isHoveringList || window.innerWidth <= 768) return;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          focusItems.forEach(item => item.classList.toggle('is-focused', item === entry.target));
         }
+      });
+    }, {
+      rootMargin: '-35% 0px -35% 0px',
+      threshold: 0.1
+    });
+
+    focusItems.forEach(item => focusObserver.observe(item));
+
+    // Hover overrides scroll center
+    focusWheel.addEventListener('mouseenter', () => {
+      isHoveringList = true;
+    });
+
+    focusWheel.addEventListener('mouseleave', () => {
+      isHoveringList = false;
+    });
+
+    focusItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        focusItems.forEach(other => other.classList.remove('is-focused'));
+        item.classList.add('is-focused');
+      });
+    });
+  }
+
+
+  /* ── 15. Service Detail Slide-Over Drawer Modal ────────────── */
+  const serviceData = {
+    production: {
+      eyebrow: 'CINEMATOGRAPHY & LIGHTING',
+      title: 'Commercial & Social Video Production',
+      summary: 'From concept and shot-listing to final on-set filming, we capture cinematic 4K footage engineered to make your brand look world-class across platforms.',
+      checklist: [
+        '4K multi-angle cinematography & camera direction',
+        'Studio lighting, wireless lavalier & boom sound recording',
+        'Storyboarding, concept direction & talent framing',
+        'High-resolution B-roll packages & product hero closeups',
+        'Platform-compliant filming for both 16:9 and 9:16 vertical'
+      ],
+      outcome: 'Pristine, broadcast-grade footage captured right the first time, giving you a comprehensive asset library ready for high-retention post-production.',
+      checkboxValue: 'Video Production'
+    },
+    editing: {
+      eyebrow: 'POST-PRODUCTION & STORYTELLING',
+      title: 'Retention-Driven Creative Video Editing',
+      summary: 'We transform raw footage into viral-ready short-form reels, high-converting social ads, and compelling long-form YouTube episodes optimized for algorithmic watch time.',
+      checklist: [
+        'Dynamic pacing, narrative rhythm & hook-first structuring',
+        'Custom Foley sound design, risers, whooshes & music mixing',
+        'Kinetic typography, animated subtitles & motion graphics',
+        'Cinematic color grading & contrast curve balancing',
+        'Platform-optimized exports in 9:16, 16:9, and 1:1 ratios'
+      ],
+      outcome: 'Content that stops the scroll within 3 seconds, sustains audience watch-time, and drives viewers to take immediate action.',
+      checkboxValue: 'Video Editing'
+    },
+    content: {
+      eyebrow: 'VISUAL DESIGN & CONVERSION',
+      title: 'Static Social Creatives & High-CTR Ads',
+      summary: 'Eye-catching static visual assets designed specifically for Instagram feeds, LinkedIn thought leadership, and Meta paid advertising campaigns.',
+      checklist: [
+        'Multi-slide educational and narrative Instagram carousels',
+        'High-CTR Meta ad banners & promotional graphics',
+        'YouTube thumbnails engineered for maximum click-through rates',
+        'Brand-consistent typography, color hierarchy & spatial layouts',
+        'Ready-to-post export packs formatted with captions & tags'
+      ],
+      outcome: 'A continuous feed of visual creatives that builds authority, drives organic engagement, and lowers your cost per click.',
+      checkboxValue: 'Static Content Design'
+    },
+    branding: {
+      eyebrow: 'BRAND IDENTITY & SYSTEMS',
+      title: 'Brand Identity Systems & Visual Guidelines',
+      summary: 'We build memorable brand identities from scratch or overhaul outdated visual languages to ensure consistency across every physical and digital touchpoint.',
+      checklist: [
+        'Primary, secondary, and responsive favicon logo suites',
+        'Color palette systems with high-contrast accessibility curves',
+        'Typography pairing rules and spatial hierarchy scales',
+        'Social media avatars, banners, and digital asset templates',
+        'Comprehensive Brand Book that your team can actually execute'
+      ],
+      outcome: 'A distinct, unmistakable identity that your market instantly recognizes before reading your name.',
+      checkboxValue: 'Brand Identity'
+    },
+    ai: {
+      eyebrow: 'GENERATIVE PIPELINES & AI ASSETS',
+      title: 'AI Content Design & Neural Workflows',
+      summary: 'Leveraging cutting-edge Midjourney, FLUX, and neural super-resolution pipelines to generate photorealistic backgrounds, futuristic mockups, and rapid concept prototypes.',
+      checklist: [
+        'Custom prompt engineering & bespoke concept rendering',
+        'High-fidelity 3D and surreal product mockup generation',
+        'Neural upscaling to pristine 4K print and web resolution',
+        'Rapid campaign prototyping delivered in hours instead of weeks',
+        'AI asset retouching, compositing & color integration'
+      ],
+      outcome: 'Boundary-pushing visual concepts that differentiate your campaigns from generic stock photography at a fraction of standard production timelines.',
+      checkboxValue: 'AI Content Design'
+    },
+    printables: {
+      eyebrow: 'PACKAGING & MERCHANDISE',
+      title: 'Printables, Apparel & Packaging Design',
+      summary: 'Vector-exact print production with precision bleeds, spot colors, and vector scalability for luxury packaging, apparel drops, and event stationery.',
+      checklist: [
+        'Apparel graphics, typography tees & merchandise mockups',
+        'Business collateral, luxury menu cards & editorial brochures',
+        'Product packaging boxes, die-cut labels & unboxing inserts',
+        'Pre-press verified CMYK vector files ready for commercial printing',
+        'Material finish consultations (emboss, foil stamp, matte/gloss)'
+      ],
+      outcome: 'Tactile, premium brand materials that look just as immaculate in your hands as they do on digital screens.',
+      checkboxValue: 'Printables & Merch'
+    }
+  };
+
+  const serviceDrawerOverlay = document.getElementById('serviceDrawerOverlay');
+  const serviceDrawerClose = document.getElementById('serviceDrawerClose');
+  const serviceDrawerEyebrow = document.getElementById('serviceDrawerEyebrow');
+  const serviceDrawerTitle = document.getElementById('serviceDrawerTitle');
+  const serviceDrawerSummary = document.getElementById('serviceDrawerSummary');
+  const serviceDrawerChecklist = document.getElementById('serviceDrawerChecklist');
+  const serviceDrawerOutcome = document.getElementById('serviceDrawerOutcome');
+  const serviceDrawerCtaBtn = document.getElementById('serviceDrawerCtaBtn');
+  const serviceDrawerCtaLabel = document.getElementById('serviceDrawerCtaLabel');
+
+  let currentActiveServiceId = null;
+
+  function openServiceDrawer(serviceId) {
+    const data = serviceData[serviceId];
+    if (!data || !serviceDrawerOverlay) return;
+    if (typeof audioFx !== 'undefined') audioFx.playDrawerOpen();
+
+    currentActiveServiceId = serviceId;
+    if (serviceDrawerEyebrow) serviceDrawerEyebrow.textContent = data.eyebrow;
+    if (serviceDrawerTitle) serviceDrawerTitle.textContent = data.title;
+    if (serviceDrawerSummary) serviceDrawerSummary.textContent = data.summary;
+    if (serviceDrawerOutcome) serviceDrawerOutcome.textContent = data.outcome;
+    if (serviceDrawerCtaLabel) serviceDrawerCtaLabel.textContent = `Start a Project with ${data.checkboxValue}`;
+
+    if (serviceDrawerChecklist) {
+      serviceDrawerChecklist.innerHTML = '';
+      data.checklist.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="drawer-bullet-dot"></span><span>${item}</span>`;
+        serviceDrawerChecklist.appendChild(li);
+      });
+    }
+
+    if (lenis) lenis.stop();
+    serviceDrawerOverlay.classList.add('is-active');
+    serviceDrawerOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeServiceDrawer() {
+    if (!serviceDrawerOverlay) return;
+    if (lenis) lenis.start();
+    serviceDrawerOverlay.classList.remove('is-active');
+    serviceDrawerOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    currentActiveServiceId = null;
+  }
+
+  // Bind clicks on service cards
+  document.querySelectorAll('.service-focus-item').forEach(item => {
+    const btn = item.querySelector('.service-card');
+    const serviceId = item.getAttribute('data-service-id');
+    if (btn && serviceId) {
+      btn.addEventListener('click', () => {
+        openServiceDrawer(serviceId);
+      });
+    }
+  });
+
+  if (serviceDrawerClose) {
+    serviceDrawerClose.addEventListener('click', closeServiceDrawer);
+  }
+
+  if (serviceDrawerOverlay) {
+    serviceDrawerOverlay.addEventListener('click', (e) => {
+      if (e.target === serviceDrawerOverlay) {
+        closeServiceDrawer();
+      }
+    });
+  }
+
+  // Escape key to dismiss drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && serviceDrawerOverlay?.classList.contains('is-active')) {
+      closeServiceDrawer();
+    }
+  });
+
+  // CTA inside service drawer -> opens Contact Drawer with this service checked!
+  if (serviceDrawerCtaBtn) {
+    serviceDrawerCtaBtn.addEventListener('click', () => {
+      const activeData = currentActiveServiceId ? serviceData[currentActiveServiceId] : null;
+      closeServiceDrawer();
+
+      // Check corresponding checkbox in the inquiry drawer
+      if (activeData) {
+        document.querySelectorAll('input[name="services"]').forEach(cb => {
+          cb.checked = (cb.value === activeData.checkboxValue);
+        });
+      }
+
+      // Open contact inquiry drawer
+      openContactDrawer();
+    });
+  }
+
+
+  /* ── 16. Scroll-Expanding Cinematic Showreel (Design Monks Style) ── */
+  const reelVideo = document.getElementById('studioShowreelVideo');
+  const reelCenterPlayBtn = document.getElementById('reelCenterPlayBtn');
+  const reelPlaySvg = document.getElementById('reelPlaySvg');
+  const reelPauseSvg = document.getElementById('reelPauseSvg');
+  const reelSoundToggleBtn = document.getElementById('reelSoundToggleBtn');
+  const reelSoundOnSvg = document.getElementById('reelSoundOnSvg');
+  const reelSoundOffSvg = document.getElementById('reelSoundOffSvg');
+  const reelSoundLabel = document.getElementById('reelSoundLabel');
+  const reelAudioBars = document.getElementById('reelAudioBars');
+
+  // Play/Pause Controller for Reel
+  if (reelVideo && reelCenterPlayBtn) {
+    function toggleReelPlay() {
+      if (reelVideo.paused) {
+        reelVideo.play().then(() => {
+          if (reelPlaySvg) reelPlaySvg.style.display = 'none';
+          if (reelPauseSvg) reelPauseSvg.style.display = 'block';
+        }).catch(() => {});
+      } else {
+        reelVideo.pause();
+        if (reelPlaySvg) reelPlaySvg.style.display = 'block';
+        if (reelPauseSvg) reelPauseSvg.style.display = 'none';
+      }
+    }
+
+    reelCenterPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleReelPlay();
+    });
+
+    reelExpandingContainer?.addEventListener('click', (e) => {
+      if (!e.target.closest('#reelSoundToggleBtn') && !e.target.closest('#reelCenterPlayBtn')) {
+        toggleReelPlay();
+      }
+    });
+
+    reelVideo.addEventListener('play', () => {
+      if (reelPlaySvg) reelPlaySvg.style.display = 'none';
+      if (reelPauseSvg) reelPauseSvg.style.display = 'block';
+    });
+
+    reelVideo.addEventListener('pause', () => {
+      if (reelPlaySvg) reelPlaySvg.style.display = 'block';
+      if (reelPauseSvg) reelPauseSvg.style.display = 'none';
+    });
+  }
+
+  // Sound Toggle Controller
+  if (reelVideo && reelSoundToggleBtn) {
+    reelSoundToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      reelVideo.muted = !reelVideo.muted;
+      if (reelVideo.muted) {
+        if (reelSoundOnSvg) reelSoundOnSvg.style.display = 'none';
+        if (reelSoundOffSvg) reelSoundOffSvg.style.display = 'block';
+        if (reelSoundLabel) reelSoundLabel.textContent = 'UNMUTE SOUND';
+        if (reelAudioBars) reelAudioBars.classList.remove('is-playing');
+        showToast('Showreel audio muted');
+      } else {
+        if (reelSoundOnSvg) reelSoundOnSvg.style.display = 'block';
+        if (reelSoundOffSvg) reelSoundOffSvg.style.display = 'none';
+        if (reelSoundLabel) reelSoundLabel.textContent = 'MUTE SOUND';
+        if (reelAudioBars) reelAudioBars.classList.add('is-playing');
+        showToast('Showreel audio enabled 🔊');
+      }
+    });
+  }
+
+
+  /* ── 17. Bento Grid Interactive Plans & Scope Switcher ─────── */
+  const planPills = document.querySelectorAll('.plan-pill');
+  planPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      planPills.forEach(p => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('is-active');
+      pill.setAttribute('aria-selected', 'true');
+      
+      const plan = pill.getAttribute('data-plan');
+      if (plan === 'project') {
+        showToast('Selected: Per Project Milestone Scope');
+      } else if (plan === 'monthly') {
+        showToast('Selected: Monthly Dedicated Retainer');
+      } else if (plan === 'sprint') {
+        showToast('Selected: 2-Week High-Impact Creative Sprint');
       }
     });
   });
 
-  /* ── 13. Digital Rights & Media Download Prevention ───────── */
+  /* ── 18. BizChemists 3D Coverflow Carousel (1:1 Real-Time Glide) ── */
+  function initProjectsCoverflow() {
+    const stage = document.getElementById('workStage');
+    if (!stage) return;
+
+    const slides = Array.from(stage.querySelectorAll('.work-slide'));
+    if (!slides.length) return;
+
+    const prevBtn = document.getElementById('coverflowPrevBtn');
+    const nextBtn = document.getElementById('coverflowNextBtn');
+    const counterEl = document.getElementById('projectCounter');
+    const counterCurr = counterEl ? counterEl.querySelector('.counter-curr') : null;
+    const counterTotal = counterEl ? counterEl.querySelector('.counter-total') : null;
+
+    const _r = slides.length; // 6
+    let activeIndex = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartTime = 0;
+    let currentDragOffset = 0;
+
+    if (counterTotal) {
+      counterTotal.textContent = String(_r).padStart(2, '0');
+    }
+
+    const gk = (idx, curr) => ((idx - curr) % _r + _r + Math.floor(_r / 2)) % _r - Math.floor(_r / 2);
+
+    function renderSlidePositions(dragFraction = 0, isDirect = false) {
+      slides.forEach((slide, idx) => {
+        const baseC = gk(idx, activeIndex);
+        const c = baseC + dragFraction;
+        const f = Math.abs(c);
+        const isCentre = Math.abs(c) < 0.35;
+
+        if (isDirect) {
+          slide.style.transition = 'none';
+        } else {
+          slide.style.transition = 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1)';
+        }
+
+        if (f > 2.5) {
+          slide.style.transform = `translateX(calc(-50% + ${c * 58}%)) rotateY(${c * -26}deg) scale(0.6)`;
+          slide.style.opacity = '0';
+          slide.style.zIndex = '0';
+          slide.style.pointerEvents = 'none';
+          slide.classList.remove('is-centre');
+          slide.removeAttribute('aria-current');
+          slide.setAttribute('tabindex', '-1');
+          slide.setAttribute('aria-hidden', 'true');
+          return;
+        }
+
+        slide.style.transform = `translateX(calc(-50% + ${c * 58}%)) rotateY(${c * -26}deg) scale(${Math.max(0.65, 1 - f * 0.13)})`;
+        slide.style.opacity = String(Math.max(0, 1 - f * 0.42));
+        slide.style.zIndex = String(Math.round(10 - f));
+        slide.style.pointerEvents = f > 1.2 ? 'none' : 'auto';
+        slide.setAttribute('tabindex', isCentre ? '0' : '-1');
+        slide.setAttribute('aria-hidden', String(!isCentre));
+
+        if (isCentre) {
+          slide.classList.add('is-centre');
+          slide.setAttribute('aria-current', 'true');
+        } else {
+          slide.classList.remove('is-centre');
+          slide.removeAttribute('aria-current');
+        }
+      });
+
+      if (counterCurr) {
+        counterCurr.textContent = String(activeIndex + 1).padStart(2, '0');
+      }
+    }
+
+    const step = (direction) => {
+      activeIndex = (activeIndex + direction + _r) % _r;
+      renderSlidePositions(0, false);
+    };
+
+    if (nextBtn) nextBtn.addEventListener('click', () => step(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => step(-1));
+
+    slides.forEach((slide, idx) => {
+      slide.addEventListener('click', (e) => {
+        if (Math.abs(currentDragOffset) > 10) {
+          e.preventDefault();
+          return;
+        }
+        const c = gk(idx, activeIndex);
+        if (c !== 0) {
+          e.preventDefault();
+          step(c > 0 ? 1 : -1);
+        } else {
+          e.preventDefault();
+          openProjectDrawer(idx);
+        }
+      });
+    });
+
+    // Real-Time 1:1 Pointer Tracking Physics
+    const handlePointerDown = (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartTime = performance.now();
+      currentDragOffset = 0;
+      stage.classList.add('is-dragging');
+      renderSlidePositions(0, true);
+    };
+
+    const handlePointerMove = (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - dragStartX;
+      currentDragOffset = deltaX;
+      const stageWidth = stage.offsetWidth || 800;
+      const dragFraction = (deltaX / (stageWidth * 0.48));
+      renderSlidePositions(dragFraction, true);
+    };
+
+    const handlePointerUp = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.classList.remove('is-dragging');
+
+      const deltaX = e.clientX - dragStartX;
+      const deltaTime = performance.now() - dragStartTime;
+      const velocity = Math.abs(deltaX) / Math.max(1, deltaTime);
+
+      if (Math.abs(deltaX) > 45 || velocity > 0.3) {
+        step(deltaX < 0 ? 1 : -1);
+      } else {
+        step(0);
+      }
+      setTimeout(() => { currentDragOffset = 0; }, 50);
+    };
+
+    stage.addEventListener('pointerdown', handlePointerDown);
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerup', handlePointerUp);
+    window.addEventListener('pointercancel', handlePointerUp);
+
+    // Keyboard accessibility
+    stage.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        step(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        step(-1);
+      }
+    });
+
+    // Category Filter Pills Integration
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        filterBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+
+        if (filter === 'all') {
+          showToast('Showing all production reels');
+          return;
+        }
+
+        // Find first slide matching category
+        const targetIdx = slides.findIndex(s => {
+          const cat = s.getAttribute('data-category') || '';
+          return cat.includes(filter);
+        });
+
+        if (targetIdx !== -1) {
+          activeIndex = targetIdx;
+          renderSlidePositions(0, false);
+          showToast(`Filtered: ${btn.querySelector('span')?.textContent || filter}`);
+        }
+      });
+    });
+
+    // Initial render
+    renderSlidePositions(0, false);
+  }
+
+  initProjectsCoverflow();
+
+  /* ── 19. Project Case Study Slide-Over Drawer with Cinema Player ── */
+  const projectCaseStudies = [
+    {
+      idx: 0,
+      title: "Midnight Glow",
+      category: "Cosmetics & Skincare",
+      eyebrow: "COMMERCIAL COLOR & RETENTION",
+      tagline: "High-contrast luxury cosmetic visual campaign engineered for viral organic TikTok and Instagram engagement.",
+      image: "assets/project_cosmetics.jpg",
+      video: "assets/hero_bg.mp4",
+      sensor: "ARRI Alexa Mini LF · ProRes 4444XQ · 800 ISO",
+      palette: [
+        { hex: '#0A0E17', name: 'Deep Obsidian' },
+        { hex: '#1D2A44', name: 'Midnight Navy' },
+        { hex: '#00F2FE', name: 'Electric Cyan' },
+        { hex: '#F0E6D2', name: 'Champagne Silk' },
+        { hex: '#FFFFFF', name: 'High Key' }
+      ],
+      metrics: [
+        { val: "3.8M", lbl: "Organic Impressions" },
+        { val: "84%", lbl: "Completion Rate" },
+        { val: "4K", lbl: "ProRes Cinema Master" }
+      ],
+      description: "Midnight Glow required an editorial approach to cosmetic advertising that steered clear of generic commercial tropes. We developed a fluid 4K macro visual cadence, combining tactile product textures, dynamic speed-ramping, custom luminous color grading in DaVinci Resolve, and micro-foley sound design that makes textures feel palpably close.",
+      tags: ["DaVinci Resolve Studio", "Film Emulation LUTs", "Foley Sound Design", "4K HDR Master", "9:16 & 16:9 Cuts", "24h Turnaround"]
+    },
+    {
+      idx: 1,
+      title: "Tastebud Artisan",
+      category: "Culinary & Brand Identity",
+      eyebrow: "CULINARY CINEMA & RETENTION",
+      tagline: "Sizzling culinary storytelling and social promotional creatives that increased dine-in reservations.",
+      image: "assets/tastebud.webp",
+      video: "assets/tastebud_reel.mp4",
+      sensor: "Sony FX3 · XAVC S-I 4K · S-Cinetone",
+      palette: [
+        { hex: '#180B05', name: 'Cast Iron' },
+        { hex: '#7C2D12', name: 'Charred Hickory' },
+        { hex: '#EA580C', name: 'Searing Flame' },
+        { hex: '#FBBF24', name: 'Warm Amber' },
+        { hex: '#FFFBEB', name: 'Plating Cream' }
+      ],
+      metrics: [
+        { val: "250%", lbl: "Reservation Surge" },
+        { val: "1.2M+", lbl: "Reel Plays" },
+        { val: "100%", lbl: "Custom Sound Score" }
+      ],
+      description: "Tastebud Artisan needed a cohesive identity refresh spanning both mouthwatering high-framerate sizzle reels and promotional print flyers. We synchronized slow-motion flame sears, knife-chops, and sauce garnishes to rhythmic percussive beats, producing an irresistible sensory appetite hook.",
+      tags: ["Premiere Pro", "Dynamic Speed Ramps", "Commercial Sound Stems", "Print & Social Assets", "Color Grading"]
+    },
+    {
+      idx: 2,
+      title: "Urban Monolith",
+      category: "Fashion & Editorial",
+      eyebrow: "HAUTE COUTURE DIRECTION",
+      tagline: "Atmospheric street editorial campaign combining brutalist urban architecture with modern silhouette aesthetics.",
+      image: "assets/project_fashion.jpg",
+      video: "assets/showreel.mp4",
+      sensor: "RED V-Raptor 8K VV · REDCODE RAW 5:1",
+      palette: [
+        { hex: '#090A0F', name: 'Asphalt Dark' },
+        { hex: '#27272A', name: 'Brutalist Concrete' },
+        { hex: '#64748B', name: 'Slate Midtone' },
+        { hex: '#38BDF8', name: 'Sky Accent' },
+        { hex: '#F8FAFC', name: 'Pure White' }
+      ],
+      metrics: [
+        { val: "5.4M", lbl: "Campaign Reach" },
+        { val: "+340%", lbl: "Profile Visits" },
+        { val: "100%", lbl: "Color Match Precision" }
+      ],
+      description: "Shot across raw brutalist concrete backdrops, Urban Monolith demanded high-grain film texture and rhythmic editorial pacing. We applied analog 35mm grain passes, stylized typography track-ins in After Effects, and ambient electronic synthesizer sound design to deliver an unforgettable runway-to-street aesthetic.",
+      tags: ["35mm Film Grain", "After Effects Tracking", "Kinetic Typography", "Sub-Bass Sound Design", "Social Deliverables"]
+    },
+    {
+      idx: 3,
+      title: "Pulse Smartwatch",
+      category: "Hardware & Tech",
+      eyebrow: "3D HARDWARE MOTION GRAPHICS",
+      tagline: "Futuristic wearable tech launch video highlighting sensor arrays, UI telemetry, and IP68 waterproof chassis.",
+      image: "assets/project_smartphones.jpg",
+      video: "assets/showreel.mp4",
+      sensor: "Sony FX6 · S-Log3 / S-Gamut3.Cine · CineEI 800",
+      palette: [
+        { hex: '#020617', name: 'OLED Black' },
+        { hex: '#0F172A', name: 'Chassis Dark' },
+        { hex: '#3B82F6', name: 'Telemetry Blue' },
+        { hex: '#06B6D4', name: 'Sensor Cyan' },
+        { hex: '#E2E8F0', name: 'Titanium' }
+      ],
+      metrics: [
+        { val: "2.1M", lbl: "Launch Views" },
+        { val: "4.8x", lbl: "Pre-Order ROAS" },
+        { val: "60fps", lbl: "Ultra-Smooth UI Renders" }
+      ],
+      description: "Engineered for consumer tech enthusiasts, this commercial breaks down intricate biometric sensors through explosive layer separations and holographic telemetry overlays. We paired sharp camera dollies with crisp UI notification soundscapes to communicate premium build quality.",
+      tags: ["After Effects", "UI Motion Graphics", "Cinema 4K Compositing", "Product Exploder", "Digital Ad Deliverables"]
+    },
+    {
+      idx: 4,
+      title: "UK Universities",
+      category: "Educational Campaign",
+      eyebrow: "INTERNATIONAL ADMISSIONS",
+      tagline: "Strategic promotional campaign empowering students with admissions pathway clarity across British universities.",
+      image: "assets/uk_uni.webp",
+      video: "assets/study_uk_reel.mp4",
+      sensor: "Blackmagic URSA Mini Pro 12K · BRAW 8:1",
+      palette: [
+        { hex: '#030712', name: 'Dark Indigo' },
+        { hex: '#1E1B4B', name: 'Oxbridge Blue' },
+        { hex: '#4F46E5', name: 'Royal Accent' },
+        { hex: '#818CF8', name: 'Sky Highlight' },
+        { hex: '#F1F5F9', name: 'Parchment White' }
+      ],
+      metrics: [
+        { val: "18k+", lbl: "Student Inquiries" },
+        { val: "94%", lbl: "Engagement Index" },
+        { val: "10+", lbl: "University Partners" }
+      ],
+      description: "Navigating international university applications can feel overwhelming. We designed a clear, trustworthy graphic campaign and accompanying informational video series breaking down scholarship requirements, visa timelines, and campus life with modern typographic hierarchy.",
+      tags: ["Adobe Illustrator", "Photoshop", "Brand Systems", "Informational Carousel", "Social Ad Creative"]
+    },
+    {
+      idx: 5,
+      title: "Study in Greece",
+      category: "Global Brand Campaign",
+      eyebrow: "INTERNATIONAL EDUCATION",
+      tagline: "Mobile-first European university pathway visual identity designed for modern international applicants.",
+      image: "assets/study_greece_phone.webp",
+      video: "assets/tastebud_reel.mp4",
+      sensor: "Sony A7S III · 4K 10-bit 4:2:2 · S-Log3",
+      palette: [
+        { hex: '#020D1A', name: 'Aegean Abyss' },
+        { hex: '#0369A1', name: 'Mediterranean' },
+        { hex: '#38BDF8', name: 'Cerulean Dome' },
+        { hex: '#FCD34D', name: 'Sunlit Marble' },
+        { hex: '#FFFFFF', name: 'Chalk Stucco' }
+      ],
+      metrics: [
+        { val: "320%", lbl: "Application Lift" },
+        { val: "12+", lbl: "Institutions Represented" },
+        { val: "99.4%", lbl: "Brand Approval" }
+      ],
+      description: "Designed specifically for vertical mobile consumption, Study in Greece marries iconic Mediterranean architectural motifs with clear, actionable academic program details. High contrast typography and engaging visual flow ensured high retention and click-through rates.",
+      tags: ["Mobile Optimization", "Typography Hierarchy", "Conversion Design", "Social Ad Campaign", "Figma to Final"]
+    }
+  ];
+
+  const projectDrawerOverlay = document.getElementById('projectDrawerOverlay');
+  const projectDrawerClose = document.getElementById('projectDrawerClose');
+  const projectDrawerImage = document.getElementById('projectDrawerImage');
+  const projectDrawerVideo = document.getElementById('projectDrawerVideo');
+  const drawerPlayBtn = document.getElementById('drawerPlayBtn');
+  const drawerPlayIcon = drawerPlayBtn ? drawerPlayBtn.querySelector('.play-icon') : null;
+  const drawerPauseIcon = drawerPlayBtn ? drawerPlayBtn.querySelector('.pause-icon') : null;
+  const drawerScrubberTrack = document.getElementById('drawerScrubberTrack');
+  const drawerScrubberFill = document.getElementById('drawerScrubberFill');
+  const drawerTimecode = document.getElementById('drawerTimecode');
+  const drawerSoundBtn = document.getElementById('drawerSoundBtn');
+  const drawerSoundOffIcon = drawerSoundBtn ? drawerSoundBtn.querySelector('.sound-off-icon') : null;
+  const drawerSoundOnIcon = drawerSoundBtn ? drawerSoundBtn.querySelector('.sound-on-icon') : null;
+  const gradeSensorBadge = document.getElementById('gradeSensorBadge');
+  const gradePaletteChips = document.getElementById('gradePaletteChips');
+
+  const projectDrawerCategory = document.getElementById('projectDrawerCategory');
+  const projectDrawerEyebrow = document.getElementById('projectDrawerEyebrow');
+  const projectDrawerTitle = document.getElementById('projectDrawerTitle');
+  const projectDrawerTagline = document.getElementById('projectDrawerTagline');
+  const projectDrawerMetrics = document.getElementById('projectDrawerMetrics');
+  const projectDrawerDescription = document.getElementById('projectDrawerDescription');
+  const projectDrawerTags = document.getElementById('projectDrawerTags');
+  const projectDrawerInquireBtn = document.getElementById('projectDrawerInquireBtn');
+
+  let currentProjectStudy = null;
+
+  function formatTimecode(seconds) {
+    if (isNaN(seconds) || seconds < 0) return '00:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function updateDrawerVideoUi() {
+    if (!projectDrawerVideo) return;
+    const cur = projectDrawerVideo.currentTime || 0;
+    const dur = projectDrawerVideo.duration || 0;
+    if (drawerScrubberFill && dur > 0) {
+      drawerScrubberFill.style.width = `${(cur / dur) * 100}%`;
+    }
+    if (drawerTimecode) {
+      drawerTimecode.textContent = `${formatTimecode(cur)} / ${formatTimecode(dur)}`;
+    }
+  }
+
+  function toggleDrawerVideoPlay() {
+    if (!projectDrawerVideo) return;
+    if (typeof audioFx !== 'undefined') audioFx.playClick();
+    if (projectDrawerVideo.paused) {
+      projectDrawerVideo.play().then(() => {
+        if (drawerPlayIcon) drawerPlayIcon.style.display = 'none';
+        if (drawerPauseIcon) drawerPauseIcon.style.display = 'block';
+      }).catch(() => {});
+    } else {
+      projectDrawerVideo.pause();
+      if (drawerPlayIcon) drawerPlayIcon.style.display = 'block';
+      if (drawerPauseIcon) drawerPauseIcon.style.display = 'none';
+    }
+  }
+
+  function toggleDrawerVideoSound() {
+    if (!projectDrawerVideo) return;
+    if (typeof audioFx !== 'undefined') audioFx.playClick();
+    projectDrawerVideo.muted = !projectDrawerVideo.muted;
+    if (projectDrawerVideo.muted) {
+      if (drawerSoundOffIcon) drawerSoundOffIcon.style.display = 'block';
+      if (drawerSoundOnIcon) drawerSoundOnIcon.style.display = 'none';
+    } else {
+      if (drawerSoundOffIcon) drawerSoundOffIcon.style.display = 'none';
+      if (drawerSoundOnIcon) drawerSoundOnIcon.style.display = 'block';
+    }
+  }
+
+  if (drawerPlayBtn) drawerPlayBtn.addEventListener('click', toggleDrawerVideoPlay);
+  if (drawerSoundBtn) drawerSoundBtn.addEventListener('click', toggleDrawerVideoSound);
+
+  if (projectDrawerVideo) {
+    projectDrawerVideo.addEventListener('timeupdate', updateDrawerVideoUi);
+    projectDrawerVideo.addEventListener('loadedmetadata', updateDrawerVideoUi);
+    projectDrawerVideo.addEventListener('click', toggleDrawerVideoPlay);
+  }
+
+  if (drawerScrubberTrack && projectDrawerVideo) {
+    drawerScrubberTrack.addEventListener('click', (e) => {
+      const rect = drawerScrubberTrack.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      if (projectDrawerVideo.duration) {
+        projectDrawerVideo.currentTime = pct * projectDrawerVideo.duration;
+      }
+    });
+  }
+
+  function openProjectDrawer(idx) {
+    const study = projectCaseStudies[idx] || projectCaseStudies[0];
+    if (!study || !projectDrawerOverlay) return;
+    currentProjectStudy = study;
+    if (typeof audioFx !== 'undefined') audioFx.playDrawerOpen();
+
+    if (projectDrawerImage) {
+      projectDrawerImage.src = study.image;
+      projectDrawerImage.alt = study.title;
+    }
+
+    // Cinema video player setup
+    if (projectDrawerVideo && study.video) {
+      projectDrawerVideo.src = study.video;
+      projectDrawerVideo.style.display = 'block';
+      if (projectDrawerImage) projectDrawerImage.style.display = 'none';
+      projectDrawerVideo.currentTime = 0;
+      projectDrawerVideo.muted = true;
+      if (drawerSoundOffIcon) drawerSoundOffIcon.style.display = 'block';
+      if (drawerSoundOnIcon) drawerSoundOnIcon.style.display = 'none';
+      projectDrawerVideo.play().then(() => {
+        if (drawerPlayIcon) drawerPlayIcon.style.display = 'none';
+        if (drawerPauseIcon) drawerPauseIcon.style.display = 'block';
+      }).catch(() => {
+        if (drawerPlayIcon) drawerPlayIcon.style.display = 'block';
+        if (drawerPauseIcon) drawerPauseIcon.style.display = 'none';
+      });
+    } else if (projectDrawerVideo) {
+      projectDrawerVideo.style.display = 'none';
+      if (projectDrawerImage) projectDrawerImage.style.display = 'block';
+    }
+
+    // DaVinci Grade Pipeline Badges and Chips
+    if (gradeSensorBadge) {
+      gradeSensorBadge.textContent = study.sensor || 'Sony FX6 · S-Log3 / S-Gamut3.Cine · CineEI 800';
+    }
+
+    if (gradePaletteChips) {
+      gradePaletteChips.innerHTML = '';
+      const palette = study.palette || [
+        { hex: '#0A0E17', name: 'Obsidian' },
+        { hex: '#00F2FE', name: 'Cyan' },
+        { hex: '#3B82F6', name: 'Blue' },
+        { hex: '#E2E8F0', name: 'White' }
+      ];
+      palette.forEach(c => {
+        const chip = document.createElement('div');
+        chip.className = 'palette-chip';
+        chip.setAttribute('title', `Click to copy ${c.hex} (${c.name})`);
+        chip.innerHTML = `
+          <div class="chip-swatch" style="background-color: ${c.hex};"></div>
+          <div class="chip-info">
+            <span class="chip-hex">${c.hex}</span>
+            <span class="chip-label">${c.name}</span>
+          </div>
+        `;
+        chip.addEventListener('click', () => {
+          if (typeof audioFx !== 'undefined') audioFx.playClick();
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(c.hex).then(() => {
+              showToast(`Copied ${c.hex} (${c.name})`);
+            });
+          }
+        });
+        gradePaletteChips.appendChild(chip);
+      });
+    }
+
+    if (projectDrawerCategory) projectDrawerCategory.textContent = study.category;
+    if (projectDrawerEyebrow) projectDrawerEyebrow.textContent = study.eyebrow;
+    if (projectDrawerTitle) projectDrawerTitle.textContent = study.title;
+    if (projectDrawerTagline) projectDrawerTagline.textContent = study.tagline;
+    if (projectDrawerDescription) projectDrawerDescription.textContent = study.description;
+
+    if (projectDrawerMetrics) {
+      projectDrawerMetrics.innerHTML = '';
+      study.metrics.forEach(m => {
+        const div = document.createElement('div');
+        div.className = 'p-metric-cell';
+        div.innerHTML = `<span class="p-metric-val">${m.val}</span><span class="p-metric-lbl">${m.lbl}</span>`;
+        projectDrawerMetrics.appendChild(div);
+      });
+    }
+
+    if (projectDrawerTags) {
+      projectDrawerTags.innerHTML = '';
+      study.tags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'p-tag-pill';
+        span.textContent = tag;
+        projectDrawerTags.appendChild(span);
+      });
+    }
+
+    if (lenis) lenis.stop();
+    projectDrawerOverlay.classList.add('is-active');
+    projectDrawerOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeProjectDrawer() {
+    if (!projectDrawerOverlay) return;
+    if (projectDrawerVideo) {
+      projectDrawerVideo.pause();
+      projectDrawerVideo.src = '';
+    }
+    if (lenis) lenis.start();
+    projectDrawerOverlay.classList.remove('is-active');
+    projectDrawerOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    currentProjectStudy = null;
+  }
+
+  if (projectDrawerClose) projectDrawerClose.addEventListener('click', closeProjectDrawer);
+
+  if (projectDrawerOverlay) {
+    projectDrawerOverlay.addEventListener('click', (e) => {
+      if (e.target === projectDrawerOverlay) closeProjectDrawer();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && projectDrawerOverlay?.classList.contains('is-active')) {
+      closeProjectDrawer();
+    }
+  });
+
+  if (projectDrawerInquireBtn) {
+    projectDrawerInquireBtn.addEventListener('click', () => {
+      const projName = currentProjectStudy ? currentProjectStudy.title : 'Selected Project';
+      closeProjectDrawer();
+      openContactDrawer();
+      const planSelect = document.getElementById('contactProjectPlan');
+      if (planSelect) planSelect.value = 'Dedicated Production Retainer';
+      const briefText = document.getElementById('inquiryBrief');
+      if (briefText && !briefText.value) {
+        briefText.value = `Hi Aldrin, I am inquiring about a production similar to "${projName}". We need commercial video editing & creative direction.`;
+      }
+    });
+  }
+
+  // Bind campaign cards to project case study drawer
+  const campaignCards = document.querySelectorAll('.campaign-card');
+  campaignCards.forEach((card, cIdx) => {
+    card.addEventListener('click', () => {
+      const targetIdx = (cIdx === 0) ? 1 : (cIdx === 1 ? 4 : (cIdx % 6));
+      openProjectDrawer(targetIdx);
+    });
+  });
+
+  /* ── 20. Collaboration & Production FAQ Accordion & Live Filter ── */
+  const faqItems = document.querySelectorAll('.faq-item');
+  const faqSearchInput = document.getElementById('faqSearchInput');
+  const faqSearchClear = document.getElementById('faqSearchClear');
+  const faqCategoryPills = document.querySelectorAll('.faq-pill-btn, .faq-category-pill');
+
+  let activeFaqCategory = 'all';
+
+  function filterFaqItems() {
+    const query = faqSearchInput ? faqSearchInput.value.toLowerCase().trim() : '';
+    if (faqSearchClear) {
+      faqSearchClear.style.display = query.length > 0 ? 'flex' : 'none';
+    }
+
+    let matchCount = 0;
+    faqItems.forEach(item => {
+      const itemCat = item.getAttribute('data-category') || 'all';
+      const questionText = item.querySelector('.faq-trigger')?.textContent.toLowerCase() || '';
+      const answerText = item.querySelector('.faq-body')?.textContent.toLowerCase() || '';
+      
+      const matchesCategory = (activeFaqCategory === 'all' || itemCat === activeFaqCategory);
+      const matchesSearch = !query || questionText.includes(query) || answerText.includes(query);
+
+      if (matchesCategory && matchesSearch) {
+        item.style.display = '';
+        matchCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    const emptyState = document.getElementById('faqEmptyState') || document.getElementById('faqEmptyStateNotice');
+    if (emptyState) {
+      emptyState.style.display = (matchCount === 0) ? 'block' : 'none';
+    }
+  }
+
+  const faqEmptyCta = document.getElementById('faqEmptyCta');
+  if (faqEmptyCta) {
+    faqEmptyCta.addEventListener('click', () => {
+      if (typeof audioFx !== 'undefined') audioFx.playClick();
+      openContactDrawer();
+    });
+  }
+
+  faqCategoryPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (typeof audioFx !== 'undefined') audioFx.playClick();
+      faqCategoryPills.forEach(p => {
+        p.classList.remove('active', 'is-active');
+      });
+      pill.classList.add('active', 'is-active');
+      activeFaqCategory = pill.getAttribute('data-faq-cat') || pill.getAttribute('data-filter') || 'all';
+      filterFaqItems();
+    });
+  });
+
+  if (faqSearchInput) {
+    faqSearchInput.addEventListener('input', filterFaqItems);
+  }
+
+  if (faqSearchClear) {
+    faqSearchClear.addEventListener('click', () => {
+      if (typeof audioFx !== 'undefined') audioFx.playClick();
+      if (faqSearchInput) {
+        faqSearchInput.value = '';
+        filterFaqItems();
+        faqSearchInput.focus();
+      }
+    });
+  }
+
+  // Keyboard shortcut '/' to search FAQ
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || '')) {
+      e.preventDefault();
+      const faqSec = document.getElementById('faq');
+      if (faqSec) {
+        scrollToTarget(faqSec);
+        setTimeout(() => {
+          if (faqSearchInput) faqSearchInput.focus();
+        }, 400);
+      }
+    }
+  });
+
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', () => {
+      if (typeof audioFx !== 'undefined') audioFx.playClick();
+      const isAlreadyActive = item.classList.contains('is-active');
+      faqItems.forEach(other => {
+        other.classList.remove('is-active');
+        const otherTrigger = other.querySelector('.faq-trigger');
+        if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+      });
+      if (!isAlreadyActive) {
+        item.classList.add('is-active');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── 21. Fullscreen Mobile Navigation Drawer ─────────────────── */
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+  const mobileNavClose = document.getElementById('mobileNavClose');
+  const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileNavBookBtn = document.getElementById('mobileNavBookBtn');
+
+  function openMobileNav() {
+    if (!mobileNavOverlay) return;
+    mobileNavOverlay.classList.add('is-open');
+    mobileNavOverlay.setAttribute('aria-hidden', 'false');
+    if (mobileMenuToggle) {
+      mobileMenuToggle.classList.add('is-active');
+      mobileMenuToggle.setAttribute('aria-expanded', 'true');
+    }
+    if (lenis) lenis.stop();
+    document.body.classList.add('modal-open');
+  }
+
+  function closeMobileNav() {
+    if (!mobileNavOverlay) return;
+    mobileNavOverlay.classList.remove('is-open');
+    mobileNavOverlay.setAttribute('aria-hidden', 'true');
+    if (mobileMenuToggle) {
+      mobileMenuToggle.classList.remove('is-active');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+    if (lenis) lenis.start();
+    document.body.classList.remove('modal-open');
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      if (mobileNavOverlay?.classList.contains('is-open')) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
+    });
+  }
+
+  if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileNav);
+  if (mobileNavBackdrop) mobileNavBackdrop.addEventListener('click', closeMobileNav);
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileNav();
+    });
+  });
+
+  if (mobileNavBookBtn) {
+    mobileNavBookBtn.addEventListener('click', () => {
+      closeMobileNav();
+      openContactDrawer();
+    });
+  }
+
+  /* ── 22. Interactive Before & After RAW vs Graded Split Slider ── */
+  function initBeforeAfterSlider() {
+    const card = document.getElementById('aboutProcessCard');
+    const layerAfter = document.getElementById('baLayerAfter');
+    const wiperLine = document.getElementById('baWiperLine');
+    const videoRaw = document.getElementById('aboutProcessVideo');
+    const videoGraded = document.getElementById('aboutProcessVideoGraded');
+    if (!card || !layerAfter || !wiperLine) return;
+
+    let isWiperActive = false;
+
+    // Synchronize both video streams
+    if (videoRaw && videoGraded) {
+      videoRaw.addEventListener('play', () => {
+        videoGraded.currentTime = videoRaw.currentTime;
+        videoGraded.play().catch(() => {});
+      });
+      videoRaw.addEventListener('pause', () => videoGraded.pause());
+      videoRaw.addEventListener('seeking', () => {
+        videoGraded.currentTime = videoRaw.currentTime;
+      });
+      videoRaw.addEventListener('timeupdate', () => {
+        if (Math.abs(videoGraded.currentTime - videoRaw.currentTime) > 0.15) {
+          videoGraded.currentTime = videoRaw.currentTime;
+        }
+      });
+    }
+
+    function setWiperPosition(percent) {
+      const clamped = Math.max(4, Math.min(96, percent));
+      layerAfter.style.clipPath = `polygon(${clamped}% 0, 100% 0, 100% 100%, ${clamped}% 100%)`;
+      wiperLine.style.left = `${clamped}%`;
+    }
+
+    function handlePointer(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percent = (x / rect.width) * 100;
+      setWiperPosition(percent);
+    }
+
+    card.addEventListener('pointerdown', (e) => {
+      isWiperActive = true;
+      card.classList.add('is-active-dragging');
+      try { card.setPointerCapture(e.pointerId); } catch (_) {}
+      handlePointer(e);
+    });
+
+    card.addEventListener('pointermove', (e) => {
+      if (isWiperActive) {
+        handlePointer(e);
+      }
+    });
+
+    const stopDragging = (e) => {
+      if (isWiperActive) {
+        isWiperActive = false;
+        card.classList.remove('is-active-dragging');
+        try { card.releasePointerCapture(e.pointerId); } catch (_) {}
+      }
+    };
+
+    card.addEventListener('pointerup', stopDragging);
+    card.addEventListener('pointercancel', stopDragging);
+  }
+
+  initBeforeAfterSlider();
+
+  /* ── 23. NLE Playhead Live SMPTE Timecode HUD ─────────────────── */
+  function initHeroNleHud() {
+    const heroVid = document.getElementById('heroVideo');
+    const timecodeDisplay = document.getElementById('heroTimecodeDisplay');
+    if (!heroVid || !timecodeDisplay) return;
+
+    function formatSmpteTimecode(seconds) {
+      const s = Math.max(0, seconds || 0);
+      const hrs = String(Math.floor(s / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+      const secs = String(Math.floor(s % 60)).padStart(2, '0');
+      const frames = String(Math.floor((s % 1) * 23.976)).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}:${frames}`;
+    }
+
+    heroVid.addEventListener('timeupdate', () => {
+      timecodeDisplay.textContent = formatSmpteTimecode(heroVid.currentTime);
+    });
+  }
+
+  initHeroNleHud();
+
+  /* ── 24. Interactive Video Production Pricing & Scope Estimator ── */
+  function initPricingEstimator() {
+    const tierCards = document.querySelectorAll('.pricing-card[data-tier]');
+    const hudTotalPrice = document.getElementById('hudTotalPrice');
+    const hudTurnaround = document.getElementById('hudTurnaround');
+    const lockScopeBtn = document.getElementById('lockScopeBtn');
+
+    const tierData = {
+      reels: {
+        name: 'Viral Short-Form Suite',
+        basePrice: 750,
+        turnaround: '24–48 Hours',
+        rushTurnaround: '12–24 Hours'
+      },
+      saas: {
+        name: 'SaaS & Product Demo',
+        basePrice: 1250,
+        turnaround: '3–5 Business Days',
+        rushTurnaround: '48 Hours'
+      },
+      commercial: {
+        name: 'Commercial & Brand Hero',
+        basePrice: 2400,
+        turnaround: '5–7 Business Days',
+        rushTurnaround: '72 Hours'
+      },
+      retainer: {
+        name: 'Monthly Creative Retainer',
+        basePrice: 3800,
+        turnaround: 'Continuous Monthly',
+        rushTurnaround: 'Priority Same-Day Slots'
+      }
+    };
+
+    const addons = [
+      { id: 'addonRush', price: 450, label: 'Rush Turnaround (+48h Priority)' },
+      { id: 'addonMultiCut', price: 350, label: 'Multi-Aspect Pack (9:16 + 16:9 + 1:1)' },
+      { id: 'addonVoiceover', price: 250, label: 'Pro Studio Voiceover & Stems' },
+      { id: 'addon3D', price: 550, label: '3D Product Motion & VFX' },
+      { id: 'addonSourceFiles', price: 200, label: 'Source Timeline & Project Files' }
+    ];
+
+    let currentTierKey = 'saas';
+    let displayedPrice = 1250;
+    let priceAnimFrame = null;
+
+    function animatePriceTo(targetPrice) {
+      if (priceAnimFrame) cancelAnimationFrame(priceAnimFrame);
+      const startPrice = displayedPrice;
+      const startTime = performance.now();
+      const duration = 300;
+
+      function step(now) {
+        const progress = Math.min(1, (now - startTime) / duration);
+        const ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        displayedPrice = Math.round(startPrice + (targetPrice - startPrice) * ease);
+        if (hudTotalPrice) {
+          hudTotalPrice.textContent = displayedPrice.toLocaleString();
+        }
+        if (progress < 1) {
+          priceAnimFrame = requestAnimationFrame(step);
+        } else {
+          displayedPrice = targetPrice;
+          if (hudTotalPrice) hudTotalPrice.textContent = targetPrice.toLocaleString();
+        }
+      }
+      priceAnimFrame = requestAnimationFrame(step);
+    }
+
+    function calculateScope() {
+      const tier = tierData[currentTierKey] || tierData.saas;
+      let total = tier.basePrice;
+      let hasRush = false;
+      const selectedAddonLabels = [];
+
+      addons.forEach(addon => {
+        const el = document.getElementById(addon.id);
+        if (el && el.checked) {
+          total += addon.price;
+          selectedAddonLabels.push(addon.label);
+          if (addon.id === 'addonRush') hasRush = true;
+        }
+      });
+
+      animatePriceTo(total);
+
+      if (hudTurnaround) {
+        hudTurnaround.textContent = hasRush ? tier.rushTurnaround : tier.turnaround;
+      }
+
+      const hudSelectedTierName = document.getElementById('hudSelectedTierName');
+      if (hudSelectedTierName) hudSelectedTierName.textContent = tier.name;
+
+      const hudScopeBreakdown = document.getElementById('hudScopeBreakdown');
+      if (hudScopeBreakdown) {
+        const addonSummary = selectedAddonLabels.length > 0 ? selectedAddonLabels.join(' · ') : 'Standard Deliverables Suite';
+        hudScopeBreakdown.innerHTML = `<span>Includes: ${tier.name} + ${addonSummary}</span>`;
+      }
+
+      return {
+        tierName: tier.name,
+        total,
+        hasRush,
+        turnaround: hasRush ? tier.rushTurnaround : tier.turnaround,
+        addons: selectedAddonLabels
+      };
+    }
+
+    tierCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        tierCards.forEach(c => c.classList.remove('is-selected'));
+        card.classList.add('is-selected');
+        currentTierKey = card.getAttribute('data-tier') || 'saas';
+        calculateScope();
+      });
+    });
+
+    addons.forEach(addon => {
+      const el = document.getElementById(addon.id);
+      if (el) {
+        el.addEventListener('change', () => {
+          if (typeof audioFx !== 'undefined') audioFx.playClick();
+          calculateScope();
+        });
+      }
+    });
+
+    // Lock Scope CTA -> opens contact drawer with prefilled brief & budget
+    if (lockScopeBtn) {
+      lockScopeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        const scope = calculateScope();
+        
+        openContactDrawer();
+
+        // Select best budget match
+        const budgetSelect = document.getElementById('inquiryBudget');
+        if (budgetSelect) {
+          if (scope.total < 500) {
+            budgetSelect.value = '<$500';
+          } else if (scope.total <= 1500) {
+            budgetSelect.value = '$500 - $1,500';
+          } else if (scope.total <= 3000) {
+            budgetSelect.value = '$1,500 - $3,000';
+          } else {
+            budgetSelect.value = '$3,000+';
+          }
+        }
+
+        // Fill brief
+        const briefField = document.getElementById('inquiryBrief');
+        if (briefField) {
+          const addonText = scope.addons.length > 0 ? scope.addons.join(', ') : 'None (Standard Scope)';
+          briefField.value = `[ESTIMATED SCOPE: ${scope.tierName.toUpperCase()} — $${scope.total.toLocaleString()}]\nTurnaround Target: ${scope.turnaround}\nSelected Add-ons: ${addonText}\n\nHi Aldrin, I configured this scope in your calculator and would like to confirm production availability.`;
+        }
+
+        // Select Video Editing or Production service checkbox
+        const serviceCheckboxes = document.querySelectorAll('input[name="services"]');
+        serviceCheckboxes.forEach(cb => {
+          if (cb.value === 'Video Production' || cb.value === 'Video Editing') {
+            cb.checked = true;
+          }
+        });
+
+        showToast(`Scope locked ($${scope.total.toLocaleString()}) — Inquiry drawer loaded!`);
+      });
+    }
+
+    // Initial calculation
+    calculateScope();
+  }
+
+  initPricingEstimator();
+
+  /* ── 25. 3D Perspective Card Tilt & Dynamic Specular Sheen ───── */
+  function initPerspectiveCardTilt() {
+    if (window.innerWidth < 900) return;
+
+    const tiltTargets = document.querySelectorAll('.campaign-card, .service-card-item, .statement-card, .phone-mockup-frame, .flyer-mockup-card, .pillar-card, .step-visual-card, .pricing-card');
+
+    tiltTargets.forEach(card => {
+      card.classList.add('tilt-sheen-surface');
+
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = -((y - centerY) / centerY) * 6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* ── 26. Behind The Edit: Interactive NLE Stems Deconstructor ── */
+  function initNleStemsSandbox() {
+    const video = document.getElementById('stemVideoPlayer');
+    const layerV3 = document.getElementById('layerV3Overlay');
+    const layerV2 = document.getElementById('layerV2Overlay');
+    const gradeBtn = document.getElementById('stemGradeSwitchBtn');
+    const gradeBtnLabel = document.getElementById('stemGradeBtnLabel');
+    const pictureBadge = document.getElementById('stemPictureBadge');
+    const pictureLabel = document.getElementById('stemPictureModeLabel');
+    const playhead = document.getElementById('stemScrubPlayhead');
+    const timecodeDisplay = document.getElementById('nleTimecodeDisplay');
+    const rulerTrack = document.getElementById('stemRulerTrack');
+
+    const presetBtns = document.querySelectorAll('.stem-preset-btn');
+    const muteBtns = document.querySelectorAll('.stem-toggle-btn.btn-mute');
+    const soloBtns = document.querySelectorAll('.stem-toggle-btn.btn-solo');
+    const laneRows = document.querySelectorAll('.nle-lane-row');
+
+    const telemetryPct = document.getElementById('telemetryRetentionPct');
+    const telemetryStatus = document.getElementById('telemetryRetentionStatus');
+    const telemetryFill = document.getElementById('telemetryRetentionFill');
+    const telemetryHookIndex = document.getElementById('telemetryHookIndex');
+    const telemetryInsightText = document.getElementById('telemetryInsightText');
+    const lockScopeBtn = document.getElementById('telemetryLockScopeBtn');
+
+    if (!video) return;
+
+    // Stem State Dictionary
+    const stems = {
+      v3: true,      // Subtitles & Hooks
+      v2: true,      // 3D Motion VFX
+      v1Grade: true, // Color Grade: true = Master, false = RAW S-Log3
+      a1: true,      // Music Bed
+      a2: true,      // Foley & SFX
+      a3: true       // Voiceover
+    };
+
+    let soloActive = null; // Track ID if in solo mode
+
+    function updateState() {
+      // 1. Update Video Color Grade
+      if (stems.v1Grade) {
+        video.classList.remove('stem-grade-raw');
+        video.classList.add('stem-grade-master');
+        if (gradeBtn) {
+          gradeBtn.classList.remove('is-raw');
+          if (gradeBtnLabel) gradeBtnLabel.textContent = 'GRADED';
+        }
+        if (pictureBadge) {
+          pictureBadge.classList.remove('is-raw');
+          if (pictureLabel) pictureLabel.textContent = 'DAVINCI FILM MASTER GRADE';
+        }
+      } else {
+        video.classList.remove('stem-grade-master');
+        video.classList.add('stem-grade-raw');
+        if (gradeBtn) {
+          gradeBtn.classList.add('is-raw');
+          if (gradeBtnLabel) gradeBtnLabel.textContent = 'RAW S-LOG3';
+        }
+        if (pictureBadge) {
+          pictureBadge.classList.add('is-raw');
+          if (pictureLabel) pictureLabel.textContent = 'FLAT S-LOG3 RAW (ACEScc)';
+        }
+      }
+
+      // 2. Update Overlay Layers
+      if (layerV3) {
+        layerV3.classList.toggle('is-muted', !stems.v3);
+      }
+      if (layerV2) {
+        layerV2.classList.toggle('is-muted', !stems.v2);
+      }
+
+      // 3. Update Audio state
+      const hasAnyAudio = stems.a1 || stems.a2 || stems.a3;
+      video.muted = !hasAnyAudio;
+
+      // 4. Update Lane Rows UI
+      laneRows.forEach(lane => {
+        const stemId = lane.getAttribute('data-stem');
+        let isMuted = false;
+        if (stemId === 'v3') isMuted = !stems.v3;
+        if (stemId === 'v2') isMuted = !stems.v2;
+        if (stemId === 'v1') isMuted = !stems.v1Grade;
+        if (stemId === 'a1') isMuted = !stems.a1;
+        if (stemId === 'a2') isMuted = !stems.a2;
+        if (stemId === 'a3') isMuted = !stems.a3;
+
+        lane.classList.toggle('is-muted', isMuted);
+
+        // Update Mute button within this lane
+        const mBtn = lane.querySelector('.btn-mute');
+        if (mBtn) mBtn.classList.toggle('is-active', isMuted);
+
+        // Update Solo button within this lane
+        const sBtn = lane.querySelector('.btn-solo');
+        if (sBtn) sBtn.classList.toggle('is-active', soloActive === stemId);
+      });
+
+      // 5. Update Retention Telemetry
+      calculateRetentionTelemetry();
+    }
+
+    function calculateRetentionTelemetry() {
+      let score = 22; // Base baseline raw video (no polish)
+      if (stems.v3) score += 21;      // Kinetic Captions & Retention Hooks (+21%)
+      if (stems.v2) score += 11;      // 3D Motion VFX & Tracking (+11%)
+      if (stems.v1Grade) score += 13; // DaVinci Film Color Master (+13%)
+      if (stems.a1) score += 12;      // Music Bed & Rhythm (+12%)
+      if (stems.a2) score += 11;      // Sub-Bass Foley & SFX (+11%)
+      if (stems.a3) score += 8;       // Voiceover Clarity (+8%)
+      // Sum when all active: 22 + 21 + 11 + 13 + 12 + 11 + 8 = 98%
+
+      score = Math.min(98, Math.max(22, score));
+
+      if (telemetryPct) telemetryPct.textContent = `${score}%`;
+      if (telemetryFill) telemetryFill.style.width = `${score}%`;
+
+      if (score >= 80) {
+        if (telemetryStatus) {
+          telemetryStatus.textContent = 'VIRAL CLASS';
+          telemetryStatus.style.color = '#00f2fe';
+          telemetryStatus.style.background = 'rgba(0, 242, 254, 0.15)';
+        }
+        if (telemetryHookIndex) telemetryHookIndex.textContent = 'MAXIMUM · 94/100';
+        if (telemetryFill) telemetryFill.style.background = 'linear-gradient(90deg, #3b82f6, #00f2fe)';
+      } else if (score >= 50) {
+        if (telemetryStatus) {
+          telemetryStatus.textContent = 'AVERAGE PACING';
+          telemetryStatus.style.color = '#f59e0b';
+          telemetryStatus.style.background = 'rgba(245, 158, 11, 0.15)';
+        }
+        if (telemetryHookIndex) telemetryHookIndex.textContent = 'MODERATE · 62/100';
+        if (telemetryFill) telemetryFill.style.background = 'linear-gradient(90deg, #f59e0b, #fbbf24)';
+      } else {
+        if (telemetryStatus) {
+          telemetryStatus.textContent = 'HIGH DROP-OFF';
+          telemetryStatus.style.color = '#ef4444';
+          telemetryStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+        }
+        if (telemetryHookIndex) telemetryHookIndex.textContent = 'CRITICAL · 28/100';
+        if (telemetryFill) telemetryFill.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+      }
+
+      // Dynamic Pedagogical Narrative
+      if (telemetryInsightText) {
+        if (!stems.v3 && !stems.a1 && !stems.a2) {
+          telemetryInsightText.textContent = '⚠️ Severe Drop-off Risk: 78% of mobile feeds scroll on mute. Without subtitles and sound design, raw footage holds virtually zero viewer attention.';
+        } else if (!stems.v3) {
+          telemetryInsightText.textContent = '⚠️ Silent Scroll Vulnerability: Without kinetic subtitles, mobile users watching without headphones scroll past within 2.4 seconds.';
+        } else if (!stems.a2) {
+          telemetryInsightText.textContent = '⚠️ Missing Tactile Foley: Sub-bass impacts and risers cue the brain that an important shift is coming. Without them, pacing feels lifeless.';
+        } else if (!stems.v1Grade) {
+          telemetryInsightText.textContent = '⚠️ Uncorrected Flat S-Log3: Low contrast and washed-out gamma curves signal amateur production to high-ticket clients.';
+        } else if (!stems.a1) {
+          telemetryInsightText.textContent = '⚠️ Missing Music Rhythm: Music sets the subconscious tempo of the commercial. Without a score, the video feels awkwardly quiet.';
+        } else {
+          telemetryInsightText.textContent = '✅ Complete 6-Stem Production Architecture: Dynamic hook captions, layered foley, 3D tracking, and DaVinci film color deliver maximum audience retention.';
+        }
+      }
+    }
+
+    // Toggle Grade Button
+    if (gradeBtn) {
+      gradeBtn.addEventListener('click', () => {
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        stems.v1Grade = !stems.v1Grade;
+        updateState();
+      });
+    }
+
+    // Mute Buttons
+    muteBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        const stem = btn.getAttribute('data-stem-mute');
+        if (stem && stems.hasOwnProperty(stem)) {
+          stems[stem] = !stems[stem];
+          soloActive = null;
+          updateState();
+        }
+      });
+    });
+
+    // Solo Buttons
+    soloBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        const stem = btn.getAttribute('data-stem-solo');
+        if (!stem) return;
+
+        if (soloActive === stem) {
+          // Unsolo: Restore all
+          soloActive = null;
+          Object.keys(stems).forEach(k => stems[k] = true);
+        } else {
+          // Solo this stem
+          soloActive = stem;
+          Object.keys(stems).forEach(k => stems[k] = (k === stem || k === 'v1Grade'));
+        }
+        updateState();
+      });
+    });
+
+    // 1-Click Studio Presets
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        presetBtns.forEach(p => p.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const preset = btn.getAttribute('data-preset');
+        soloActive = null;
+
+        if (preset === 'full') {
+          stems.v3 = true;
+          stems.v2 = true;
+          stems.v1Grade = true;
+          stems.a1 = true;
+          stems.a2 = true;
+          stems.a3 = true;
+        } else if (preset === 'raw') {
+          stems.v3 = false;
+          stems.v2 = false;
+          stems.v1Grade = false;
+          stems.a1 = false;
+          stems.a2 = false;
+          stems.a3 = true;
+        } else if (preset === 'sfx') {
+          stems.v3 = false;
+          stems.v2 = true;
+          stems.v1Grade = true;
+          stems.a1 = true;
+          stems.a2 = true;
+          stems.a3 = false;
+        } else if (preset === 'silent') {
+          stems.v3 = true;
+          stems.v2 = true;
+          stems.v1Grade = true;
+          stems.a1 = false;
+          stems.a2 = false;
+          stems.a3 = false;
+        }
+
+        updateState();
+      });
+    });
+
+    // Sync Playhead and Timecode with Video Playback
+    video.addEventListener('timeupdate', () => {
+      const cur = video.currentTime || 0;
+      const dur = video.duration || 15;
+      const pct = (cur / dur) * 100;
+
+      if (playhead) {
+        playhead.style.left = `calc(240px + ${pct * 0.75}%)`;
+      }
+
+      if (timecodeDisplay) {
+        const frames = Math.floor((cur % 1) * 24);
+        const s = Math.floor(cur % 60);
+        const m = Math.floor(cur / 60);
+        timecodeDisplay.textContent = `00:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}:${String(frames).padStart(2, '0')}`;
+      }
+    });
+
+    // Scrub by clicking timeline ruler
+    if (rulerTrack) {
+      rulerTrack.addEventListener('click', (e) => {
+        const rect = rulerTrack.getBoundingClientRect();
+        const clickX = e.clientX - (rect.left + 240);
+        const availWidth = rect.width - 240;
+        if (availWidth > 0 && clickX > 0) {
+          const ratio = Math.max(0, Math.min(1, clickX / availWidth));
+          if (video.duration) {
+            video.currentTime = ratio * video.duration;
+          }
+        }
+      });
+    }
+
+    // Lock Scope Button
+    if (lockScopeBtn) {
+      lockScopeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof audioFx !== 'undefined') audioFx.playClick();
+        openContactDrawer();
+
+        const planSelect = document.getElementById('contactProjectPlan');
+        if (planSelect) planSelect.value = 'Dedicated Production Retainer';
+
+        const budgetSelect = document.getElementById('inquiryBudget');
+        if (budgetSelect) budgetSelect.value = '$1,500 - $3,000';
+
+        const briefField = document.getElementById('inquiryBrief');
+        if (briefField) {
+          briefField.value = `[STUDIO EDITING PIPELINE: 6-STEM RETENTION MASTER]\nI explored your Behind The Edit sandbox and want to lock in this full post-production scope (DaVinci Film Master, 3D Motion VFX, Kinetic Subtitles, Multi-Layer Foley & Sound Score).\n\nPlease let me know your earliest kickoff timeline.`;
+        }
+
+        // Check Video Editing and Production checkboxes
+        document.querySelectorAll('input[name="services"]').forEach(cb => {
+          if (cb.value === 'Video Editing' || cb.value === 'Video Production') {
+            cb.checked = true;
+          }
+        });
+
+        showToast('Multi-stem edit scope locked into inquiry form!');
+      });
+    }
+
+    // Initialize state
+    updateState();
+  }
+
+  initNleStemsSandbox();
+  initPerspectiveCardTilt();
+
+  /* ── 19. Digital Rights & Media Download Prevention ───────── */
   // Prevent right-click context menu on all images, videos, canvas, and media showcases
   document.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('img, video, .hero-video-wrapper, .earth-globe-wrapper, .about-process-card, .brand-mockups-stage, .project-tile, .campaign-card, .prototype-scroll-frame')) {
+    if (e.target.closest('img, video, .hero-video-wrapper, .earth-globe-wrapper, .about-process-card, .brand-mockups-stage, .work-stage, .work-slide, .campaign-card, .prototype-scroll-frame, .reel-expanding-container, .nle-monitor-stage, .nle-studio-frame')) {
       e.preventDefault();
       return false;
     }
@@ -633,7 +2563,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Prevent drag-to-desktop / drag-to-folder on all media
   document.addEventListener('dragstart', (e) => {
-    if (e.target.closest('img, video')) {
+    if (e.target.closest('img, video, .work-slide')) {
       e.preventDefault();
       return false;
     }
@@ -648,4 +2578,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: false });
 
 });
+
 

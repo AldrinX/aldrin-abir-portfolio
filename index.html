@@ -71,7 +71,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=17937" />
 </head>
 <body>
 
@@ -88,10 +88,109 @@
     <span class="cursor-label"></span>
   </div>
 
+  <!-- Architectural Sticky Top Navigation (BizChemists / Design Monks Luxury Header) -->
+  <header class="top-nav-bar" id="topNavBar">
+    <div class="top-nav-container">
+      <a href="#hero" class="nav-brand-lockup" aria-label="Aldrin Abir Creative Portfolio">
+        <span class="brand-monogram">AA</span>
+        <div class="brand-text-col">
+          <span class="brand-name">ALDRIN ABIR</span>
+          <span class="brand-status-pill">
+            <span class="status-live-dot" aria-hidden="true"></span>
+            AVAILABLE FOR COMMISSIONS
+          </span>
+        </div>
+      </a>
+
+      <nav class="top-nav-links" aria-label="Main Navigation">
+        <a href="#about" class="top-nav-link">Story</a>
+        <a href="#projects" class="top-nav-link">Showcase</a>
+        <a href="#reel" class="top-nav-link">Showreel</a>
+        <a href="#behind-the-edit" class="top-nav-link">The Edit</a>
+        <a href="#methodology" class="top-nav-link">Pillars</a>
+        <a href="#process" class="top-nav-link">Process</a>
+        <a href="#services" class="top-nav-link">Services</a>
+        <a href="#pricing" class="top-nav-link">Pricing</a>
+        <a href="#collaboration" class="top-nav-link">Why Us</a>
+        <a href="#testimonials" class="top-nav-link">Reviews</a>
+        <a href="#faq" class="top-nav-link">FAQ</a>
+        <a href="#contact" class="top-nav-link">Contact</a>
+      </nav>
+
+      <div class="top-nav-actions">
+        <!-- Ambient Web Audio FX Toggle -->
+        <button type="button" class="audio-fx-toggle-btn" id="audioFxToggle" aria-label="Toggle ambient portfolio sound effects" data-cursor="CLICK" title="Toggle UI Sound Effects">
+          <div class="audio-waves-icon" aria-hidden="true">
+            <span class="audio-bar bar-1"></span>
+            <span class="audio-bar bar-2"></span>
+            <span class="audio-bar bar-3"></span>
+            <span class="audio-bar bar-4"></span>
+          </div>
+          <span class="audio-status-label" id="audioStatusLabel">SOUND ON</span>
+        </button>
+
+        <button type="button" class="top-nav-cta-btn" id="topNavBookBtn" data-cursor="CLICK">
+          <span>Start a Project</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" data-cursor="CLICK">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Glassmorphic Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="brand-monogram">AA</div>
+        <span class="mobile-nav-brand-title">ALDRIN ABIR</span>
+        <button type="button" class="mobile-nav-close-btn" id="mobileNavClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-nav-menu">
+        <a href="#about" class="mobile-nav-link"><span class="m-link-num">01</span><span class="m-link-txt">Story &amp; Grade</span></a>
+        <a href="#projects" class="mobile-nav-link"><span class="m-link-num">02</span><span class="m-link-txt">Selected Work</span></a>
+        <a href="#reel" class="mobile-nav-link"><span class="m-link-num">03</span><span class="m-link-txt">Showreel &amp; Timeline</span></a>
+        <a href="#behind-the-edit" class="mobile-nav-link"><span class="m-link-num">04</span><span class="m-link-txt">Behind The Edit</span></a>
+        <a href="#methodology" class="mobile-nav-link"><span class="m-link-num">05</span><span class="m-link-txt">What Goes In</span></a>
+        <a href="#process" class="mobile-nav-link"><span class="m-link-num">06</span><span class="m-link-txt">How It Works</span></a>
+        <a href="#services" class="mobile-nav-link"><span class="m-link-num">07</span><span class="m-link-txt">Creative Services</span></a>
+        <a href="#pricing" class="mobile-nav-link"><span class="m-link-num">08</span><span class="m-link-txt">Pricing &amp; Scope</span></a>
+        <a href="#collaboration" class="mobile-nav-link"><span class="m-link-num">09</span><span class="m-link-txt">Why Choose Us</span></a>
+        <a href="#testimonials" class="mobile-nav-link"><span class="m-link-num">10</span><span class="m-link-txt">Client Reviews</span></a>
+        <a href="#faq" class="mobile-nav-link"><span class="m-link-num">11</span><span class="m-link-txt">Collaboration FAQ</span></a>
+        <a href="#contact" class="mobile-nav-link"><span class="m-link-num">12</span><span class="m-link-txt">Contact &amp; Booking</span></a>
+      </nav>
+      <div class="mobile-nav-bottom">
+        <button type="button" class="mobile-nav-cta-btn" id="mobileNavBookBtn">
+          <span>Start a Project</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </button>
+        <p class="mobile-nav-email-hint">aldrinabir@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ============================================================
        SLIDE 0 · HERO (Cinematic 3D Video Banner + Canva Scrubber)
   ============================================================ -->
-  <header class="hero-section" id="hero">
+  <section class="hero-section" id="hero">
     <!-- Full-Bleed Video Background Container -->
     <div class="hero-video-wrapper">
       <video
@@ -135,16 +234,60 @@
       </svg>
     </button>
 
-    <!-- Top-Left Main Hero Title (Canva Exact White Typography) -->
+    <!-- Top-Left Main Hero Title + Badges + CTAs -->
     <div class="hero-title-container">
+      <div class="hero-eyebrow-pill" data-reveal>
+        <span class="eyebrow-sparkle">✦</span>
+        <span>SENIOR VIDEO EDITOR &amp; CREATIVE DIRECTOR</span>
+      </div>
       <h1 class="hero-main-title">
         <span class="title-line"><span class="title-line-inner">CREATIVE</span></span>
         <span class="title-line"><span class="title-line-inner">PORTFOLIO</span></span>
       </h1>
+      <p class="hero-supporting-sub" data-reveal data-delay="1">
+        Crafting high-retention commercial videos, viral reels, and editorial visual direction for creators and brands worldwide.
+      </p>
+      <div class="hero-cta-group" data-reveal data-delay="2">
+        <a href="#projects" class="hero-primary-cta" data-cursor="VIEW">
+          <span>Explore Selected Work</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="hero-secondary-cta" id="heroStartProjectBtn" data-cursor="CLICK">
+          <span>Start a Project</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Hero Footer Bar: Interactive Timeline Scrubber & Purpose Labels -->
     <div class="hero-footer-bar">
+      <!-- NLE Telemetry HUD Bar (Timecode, Framerate, VU Meter) -->
+      <div class="hero-nle-hud" aria-label="NLE Timeline Readout">
+        <div class="nle-left-telemetry">
+          <span class="nle-record-dot"></span>
+          <span class="nle-status-text">PLAYHEAD LIVE</span>
+          <span class="nle-divider">|</span>
+          <span class="nle-format-badge">23.976 FPS · 4K DCI</span>
+        </div>
+        <div class="nle-center-timecode">
+          <span class="timecode-label">TC</span>
+          <span class="timecode-value" id="heroTimecodeDisplay">00:00:00:00</span>
+        </div>
+        <div class="nle-right-audio-meter" id="heroAudioMeter" title="Live Audio Levels">
+          <span class="vu-ch">L</span>
+          <div class="vu-track"><div class="vu-bar vu-bar-1"></div></div>
+          <span class="vu-ch">R</span>
+          <div class="vu-track"><div class="vu-bar vu-bar-2"></div></div>
+          <span class="vu-db">-14 dB</span>
+        </div>
+      </div>
+
       <!-- Full-Width Interactive Scrubber Bar -->
       <div class="hero-scrubber-container" id="heroScrubberWrap" title="Click or drag to scrub video">
         <div class="hero-scrubber-track" id="heroScrubberTrack">
@@ -153,13 +296,31 @@
         </div>
       </div>
 
-      <!-- Bottom Tagline Labels -->
+      <!-- Bottom Tagline Labels & Telemetry Badges -->
       <div class="hero-footer-labels">
-        <p class="hero-footer-left">VIDEO EDITOR &amp; CONTENT DESIGNER</p>
-        <p class="hero-footer-right">CREATE WITH PURPOSE</p>
+        <div class="hero-footer-badges">
+          <span class="badge-item">50+ Commercial Deliverables</span>
+          <span class="badge-dot">·</span>
+          <span class="badge-item">150M+ Views</span>
+          <span class="badge-dot">·</span>
+          <span class="badge-item">4K Cinema Grading</span>
+          <span class="badge-dot">·</span>
+          <span class="badge-item">24h Rush Available</span>
+        </div>
+        <a href="#about" class="hero-scroll-indicator" aria-label="Scroll to discover" data-cursor="SCROLL">
+          <span class="scroll-mouse-pill">
+            <span class="scroll-wheel-dot"></span>
+          </span>
+          <span class="scroll-indicator-text">SCROLL TO DISCOVER</span>
+        </a>
+        <div class="hero-footer-telemetry">
+          <span class="geo-coord">23.8103° N, 90.4125° E</span>
+          <span class="geo-sep">/</span>
+          <span class="geo-loc">DHAKA &amp; GLOBAL COMMISSION</span>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- ============================================================
        MAIN CONTENT LANDMARK
@@ -171,19 +332,39 @@
   ============================================================ -->
   <section class="about-section" id="about">
     <div class="about-container">
-      <!-- Left Column: Title, Tagline, and Nature Note -->
+      <!-- Left Column: Title, Tagline, Stats, and Nature Note -->
       <div class="about-left-col" data-reveal>
         <div class="about-header-group">
+          <div class="section-tag-pill">
+            <span class="tag-pulse-dot"></span>
+            <span>CREATIVE PHILOSOPHY</span>
+          </div>
           <h2 class="about-heading">About<br />Aldrin Abir</h2>
           
           <p class="about-tagline-italic">
-            Designer with passion for brand storytelling. I create compelling visual experiences through design with purpose
+            Designer with passion for brand storytelling. I create compelling visual experiences through intentional design with purpose.
           </p>
+        </div>
+
+        <!-- Three Key Metric Callouts -->
+        <div class="about-stats-grid" data-reveal>
+          <div class="about-stat-box">
+            <span class="about-stat-num">08<span class="stat-accent">+</span></span>
+            <span class="about-stat-label">Years in Video Editing</span>
+          </div>
+          <div class="about-stat-box">
+            <span class="about-stat-num">50<span class="stat-accent">+</span></span>
+            <span class="about-stat-label">Brands &amp; Creators</span>
+          </div>
+          <div class="about-stat-box">
+            <span class="about-stat-num">100<span class="stat-accent">%</span></span>
+            <span class="about-stat-label">Milestone Precision</span>
+          </div>
         </div>
 
         <div class="about-nature-note" data-reveal>
           <p class="nature-note-text">
-            Aside from designing, I also find time to enjoy nature where I gets fresh inspiration for future projects.
+            Aside from designing, I also find time to enjoy nature where I get fresh inspiration for future projects.
           </p>
           <div class="nature-accent-line" aria-hidden="true"></div>
         </div>
@@ -195,26 +376,67 @@
           I’m a <em>Creative Designer</em> focused on turning ideas into polished visual content. From product and talking-head shoots to video editing, social media creatives and print design, I handle the creative process from production to final delivery.
         </p>
 
-        <!-- Signature Creative Process Showcase Card (Before & After Video) -->
-        <div class="about-process-card" id="aboutProcessCard" data-cursor="PLAY" tabindex="0" role="region" aria-label="Aldrin Abir creative workflow: Before and After video editing demonstration">
-          <video
-            id="aboutProcessVideo"
-            class="about-process-video"
-            autoplay
-            loop
-            muted
-            playsinline
-            poster="assets/ba_landscape_poster.jpg"
-            width="1920"
-            height="1080"
-            preload="metadata"
-            controlslist="nodownload nofullscreen noremoteplayback"
-            disablepictureinpicture
-            oncontextmenu="return false;"
-          >
-            <source src="assets/ba_landscape.mp4" type="video/mp4" />
-          </video>
-          
+        <!-- Signature Creative Process Showcase Card: Interactive Before & After RAW vs Graded Slider -->
+        <div class="ba-slider-card" id="aboutProcessCard" data-cursor="DRAG" tabindex="0" role="region" aria-label="Aldrin Abir creative workflow: Drag to compare RAW S-Log3 vs Final 4K Cinema Grade">
+          <!-- Layer 1: Flat RAW S-Log3 Profile (Desaturated & Flat) -->
+          <div class="ba-layer ba-layer--before">
+            <video
+              id="aboutProcessVideo"
+              class="ba-video ba-video--raw"
+              autoplay
+              loop
+              muted
+              playsinline
+              poster="assets/ba_landscape_poster.jpg"
+              width="1920"
+              height="1080"
+              preload="metadata"
+              controlslist="nodownload nofullscreen noremoteplayback"
+              disablepictureinpicture
+              oncontextmenu="return false;"
+            >
+              <source src="assets/ba_landscape.mp4" type="video/mp4" />
+            </video>
+            <div class="ba-profile-badge ba-profile-badge--raw">
+              <span class="badge-dot-log"></span>
+              <span>RAW S-LOG3 PROFILE</span>
+            </div>
+          </div>
+
+          <!-- Layer 2: Final 4K Cinema Master Grade (Dynamic Clip Path) -->
+          <div class="ba-layer ba-layer--after" id="baLayerAfter">
+            <video
+              id="aboutProcessVideoGraded"
+              class="ba-video ba-video--graded"
+              autoplay
+              loop
+              muted
+              playsinline
+              poster="assets/ba_landscape_poster.jpg"
+              width="1920"
+              height="1080"
+              preload="metadata"
+              controlslist="nodownload nofullscreen noremoteplayback"
+              disablepictureinpicture
+              oncontextmenu="return false;"
+            >
+              <source src="assets/ba_landscape.mp4" type="video/mp4" />
+            </video>
+            <div class="ba-profile-badge ba-profile-badge--graded">
+              <span class="badge-dot-grade"></span>
+              <span>FINAL 4K CINEMA GRADE</span>
+            </div>
+          </div>
+
+          <!-- Interactive Wiper Handle Divider -->
+          <div class="ba-wiper-line" id="baWiperLine" style="left: 50%;">
+            <div class="ba-wiper-handle">
+              <span class="wiper-arrow left">‹</span>
+              <span class="wiper-center-grip"></span>
+              <span class="wiper-arrow right">›</span>
+            </div>
+          </div>
+
           <!-- Interactive Video Controls Overlay -->
           <div class="about-video-controls-overlay">
             <button type="button" class="about-play-toggle-btn" id="aboutPlayToggle" aria-label="Play or pause process video">
@@ -240,6 +462,11 @@
             </button>
           </div>
 
+          <div class="ba-drag-hint-pill">
+            <span class="hint-pulse-dot"></span>
+            <span>DRAG SLIDER TO COMPARE</span>
+          </div>
+
           <div class="about-card-sheen" aria-hidden="true"></div>
         </div>
       </div>
@@ -250,94 +477,187 @@
        SLIDE 2 · PROJECTS (Deep Slate Teal Gallery)
   ============================================================ -->
   <section class="projects-section" id="projects">
+    <!-- Giant Architectural Watermark (Exact BizChemists Styling) -->
+    <div class="projects-watermark-bg" aria-hidden="true">SELECTED WORK</div>
+
     <div class="projects-container">
-      <!-- Projects Header & Rule -->
-      <div class="projects-header-wrap" data-reveal>
-        <h2 class="projects-title">Projects</h2>
-        <div class="projects-rule-line"></div>
+      <!-- Projects Header & Rule (BizChemists Style) -->
+      <div class="projects-coverflow-header" data-reveal>
+        <div class="projects-header-left">
+          <div class="section-tag-pill">
+            <span class="tag-pulse-dot"></span>
+            <span>PORTFOLIO SHOWCASE</span>
+          </div>
+          <h2 class="projects-title">Selected Work</h2>
+        </div>
+        <div class="projects-header-right">
+          <p class="projects-editorial-desc">From bespoke high-retention campaigns to end-to-end video production — across Bangladesh and beyond.</p>
+        </div>
       </div>
 
-      <!-- Masonry Gallery -->
-      <div class="projects-masonry-grid">
-        <!-- Item 1: Beadkeepers Website Mockup -->
-        <div class="project-tile project-tile--web" data-cursor="VIEW" data-reveal>
-          <div class="project-tile-inner">
-            <div class="mockup-beadkeepers">
-              <div class="mockup-header-bar"><span>Beadkeepers</span></div>
-              <div class="mockup-bead-categories">
-                <div class="mockup-cat-item"></div>
-                <div class="mockup-cat-item"></div>
-                <div class="mockup-cat-item"></div>
-                <div class="mockup-cat-item"></div>
-                <div class="mockup-cat-item"></div>
-                <div class="mockup-cat-item"></div>
-              </div>
-            </div>
-            <div class="tile-caption">
-              <span class="tile-tag">UI / E-Commerce</span>
-              <h4 class="tile-name">Beadkeepers Brand Web</h4>
-            </div>
-          </div>
-        </div>
+      <!-- Project Category Filter Pills (Interactive Filtering) -->
+      <div class="project-filter-row" data-reveal role="tablist" aria-label="Filter portfolio categories">
+        <button type="button" class="project-filter-btn is-active" data-filter="all" role="tab" aria-selected="true" data-cursor="CLICK">
+          <span>All Productions</span>
+          <span class="filter-count">06</span>
+        </button>
+        <button type="button" class="project-filter-btn" data-filter="commercial" role="tab" aria-selected="false" data-cursor="CLICK">
+          <span>Commercials</span>
+          <span class="filter-count">03</span>
+        </button>
+        <button type="button" class="project-filter-btn" data-filter="reels" role="tab" aria-selected="false" data-cursor="CLICK">
+          <span>Viral Reels</span>
+          <span class="filter-count">02</span>
+        </button>
+        <button type="button" class="project-filter-btn" data-filter="brand" role="tab" aria-selected="false" data-cursor="CLICK">
+          <span>Brand Systems</span>
+          <span class="filter-count">02</span>
+        </button>
+      </div>
 
-        <!-- Item 2: Unboxing Tech Flatlay -->
-        <div class="project-tile" data-cursor="VIEW" data-reveal data-delay="1">
-          <div class="project-tile-inner">
-            <div class="unboxing-flatlay-graphic">
-              <div class="flatlay-box"></div>
-              <div class="flatlay-phone"></div>
-              <div class="flatlay-cable"></div>
-            </div>
-            <div class="tile-caption">
-              <span class="tile-tag">Content Creation</span>
-              <h4 class="tile-name">Device Unboxing Series</h4>
-            </div>
+      <!-- 3D Coverflow Navigation & Telemetry Bar -->
+      <div class="coverflow-nav-controls" data-reveal>
+        <div class="coverflow-nav-cluster">
+          <button type="button" class="coverflow-nav-btn prev" id="coverflowPrevBtn" aria-label="Previous project" data-cursor="CLICK">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <div class="coverflow-drag-pill">
+            <span class="drag-pulse-indicator" aria-hidden="true"></span>
+            <span class="coverflow-drag-hint">DRAG TO EXPLORE</span>
           </div>
+          <button type="button" class="coverflow-nav-btn next" id="coverflowNextBtn" aria-label="Next project" data-cursor="CLICK">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
         </div>
+        <div class="coverflow-counter-wrap">
+          <p class="coverflow-counter-text" id="projectCounter">
+            <span class="counter-curr">01</span> / <span class="counter-total">06</span>
+          </p>
+        </div>
+      </div>
 
-        <!-- Item 3: Cosmetics Product Shoot -->
-        <div class="project-tile" data-cursor="VIEW" data-reveal data-delay="2">
-          <div class="project-tile-inner">
-            <img src="assets/project_cosmetics.jpg" alt="Cosmetic product shoot" class="tile-img" width="534" height="800" loading="lazy" decoding="async" />
-            <div class="tile-caption">
-              <span class="tile-tag">Commercial Video</span>
-              <h4 class="tile-name">Luxury Skincare Brand</h4>
-            </div>
+      <!-- 3D Coverflow Carousel Stage (Exact BizChemists Mechanics) -->
+      <div
+        class="work-stage"
+        id="workStage"
+        role="region"
+        tabindex="0"
+        aria-label="Selected work carousel — use arrow keys or drag to browse"
+        data-reveal
+      >
+        <!-- Slide 0: Aurora Skincare -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="0"
+          data-category="commercial"
+          aria-label="Aurora Skincare — Commercial Video Production"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/project_cosmetics.jpg" alt="Aurora Skincare commercial shoot" class="work-frame-img" width="534" height="800" loading="eager" decoding="async" />
           </div>
-        </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Aurora Skincare</h3>
+            <p class="work-category-tag">Commercial Video Production</p>
+          </div>
+        </button>
 
-        <!-- Item 4: Fashion Editorial Black Coat -->
-        <div class="project-tile project-tile--tall" data-cursor="VIEW" data-reveal>
-          <div class="project-tile-inner">
-            <img src="assets/project_fashion.jpg" alt="Fashion editorial" class="tile-img" width="533" height="800" loading="lazy" decoding="async" />
-            <div class="tile-caption">
-              <span class="tile-tag">Editorial Direction</span>
-              <h4 class="tile-name">High-Fashion Lookbook</h4>
-            </div>
+        <!-- Slide 1: Neo Tech Creator -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="1"
+          data-category="reels"
+          aria-label="Neo Tech Creator — Viral Social Campaign"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/project_smartphones.jpg" alt="Creator smartphone video production" class="work-frame-img" width="533" height="800" loading="eager" decoding="async" />
           </div>
-        </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Neo Tech Creator</h3>
+            <p class="work-category-tag">Viral Social Campaign</p>
+          </div>
+        </button>
 
-        <!-- Item 5: Multi-Phone Studio Shoot -->
-        <div class="project-tile project-tile--tall" data-cursor="VIEW" data-reveal data-delay="1">
-          <div class="project-tile-inner">
-            <img src="assets/project_smartphones.jpg" alt="Smartphone camera production" class="tile-img" width="533" height="800" loading="lazy" decoding="async" />
-            <div class="tile-caption">
-              <span class="tile-tag">Viral Campaign</span>
-              <h4 class="tile-name">Creator Smartphone Shoot</h4>
-            </div>
+        <!-- Slide 2: Atelier Noir -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="2"
+          data-category="commercial"
+          aria-label="Atelier Noir — High-Fashion Lookbook"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/project_fashion.jpg" alt="Atelier Noir fashion editorial" class="work-frame-img" width="533" height="800" loading="eager" decoding="async" />
           </div>
-        </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Atelier Noir</h3>
+            <p class="work-category-tag">Editorial Direction &amp; Stills</p>
+          </div>
+        </button>
 
-        <!-- Item 6: Video Studio Setup -->
-        <div class="project-tile project-tile--wide" data-cursor="VIEW" data-reveal data-delay="2">
-          <div class="project-tile-inner">
-            <img src="assets/editor_frame.jpg" alt="Studio lighting video production" class="tile-img" width="1080" height="1920" loading="lazy" decoding="async" />
-            <div class="tile-caption">
-              <span class="tile-tag">Studio Production</span>
-              <h4 class="tile-name">Lighting &amp; Set Direction</h4>
-            </div>
+        <!-- Slide 3: Cinema Labs -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="3"
+          data-category="brand"
+          aria-label="Cinema Labs — Studio Lighting & Set Direction"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/editor_frame.jpg" alt="Studio lighting video production" class="work-frame-img" width="1080" height="1920" loading="lazy" decoding="async" />
           </div>
-        </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Cinema Labs</h3>
+            <p class="work-category-tag">Lighting &amp; Set Production</p>
+          </div>
+        </button>
+
+        <!-- Slide 4: Pulse Hardware -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="4"
+          data-category="commercial brand"
+          aria-label="Pulse Hardware — Product Content Creation"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/study_greece_phone.webp" alt="Pulse Hardware mobile showcase" class="work-frame-img" width="700" height="700" loading="lazy" decoding="async" />
+          </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Pulse Hardware</h3>
+            <p class="work-category-tag">Product Content Creation</p>
+          </div>
+        </button>
+
+        <!-- Slide 5: Tastebud Artisan -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="5"
+          data-category="reels brand"
+          aria-label="Tastebud Artisan — Brand Identity & Media"
+          data-cursor="VIEW"
+        >
+          <div class="work-frame">
+            <img src="assets/tastebud.webp" alt="Tastebud artisan brand styling" class="work-frame-img" width="700" height="700" loading="lazy" decoding="async" />
+          </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Tastebud Artisan</h3>
+            <p class="work-category-tag">Brand Identity &amp; Media</p>
+          </div>
+        </button>
       </div>
 
       <!-- Animated Impact Numbers -->
@@ -368,6 +688,38 @@
             <span class="stat-plus-sign">+</span>
           </div>
           <span class="stat-caption">Brands Elevated</span>
+        </div>
+      </div>
+
+      <!-- Client Brand Logos Marquee (Trusted By Leading Creators & Studios) -->
+      <div class="client-logos-wrapper" data-reveal>
+        <div class="client-logos-header">
+          <span class="logos-sparkle">✦</span>
+          <span class="client-logos-label">TRUSTED BY HIGH-GROWTH BRANDS, CREATORS &amp; PRODUCTION STUDIOS</span>
+          <span class="logos-sparkle">✦</span>
+        </div>
+        <div class="client-logos-marquee" aria-label="Client brand partners list">
+          <div class="client-logos-track">
+            <!-- 8 brand badges duplicated for seamless infinite loop -->
+            <div class="brand-item"><span class="brand-sym">◈</span><span class="brand-txt">APEX STUDIOS</span></div>
+            <div class="brand-item"><span class="brand-sym">▲</span><span class="brand-txt">VESPER MEDIA</span></div>
+            <div class="brand-item"><span class="brand-sym">⬡</span><span class="brand-txt">HORIZON FILMS</span></div>
+            <div class="brand-item"><span class="brand-sym">❖</span><span class="brand-txt">HYPERSCALE</span></div>
+            <div class="brand-item"><span class="brand-sym">✦</span><span class="brand-txt">LUMINA CREATIVE</span></div>
+            <div class="brand-item"><span class="brand-sym">◆</span><span class="brand-txt">REDLINE DIGITAL</span></div>
+            <div class="brand-item"><span class="brand-sym">●</span><span class="brand-txt">PULSE AGENCY</span></div>
+            <div class="brand-item"><span class="brand-sym">■</span><span class="brand-txt">FRAMECRAFT</span></div>
+
+            <!-- duplicate set for seamless infinite marquee loop -->
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◈</span><span class="brand-txt">APEX STUDIOS</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">▲</span><span class="brand-txt">VESPER MEDIA</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">⬡</span><span class="brand-txt">HORIZON FILMS</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">❖</span><span class="brand-txt">HYPERSCALE</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">✦</span><span class="brand-txt">LUMINA CREATIVE</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◆</span><span class="brand-txt">REDLINE DIGITAL</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">●</span><span class="brand-txt">PULSE AGENCY</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">■</span><span class="brand-txt">FRAMECRAFT</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -459,15 +811,32 @@
   </section>
 
   <!-- ============================================================
-       SLIDE 4 · CAMPAIGN CREATIVES SHOWCASE (Electric Cyan BG)
+       SLIDE 4 · CAMPAIGN CREATIVES SHOWCASE (Dark Luxury Gallery)
   ============================================================ -->
   <section class="campaign-showcase-section" id="campaigns">
     <div class="campaign-container">
+      <div class="campaign-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>PAID &amp; ORGANIC VISUALS</span>
+        </div>
+        <h2 class="campaign-title">High-Conversion Campaigns</h2>
+        <p class="campaign-subtitle">Static visual assets, promotional flyers, and social campaigns engineered to maximize click-throughs and customer acquisition.</p>
+      </div>
+
       <div class="campaign-grid">
         <!-- Tastebud Patisserie Card -->
         <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
           <div class="campaign-card-inner">
             <img src="assets/tastebud.webp" alt="Tastebud Patisserie campaign graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">FOOD &amp; HOSPITALITY</span>
+                <span class="campaign-stat-badge">250% SALES LIFT</span>
+              </div>
+              <h3 class="campaign-client-title">Tastebud Patisserie</h3>
+              <p class="campaign-client-sub">Late-night anniversary launch campaign &amp; promotional visuals.</p>
+            </div>
           </div>
         </div>
 
@@ -475,6 +844,14 @@
         <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
           <div class="campaign-card-inner">
             <img src="assets/uk_uni.webp" alt="Applying to UK Universities graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">HIGHER EDUCATION</span>
+                <span class="campaign-stat-badge">HIGH CTR AD CAMPAIGN</span>
+              </div>
+              <h3 class="campaign-client-title">Study in the UK</h3>
+              <p class="campaign-client-sub">Educational recruitment campaign &amp; intake admissions creative.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -580,65 +957,1685 @@
   </section>
 
   <!-- ============================================================
-       SLIDE 7 · SERVICES (Light Silver Background)
+       SLIDE 7 · SERVICES (BizChemists Focus-Wheel Style)
   ============================================================ -->
-  <section class="services-clean-section" id="services">
-    <div class="services-clean-container">
-      <div class="services-clean-header" data-reveal>
-        <h2 class="services-clean-title">Services</h2>
-        <p class="services-clean-statement">LET’S TURN YOUR IDEA INTO CONTENT WORTH WATCHING</p>
+  <section class="services-focus-section" id="services">
+    <div class="services-focus-container">
+      <div class="services-focus-header" data-reveal>
+        <div class="services-header-left">
+          <div class="section-tag-pill">
+            <span class="tag-pulse-dot"></span>
+            <span>CORE DISCIPLINES</span>
+          </div>
+          <h2 class="services-focus-title">Services</h2>
+        </div>
+        <p class="services-focus-statement">LET’S TURN YOUR VISION INTO HIGH-RETENTION CONTENT WORTH WATCHING</p>
       </div>
 
-      <!-- 6 Interactive Cyan Pill Buttons (3x2 Grid) -->
-      <div class="services-pills-grid" data-reveal>
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Video Production</span>
-          <span class="pill-arrow">→</span>
-        </a>
+      <!-- Interactive Focus Wheel Stacked Service Cards -->
+      <ul class="services-focus-list" data-focus-wheel data-reveal>
+        <!-- 01: Video Production -->
+        <li class="service-focus-item" data-focus-item data-service-id="production">
+          <button type="button" class="service-card press" aria-label="Video Production — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">PRODUCTION</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">COMMERCIAL &amp; SOCIAL PRODUCTION</span>
+              <span class="service-desc">Cinematic shoots, talking-head setups, and high-impact product showcases filmed for maximum visual retention.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
 
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Video Editing</span>
-          <span class="pill-arrow">→</span>
-        </a>
+        <!-- 02: Video Editing -->
+        <li class="service-focus-item" data-focus-item data-service-id="editing">
+          <button type="button" class="service-card press" aria-label="Creative Video Editing — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">EDITING</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">RETENTION-DRIVEN POST-PRODUCTION</span>
+              <span class="service-desc">Paced cuts, kinetic typography, dynamic sound design, and color grading tailored to stop the scroll and maintain watch-time.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
 
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Static Content Design</span>
-          <span class="pill-arrow">→</span>
-        </a>
+        <!-- 03: Static Content Design -->
+        <li class="service-focus-item" data-focus-item data-service-id="content">
+          <button type="button" class="service-card press" aria-label="Static Content Design — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">CONTENT</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">VISUAL SOCIAL CREATIVES &amp; META ADS</span>
+              <span class="service-desc">High-CTR carousel slides, performance ad creatives, and platform-native graphics engineered for immediate engagement.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
 
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Brand Identity</span>
-          <span class="pill-arrow">→</span>
-        </a>
+        <!-- 04: Brand Identity -->
+        <li class="service-focus-item" data-focus-item data-service-id="branding">
+          <button type="button" class="service-card press" aria-label="Brand Identity — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">BRANDING</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">IDENTITY SYSTEMS &amp; STYLE GUIDES</span>
+              <span class="service-desc">Distinct visual identity, responsive logo systems, typography hierarchy, and style guide rules that make your brand recognized instantly.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
 
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Ai Content Design</span>
-          <span class="pill-arrow">→</span>
-        </a>
+        <!-- 05: AI Content Design -->
+        <li class="service-focus-item" data-focus-item data-service-id="ai">
+          <button type="button" class="service-card press" aria-label="AI Content Design — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">AI DESIGN</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">GENERATIVE ASSETS &amp; NEURAL ENHANCEMENT</span>
+              <span class="service-desc">Cutting-edge generative imaging, AI concept mockups, neural super-resolution, and visual assets delivered in record time.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
 
-        <a href="#contact" class="service-cyan-pill" data-cursor="LINK">
-          <span class="pill-title">Printables</span>
-          <span class="pill-arrow">→</span>
-        </a>
+        <!-- 06: Printables & Merch -->
+        <li class="service-focus-item" data-focus-item data-service-id="printables">
+          <button type="button" class="service-card press" aria-label="Printables & Merch — view details & deliverables" data-cursor="VIEW">
+            <span class="service-col-left">
+              <svg class="focus-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <polyline points="13 5 20 12 13 19"></polyline>
+              </svg>
+              <span class="service-short-name">PRINTABLES</span>
+            </span>
+            <span class="service-col-middle">
+              <span class="service-subtitle">PHYSICAL COLLATERAL &amp; PACKAGING</span>
+              <span class="service-desc">Vector-exact print production, apparel graphics, luxury menus, packaging boxes, and business stationery calibrated for press.</span>
+            </span>
+            <span class="service-col-right">
+              <span class="card-action-circle" aria-hidden="true">
+                <svg class="diagonal-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8 · SCROLL-EXPANDING STUDIO CINEMATIC REEL
+       (Design Monks Expanding Video Scroll Architecture)
+  ============================================================ -->
+  <section class="reel-expand-section" id="reel">
+    <div class="reel-expand-header" data-reveal>
+      <div class="section-tag-pill">
+        <span class="tag-pulse-dot"></span>
+        <span>STUDIO SHOWREEL</span>
+      </div>
+      <h2 class="reel-expand-title">Why Me? Because Your <em>Vision Deserves To Be Seen</em></h2>
+      <p class="reel-expand-subtitle">See the difference intentional pacing, color science, and sound design make. Every cut is engineered to hold attention from the first second.</p>
+    </div>
+
+    <!-- Scroll Track Container for Sticky Expansion -->
+    <div class="reel-scroll-track" id="reelScrollTrack">
+      <div class="reel-sticky-viewport">
+        <div class="reel-expanding-container" id="reelExpandingContainer" data-cursor="PLAY">
+          <video
+            id="studioShowreelVideo"
+            class="reel-video-element"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="assets/studio_frame.jpg"
+            preload="metadata"
+            disablepictureinpicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            oncontextmenu="return false;"
+          >
+            <source src="assets/ba_landscape.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Interactive Floating HUD Controls -->
+          <div class="reel-hud-overlay">
+            <div class="reel-hud-top">
+              <div class="reel-status-pill">
+                <span class="reel-rec-dot"></span>
+                <span>4K 60FPS · COLOR GRADED</span>
+              </div>
+            </div>
+
+            <!-- Center Big Play/Pause Toggle -->
+            <button type="button" class="reel-center-play-btn" id="reelCenterPlayBtn" aria-label="Toggle reel play or pause">
+              <svg class="reel-play-svg" id="reelPlaySvg" viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="reel-pause-svg" id="reelPauseSvg" viewBox="0 0 24 24" width="36" height="36" fill="currentColor" style="display: none;">
+                <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+                <rect x="14" y="4" width="4" height="16" rx="1.5"/>
+              </svg>
+            </button>
+
+            <!-- Bottom Metadata & Sound Bar -->
+            <div class="reel-hud-bottom">
+              <div class="reel-title-meta">
+                <h3 class="reel-hud-heading">Creative Editing &amp; Production Reel</h3>
+                <p class="reel-hud-sub">Commercials, Social Campaigns &amp; High-Retention Edits</p>
+              </div>
+              <button type="button" class="reel-sound-toggle-btn" id="reelSoundToggleBtn" aria-label="Toggle reel sound">
+                <div class="reel-audio-bars" id="reelAudioBars" aria-hidden="true">
+                  <span class="bar bar-1"></span>
+                  <span class="bar bar-2"></span>
+                  <span class="bar bar-3"></span>
+                  <span class="bar bar-4"></span>
+                </div>
+                <svg class="reel-sound-on-svg" id="reelSoundOnSvg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+                <svg class="reel-sound-off-svg" id="reelSoundOffSvg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <line x1="23" y1="9" x2="17" y2="15"/>
+                  <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+                <span class="reel-sound-label" id="reelSoundLabel">UNMUTE SOUND</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       SLIDE 8 · WIDESCREEN STUDIO CINEMATIC REEL
+       SLIDE 8.25 · BEHIND THE EDIT: INTERACTIVE NLE STEMS DECONSTRUCTOR
+       (Premiere Pro & DaVinci Studio Multi-Track Sandbox)
   ============================================================ -->
-  <section class="studio-reel-section" id="reel">
-    <div class="studio-reel-frame" data-cursor="PLAY" data-reveal>
-      <img src="assets/studio_frame.jpg" alt="Video editing studio reel preview" class="reel-backdrop-img" width="1920" height="1080" loading="lazy" decoding="async" />
-      <div class="reel-interactive-overlay">
-        <button type="button" class="reel-play-button" aria-label="Play studio showreel">
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </button>
-        <div class="reel-bottom-info">
-          <span class="reel-meta-tag">Studio Showreel</span>
-          <span class="reel-duration">01:12 · 4K 60FPS</span>
+  <section class="nle-sandbox-section" id="behind-the-edit">
+    <div class="nle-sandbox-container">
+      <!-- Section Header -->
+      <div class="nle-sandbox-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>DECONSTRUCT THE EDIT · NLE STUDIO WORKBENCH</span>
+        </div>
+        <h2 class="nle-sandbox-title">Behind The Edit: <em>Peel Back The Stems</em></h2>
+        <p class="nle-sandbox-subtitle">
+          Experience how high-retention video is actually built. Toggle visual layers, solo audio stems, and hear the difference between raw camera footage and a finished commercial master.
+        </p>
+
+        <!-- 1-Click Creative Presets -->
+        <div class="stem-presets-bar" role="tablist" aria-label="NLE workflow presets">
+          <span class="stem-presets-label">STUDIO PRESETS:</span>
+          <button type="button" class="stem-preset-btn is-active" data-preset="full" data-cursor="CLICK">Full Cinema Master</button>
+          <button type="button" class="stem-preset-btn" data-preset="raw" data-cursor="CLICK">Raw S-Log3 Only</button>
+          <button type="button" class="stem-preset-btn" data-preset="sfx" data-cursor="CLICK">Music &amp; Foley Only</button>
+          <button type="button" class="stem-preset-btn" data-preset="silent" data-cursor="CLICK">Silent Mobile Feed</button>
+        </div>
+      </div>
+
+      <!-- Main NLE Studio Frame -->
+      <div class="nle-studio-frame" data-reveal data-delay="1">
+        <!-- Top Toolbar -->
+        <div class="nle-top-toolbar">
+          <div class="nle-project-meta">
+            <span class="nle-software-pill">DaVinci Resolve 19 Studio</span>
+            <span class="nle-timeline-name">Timeline 01 · Commercial_Hero_Master_4K.drp</span>
+          </div>
+          <div class="nle-toolbar-center">
+            <span class="nle-rec-indicator"><span class="rec-dot"></span>REC PLAYBACK</span>
+            <span class="nle-resolution-tag">4K DCI · 60 FPS · ACEScc</span>
+          </div>
+          <div class="nle-toolbar-timecode" id="nleTimecodeDisplay">00:00:06:14</div>
+        </div>
+
+        <!-- Upper View: Monitor Stage & Real-Time Grading -->
+        <div class="nle-monitor-stage">
+          <div class="nle-monitor-viewport" id="stemMonitorViewport">
+            <video
+              id="stemVideoPlayer"
+              class="nle-monitor-video stem-grade-master"
+              autoplay
+              loop
+              muted
+              playsinline
+              poster="assets/studio_frame.jpg"
+              preload="metadata"
+              disablepictureinpicture
+              controlslist="nodownload nofullscreen noremoteplayback"
+              oncontextmenu="return false;"
+            >
+              <source src="assets/ba_landscape.mp4" type="video/mp4" />
+            </video>
+
+            <!-- V3 Subtitle Overlay Layer -->
+            <div class="monitor-layer-v3" id="layerV3Overlay">
+              <div class="kinetic-hook-chip">
+                <span class="hook-icon">⚡</span>
+                <span class="hook-text">RETENTION HOOK · +340% ENGAGEMENT</span>
+              </div>
+              <div class="kinetic-caption-box">
+                <p class="kinetic-caption-line">“Every cut is synchronized to the micro-beat.”</p>
+              </div>
+            </div>
+
+            <!-- V2 3D Motion Graphics & Tracking Grid Layer -->
+            <div class="monitor-layer-v2" id="layerV2Overlay">
+              <div class="tracking-grid-box">
+                <div class="target-crosshair center"></div>
+                <div class="corner-bracket top-left"></div>
+                <div class="corner-bracket top-right"></div>
+                <div class="corner-bracket bottom-left"></div>
+                <div class="corner-bracket bottom-right"></div>
+                <span class="tracking-telemetry-tag">3D CAMERA TRACK · CONFIDENCE 99.4%</span>
+              </div>
+            </div>
+
+            <!-- Picture Mode Watermark Tag -->
+            <div class="nle-picture-mode-badge" id="stemPictureBadge">
+              <span class="badge-dot"></span>
+              <span id="stemPictureModeLabel">DAVINCI FILM MASTER GRADE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lower View: Multi-Track Timeline & Stem Mixer -->
+        <div class="nle-timeline-mixer">
+          <!-- Timeline Timecode Ruler & Playhead -->
+          <div class="nle-ruler-track" id="stemRulerTrack">
+            <div class="ruler-tick-group">
+              <span class="r-tick">00:00</span>
+              <span class="r-tick">00:03</span>
+              <span class="r-tick">00:06</span>
+              <span class="r-tick">00:09</span>
+              <span class="r-tick">00:12</span>
+              <span class="r-tick">00:15</span>
+            </div>
+            <!-- Animated Progress Needle -->
+            <div class="nle-scrub-playhead" id="stemScrubPlayhead">
+              <div class="playhead-flag">▼</div>
+              <div class="playhead-laser"></div>
+            </div>
+          </div>
+
+          <!-- 6 NLE Stem Track Lanes -->
+          <div class="nle-lanes-scroll">
+            <!-- Track 1: V3 Subtitles & Kinetic Hooks -->
+            <div class="nle-lane-row" data-stem="v3">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-video">V3</span>
+                <span class="lane-title">Subtitles &amp; Hooks</span>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-toggle-btn btn-mute" data-stem-mute="v3" title="Mute/Hide Subtitles">M</button>
+                  <button type="button" class="stem-toggle-btn btn-solo" data-stem-solo="v3" title="Solo Subtitles">S</button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-v3-1"><span>⚡ Opening Kinetic Hook</span></div>
+                <div class="nle-clip-block clip-v3-2"><span>Dynamically Paced Captions</span></div>
+              </div>
+            </div>
+
+            <!-- Track 2: V2 3D Graphics & Motion VFX -->
+            <div class="nle-lane-row" data-stem="v2">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-video">V2</span>
+                <span class="lane-title">3D Motion VFX</span>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-toggle-btn btn-mute" data-stem-mute="v2" title="Mute/Hide 3D VFX">M</button>
+                  <button type="button" class="stem-toggle-btn btn-solo" data-stem-solo="v2" title="Solo 3D VFX">S</button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-v2-1"><span>Camera Track &amp; Telemetry</span></div>
+                <div class="nle-clip-block clip-v2-2"><span>Product Callout Brackets</span></div>
+              </div>
+            </div>
+
+            <!-- Track 3: V1 Cinema Camera RAW / Grade -->
+            <div class="nle-lane-row" data-stem="v1">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-video">V1</span>
+                <span class="lane-title">A-Cam Master</span>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-grade-switch-btn" id="stemGradeSwitchBtn" title="Switch between Flat S-Log3 and DaVinci Graded">
+                    <span class="grade-label" id="stemGradeBtnLabel">GRADED</span>
+                  </button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-v1"><span>Sony FX3 / ARRI Alexa LF · 4K ProRes 422HQ Cinema Stream</span></div>
+              </div>
+            </div>
+
+            <!-- Track 4: A1 Commercial Music Bed -->
+            <div class="nle-lane-row" data-stem="a1">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-audio">A1</span>
+                <span class="lane-title">Music Bed</span>
+                <div class="lane-meters">
+                  <span class="vu-bar v1"></span><span class="vu-bar v2"></span><span class="vu-bar v3"></span>
+                </div>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-toggle-btn btn-mute" data-stem-mute="a1" title="Mute Music">M</button>
+                  <button type="button" class="stem-toggle-btn btn-solo" data-stem-solo="a1" title="Solo Music">S</button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-a1"><span>Licensed Commercial Score · High-Pacing Beats (128 BPM)</span></div>
+              </div>
+            </div>
+
+            <!-- Track 5: A2 Impact Foley & Sound Design -->
+            <div class="nle-lane-row" data-stem="a2">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-audio">A2</span>
+                <span class="lane-title">Impact Foley</span>
+                <div class="lane-meters">
+                  <span class="vu-bar v1"></span><span class="vu-bar v2"></span><span class="vu-bar v3"></span>
+                </div>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-toggle-btn btn-mute" data-stem-mute="a2" title="Mute Foley &amp; SFX">M</button>
+                  <button type="button" class="stem-toggle-btn btn-solo" data-stem-solo="a2" title="Solo Foley &amp; SFX">S</button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-a2-1"><span>Sub-Drop</span></div>
+                <div class="nle-clip-block clip-a2-2"><span>Spatial Riser</span></div>
+                <div class="nle-clip-block clip-a2-3"><span>Tactile Click &amp; Whoosh</span></div>
+              </div>
+            </div>
+
+            <!-- Track 6: A3 Studio Master Voiceover -->
+            <div class="nle-lane-row" data-stem="a3">
+              <div class="nle-lane-header">
+                <span class="lane-tag tag-audio">A3</span>
+                <span class="lane-title">Voiceover Stems</span>
+                <div class="lane-meters">
+                  <span class="vu-bar v1"></span><span class="vu-bar v2"></span><span class="vu-bar v3"></span>
+                </div>
+                <div class="lane-toggles">
+                  <button type="button" class="stem-toggle-btn btn-mute" data-stem-mute="a3" title="Mute Voiceover">M</button>
+                  <button type="button" class="stem-toggle-btn btn-solo" data-stem-solo="a3" title="Solo Voiceover">S</button>
+                </div>
+              </div>
+              <div class="nle-lane-body">
+                <div class="nle-clip-block clip-a3"><span>Master Dialog Stem · De-essed &amp; Equalized Compression</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Retention Telemetry HUD -->
+        <div class="stem-telemetry-hud">
+          <div class="telemetry-cell retention-gauge-cell">
+            <span class="telemetry-lbl">ESTIMATED VIEWER RETENTION</span>
+            <div class="retention-score-row">
+              <span class="retention-pct-val" id="telemetryRetentionPct">86%</span>
+              <span class="retention-status-pill" id="telemetryRetentionStatus">VIRAL CLASS</span>
+            </div>
+            <div class="retention-meter-track">
+              <div class="retention-meter-fill" id="telemetryRetentionFill" style="width: 86%;"></div>
+            </div>
+          </div>
+
+          <div class="telemetry-cell algorithmic-index-cell">
+            <span class="telemetry-lbl">ALGORITHM HOOK INDEX</span>
+            <span class="telemetry-highlight" id="telemetryHookIndex">MAXIMUM · 94/100</span>
+            <span class="telemetry-sub" id="telemetryHookSub">Optimized for Meta &amp; TikTok 3-Second Retention</span>
+          </div>
+
+          <div class="telemetry-cell pedagogical-insight-cell">
+            <span class="telemetry-lbl">WHY THIS COMBINATION MATTERS</span>
+            <p class="telemetry-insight-text" id="telemetryInsightText">
+              All 6 post-production stems active. Kinetic typography captures silent mobile scrolling, while layered audio foley and color grading create cinematic immersion.
+            </p>
+          </div>
+
+          <div class="telemetry-cell action-cell">
+            <button type="button" class="telemetry-lock-btn" id="telemetryLockScopeBtn" data-cursor="CLICK">
+              <span>Lock This Edit Scope</span>
+              <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="4" y1="10" x2="16" y2="10"></line>
+                <polyline points="10 4 16 10 10 16"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 · WHAT GOES INTO EVERY VIDEO (MZ Media Three Pillars)
+  ============================================================ -->
+  <section class="video-pillars-section" id="methodology">
+    <div class="video-pillars-container">
+      <div class="video-pillars-header" data-reveal>
+        <h2 class="video-pillars-title">What Goes Into<br />Every Video</h2>
+        <p class="video-pillars-subtitle">Three things we bring in every video.</p>
+      </div>
+
+      <div class="video-pillars-grid" data-reveal>
+        <!-- Card 1: Hook -->
+        <div class="pillar-card" data-tilt>
+          <div class="pillar-visual-stage stage-hook">
+            <div class="spotlight-cone" aria-hidden="true"></div>
+            <div class="spotlight-source" aria-hidden="true">
+              <div class="fixture-head"></div>
+              <div class="fixture-glow"></div>
+            </div>
+
+            <!-- Alignment Guide Ticks -->
+            <div class="laser-guides laser-guides-left" aria-hidden="true">
+              <span class="guide-tick"></span>
+              <span class="guide-tick"></span>
+              <span class="guide-tick"></span>
+            </div>
+            <div class="laser-guides laser-guides-right" aria-hidden="true">
+              <span class="guide-tick"></span>
+              <span class="guide-tick"></span>
+              <span class="guide-tick"></span>
+            </div>
+
+            <!-- Hook Button Dock with Eye -->
+            <div class="hook-dock-icon">
+              <div class="hook-icon-glow"></div>
+              <svg viewBox="0 0 24 24" class="hook-eye-svg" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">Hook</h3>
+            <p class="pillar-desc">The first 3 seconds decide whether your audience keeps watching. We start with a hook that makes them watch the whole thing.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Story -->
+        <div class="pillar-card" data-tilt>
+          <div class="pillar-visual-stage stage-story">
+            <!-- Center Vertical Light Beam -->
+            <div class="story-vertical-beam" aria-hidden="true"></div>
+
+            <!-- Venn Diagram Circles -->
+            <div class="venn-diagram-wrapper">
+              <div class="venn-circle venn-left">
+                <span class="venn-label">Brand</span>
+              </div>
+              <div class="venn-circle venn-right">
+                <span class="venn-label">Audience</span>
+              </div>
+
+              <!-- Overlap Sweetspot Icon (Brain/Spark) -->
+              <div class="venn-core-icon">
+                <div class="venn-core-glow"></div>
+                <svg viewBox="0 0 24 24" class="venn-brain-svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-5.04z"></path>
+                  <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-5.04z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">Story</h3>
+            <p class="pillar-desc">We make videos people finish watching, because we keep them clear, and interesting from start to end</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Conversion -->
+        <div class="pillar-card" data-tilt>
+          <div class="pillar-visual-stage stage-conversion">
+            <!-- Intense Vertical Luminescent Pillar -->
+            <div class="conversion-center-pillar" aria-hidden="true"></div>
+
+            <!-- Floating Orbital Telemetry Badges -->
+            <div class="floating-orb orb-pie" title="Analytics Lift">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+              </svg>
+            </div>
+            <div class="floating-orb orb-eye" title="Watch Time">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <div class="floating-orb orb-bulb" title="Creative Angle">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M9 18h6"></path>
+                <path d="M10 22h4"></path>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path>
+              </svg>
+            </div>
+            <div class="floating-orb orb-doc" title="Signed Retainer">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+            </div>
+            <div class="floating-orb orb-magnet" title="Audience Acquisition">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M6 3v7a6 6 0 0 0 12 0V3"></path>
+                <line x1="4" y1="7" x2="8" y2="7"></line>
+                <line x1="16" y1="7" x2="20" y2="7"></line>
+              </svg>
+            </div>
+
+            <!-- Starlight Ambient Particles -->
+            <span class="star-particle p1"></span>
+            <span class="star-particle p2"></span>
+            <span class="star-particle p3"></span>
+            <span class="star-particle p4"></span>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">Conversion</h3>
+            <p class="pillar-desc">By the time your video finishes, your customer is ready to move. They either book a call , start a free trial, or forward the video to the person who calls the final shots.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7.5 · HOW IT WORKS (MZ Media 4-Step Production System)
+  ============================================================ -->
+  <section class="how-it-works-section" id="process">
+    <div class="how-it-works-container">
+      <!-- Section Header -->
+      <div class="how-it-works-header" data-reveal>
+        <h2 class="how-it-works-title">How It Works</h2>
+        <p class="how-it-works-subtitle">4 steps we follow in every video we ship.</p>
+
+        <!-- Interactive Process Teaser Pill -->
+        <a href="#reel" class="process-teaser-pill" id="processTeaserBtn" data-cursor="PLAY" aria-label="Watch video production process in detail">
+          <div class="teaser-thumb-wrap">
+            <div class="teaser-thumb-bg"></div>
+            <div class="teaser-play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                <polygon points="6 4 20 12 6 20"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="teaser-text-wrap">
+            <span class="teaser-dot-pulse" aria-hidden="true"></span>
+            <span class="teaser-label">Watch Process In detail</span>
+          </div>
+          <div class="teaser-arrow-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- 4-Step Vertical Timeline -->
+      <div class="how-it-works-timeline">
+        <!-- Vertical Continuous Track Line -->
+        <div class="timeline-continuous-track" aria-hidden="true"></div>
+
+        <!-- Step 01: Questionnaire -->
+        <div class="process-step-row" data-reveal>
+          <div class="step-indicator-col" aria-hidden="true">
+            <div class="step-square-node"></div>
+          </div>
+          <div class="step-info-col">
+            <div class="step-title-row">
+              <h3 class="step-heading">Questionnaire</h3>
+              <span class="step-badge-num">01</span>
+            </div>
+            <p class="step-description">
+              You fill out a short form that takes about ten minutes, and from your answers we learn what your product does, who buys it, and why anyone should care.
+            </p>
+          </div>
+          <div class="step-visual-col">
+            <div class="step-visual-card card-questionnaire" data-tilt>
+              <div class="chat-mockup-wrapper">
+                <!-- Agency Prompt 1 -->
+                <div class="chat-msg chat-msg-agency">
+                  <div class="chat-bubble chat-bubble-agency">What does your product do?</div>
+                  <div class="chat-brand-badge" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+                      <path d="M4 18L10 6h4l6 12h-3.5l-1.5-3.5H9L7.5 18H4zm6.2-6.5h3.6L12 8.5 10.2 11.5z"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Client Response 1 -->
+                <div class="chat-msg chat-msg-client">
+                  <div class="chat-client-avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                    </svg>
+                  </div>
+                  <div class="chat-bubble chat-bubble-client">SaaS project management tool for startups</div>
+                </div>
+
+                <!-- Agency Prompt 2 -->
+                <div class="chat-msg chat-msg-agency">
+                  <div class="chat-bubble chat-bubble-agency">Who is your ideal customer?</div>
+                  <div class="chat-brand-badge" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+                      <path d="M4 18L10 6h4l6 12h-3.5l-1.5-3.5H9L7.5 18H4zm6.2-6.5h3.6L12 8.5 10.2 11.5z"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Client Response 2 -->
+                <div class="chat-msg chat-msg-client">
+                  <div class="chat-client-avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                    </svg>
+                  </div>
+                  <div class="chat-bubble chat-bubble-client">Founders &amp; operation teams at early-stage startups</div>
+                </div>
+
+                <!-- Agency Typing Indicator -->
+                <div class="chat-msg chat-msg-agency">
+                  <div class="chat-bubble chat-bubble-typing" aria-label="Analyzing brand intake">
+                    <span class="typing-dot dot-1"></span>
+                    <span class="typing-dot dot-2"></span>
+                    <span class="typing-dot dot-3"></span>
+                  </div>
+                  <div class="chat-brand-badge" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+                      <path d="M4 18L10 6h4l6 12h-3.5l-1.5-3.5H9L7.5 18H4zm6.2-6.5h3.6L12 8.5 10.2 11.5z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="card-ambient-radiance" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 02: Story boarding -->
+        <div class="process-step-row" data-reveal>
+          <div class="step-indicator-col" aria-hidden="true">
+            <div class="step-square-node"></div>
+          </div>
+          <div class="step-info-col">
+            <div class="step-title-row">
+              <h3 class="step-heading">Story boarding</h3>
+              <span class="step-badge-num">02</span>
+            </div>
+            <p class="step-description">
+              Before we start animating anything, you see exactly what the video will say and how every frame will look, and once you give your notes we lock the whole thing in.
+            </p>
+          </div>
+          <div class="step-visual-col">
+            <div class="step-visual-card card-storyboard" data-tilt>
+              <div class="storyboard-mockup-wrapper">
+                <!-- Color Palette Header -->
+                <div class="sb-palette-header">
+                  <span class="sb-palette-title">COLOR PALETTE</span>
+                  <div class="sb-swatch-row">
+                    <span class="sb-swatch swatch-cyan" title="Electric Cyan"></span>
+                    <span class="sb-swatch swatch-purple" title="Violet Glow"></span>
+                    <span class="sb-swatch swatch-blue" title="Cobalt Accent"></span>
+                    <span class="sb-swatch swatch-coral" title="Coral Contrast"></span>
+                    <span class="sb-swatch swatch-dark" title="Obsidian Base"></span>
+                  </div>
+                </div>
+
+                <!-- Storyboard Frame Cells -->
+                <div class="sb-frames-grid">
+                  <!-- Frame 1: Soundwave Visualizer -->
+                  <div class="sb-frame-item">
+                    <div class="sb-frame-tag">Audio Waveform</div>
+                    <div class="sb-audio-spectrum" aria-hidden="true">
+                      <span class="sb-wave-bar bar-1"></span>
+                      <span class="sb-wave-bar bar-2"></span>
+                      <span class="sb-wave-bar bar-3"></span>
+                      <span class="sb-wave-bar bar-4"></span>
+                      <span class="sb-wave-bar bar-5"></span>
+                      <span class="sb-wave-bar bar-6"></span>
+                      <span class="sb-wave-bar bar-7"></span>
+                    </div>
+                  </div>
+
+                  <!-- Frame 2: Perspective Frame Wireframe -->
+                  <div class="sb-frame-item">
+                    <div class="sb-frame-tag">Scene 02 · 3D Rig</div>
+                    <div class="sb-vector-scene" aria-hidden="true">
+                      <div class="sb-isometric-block">
+                        <div class="iso-face top"></div>
+                        <div class="iso-face front"></div>
+                        <div class="iso-face side"></div>
+                      </div>
+                      <div class="sb-orbit-reticle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Status Lock Indicator -->
+                <div class="sb-lock-status">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <span>Script &amp; Style Frames Locked</span>
+                </div>
+              </div>
+              <div class="card-ambient-radiance" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 03: Final Animation -->
+        <div class="process-step-row" data-reveal>
+          <div class="step-indicator-col" aria-hidden="true">
+            <div class="step-square-node"></div>
+          </div>
+          <div class="step-info-col">
+            <div class="step-title-row">
+              <h3 class="step-heading">Final Animation</h3>
+              <span class="step-badge-num">03</span>
+            </div>
+            <p class="step-description">
+              Custom animation, illustrations, sound design, and voiceover all come from the same in-house team, working on your project from the first day to the last.
+            </p>
+          </div>
+          <div class="step-visual-col">
+            <div class="step-visual-card card-animation" data-tilt>
+              <div class="nle-workstation-wrapper">
+                <!-- Monitor Stage -->
+                <div class="nle-monitor-stage">
+                  <div class="nle-sidebar-layers">
+                    <span class="nle-layer-chip active">Spline Curve</span>
+                    <span class="nle-layer-chip">Color Grade</span>
+                    <span class="nle-layer-chip">Master SFX</span>
+                  </div>
+                  <div class="nle-canvas-viewport">
+                    <svg class="nle-spline-svg" viewBox="0 0 280 100" fill="none">
+                      <!-- Soft Ambient Glow Under Curve -->
+                      <path d="M 15 82 C 75 82, 85 18, 145 38 C 205 58, 215 14, 265 18" stroke="#3b82f6" stroke-width="5" stroke-linecap="round" opacity="0.35"></path>
+                      <!-- Main Neon Curve -->
+                      <path d="M 15 82 C 75 82, 85 18, 145 38 C 205 58, 215 14, 265 18" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"></path>
+                      <!-- Control Points -->
+                      <circle cx="15" cy="82" r="3.5" fill="#00f2fe"></circle>
+                      <circle cx="145" cy="38" r="4" fill="#60a5fa"></circle>
+                      <circle cx="265" cy="18" r="4.5" fill="#00f2fe"></circle>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Timeline Scrubbing Area -->
+                <div class="nle-timeline-area">
+                  <div class="nle-ruler-ticks">
+                    <span class="ruler-mark">00:00</span>
+                    <span class="ruler-mark">00:04</span>
+                    <span class="ruler-mark">00:08</span>
+                    <span class="ruler-mark">00:12</span>
+                    <span class="ruler-mark">00:16</span>
+                  </div>
+
+                  <div class="nle-tracks-lane">
+                    <!-- Glowing Playhead -->
+                    <div class="nle-playhead-line" aria-hidden="true">
+                      <div class="playhead-needle-head"></div>
+                    </div>
+
+                    <!-- Track 1: Video / Motion Graphics -->
+                    <div class="nle-track-row">
+                      <div class="nle-clip-block clip-video-1">Intro Hook</div>
+                      <div class="nle-clip-block clip-video-2">Kinetic Motion</div>
+                      <div class="nle-clip-block clip-video-3">Conversion Callout</div>
+                    </div>
+
+                    <!-- Track 2: Sound Design & Foley -->
+                    <div class="nle-track-row">
+                      <div class="nle-clip-block clip-audio-1">Master Voiceover</div>
+                      <div class="nle-clip-block clip-audio-2">Spatial SFX &amp; Sub</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-ambient-radiance" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 04: Delivery -->
+        <div class="process-step-row" data-reveal>
+          <div class="step-indicator-col" aria-hidden="true">
+            <div class="step-square-node"></div>
+          </div>
+          <div class="step-info-col">
+            <div class="step-title-row">
+              <h3 class="step-heading">Delivery</h3>
+              <span class="step-badge-num">04</span>
+            </div>
+            <p class="step-description">
+              You get the variations for every platform you post on, usually within 2 weeks from kickoff.
+            </p>
+          </div>
+          <div class="step-visual-col">
+            <div class="step-visual-card card-delivery" data-tilt>
+              <div class="delivery-mockup-wrapper">
+                <div class="delivery-folder-container">
+                  <!-- Rear Folder Tab -->
+                  <div class="folder-back-tab"></div>
+
+                  <!-- Stacked Video Output Assets -->
+                  <div class="folder-asset-stack">
+                    <div class="folder-asset-card asset-1">
+                      <span class="asset-format">4K DCI · 16:9</span>
+                      <span class="asset-filename">Master_Cinema_Cut.mov</span>
+                    </div>
+                    <div class="folder-asset-card asset-2">
+                      <span class="asset-format">9:16 · Reels</span>
+                      <span class="asset-filename">Vertical_Viral_Cut.mp4</span>
+                    </div>
+                    <div class="folder-asset-card asset-3">
+                      <span class="asset-format">1:1 · Feed</span>
+                      <span class="asset-filename">Square_Sponsored_Cut.mp4</span>
+                    </div>
+                  </div>
+
+                  <!-- Front Frosted Glass Folder Sleeve -->
+                  <div class="folder-front-sleeve">
+                    <!-- Export / Share Disc -->
+                    <div class="folder-export-disc" title="Instant Direct Export">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                      </svg>
+                    </div>
+
+                    <!-- "Final touch" Pill with Mouse Cursor -->
+                    <div class="folder-final-pill-tag">
+                      <span>Final touch</span>
+                      <div class="folder-cursor-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white">
+                          <path d="M3 3l7 18 3-7 7-3L3 3z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-ambient-radiance" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8.5 · COLLABORATION & VALUE (Design Monks Bento Grid)
+  ============================================================ -->
+  <section class="bento-features-section" id="collaboration">
+    <div class="bento-container">
+      <div class="bento-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>THE PARTNERSHIP ADVANTAGE</span>
+        </div>
+        <h2 class="bento-title">Engineered For <em>Speed</em>, Built For <em>Quality</em></h2>
+        <p class="bento-subtitle">From flexible project scopes to direct communication channels, here is how we work together to turn ideas into high-performing reality.</p>
+      </div>
+
+      <!-- 4-Card Bento Grid -->
+      <div class="bento-grid" data-reveal>
+        <!-- Bento Card 1: Flexible Collaboration Plans -->
+        <div class="bento-card bento-card-plans" data-cursor="VIEW">
+          <div class="bento-card-header">
+            <span class="bento-tag">PRICING &amp; TERMS</span>
+            <h3 class="bento-card-title">Flexible Collaboration Plans</h3>
+            <p class="bento-card-desc">Work your way. Transparent scopes designed for one-off campaigns or ongoing content pipelines.</p>
+          </div>
+
+          <!-- Interactive Scope Switcher Pills -->
+          <div class="bento-plan-pills" role="tablist" aria-label="Collaboration tiers">
+            <button type="button" class="plan-pill is-active" data-plan="project" role="tab" aria-selected="true">Per Project</button>
+            <button type="button" class="plan-pill" data-plan="monthly" role="tab" aria-selected="false">Monthly Retainer</button>
+            <button type="button" class="plan-pill" data-plan="sprint" role="tab" aria-selected="false">Creative Sprint</button>
+          </div>
+
+          <ul class="bento-perks-list">
+            <li><span class="perk-bullet"></span><span>Milestone-based approvals</span></li>
+            <li><span class="perk-bullet"></span><span>Zero hidden licensing fees</span></li>
+            <li><span class="perk-bullet"></span><span>Pause or adjust scope anytime</span></li>
+          </ul>
+
+          <!-- Floating Holographic Tier Cards Graphic -->
+          <div class="bento-cards-graphic" aria-hidden="true">
+            <div class="holo-card holo-card-back">
+              <span class="holo-logo">CREATIVE SPRINT</span>
+              <span class="holo-dots">•••• •••• •••• 2026</span>
+            </div>
+            <div class="holo-card holo-card-front">
+              <div class="holo-top">
+                <span class="holo-chip"></span>
+                <span class="holo-badge">RETAINER PASS</span>
+              </div>
+              <div class="holo-bottom">
+                <span class="holo-name">ALDRIN ABIR PARTNER</span>
+                <span class="holo-exp">ACTIVE ACCESS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Fast Iterations & Real-Time Feedback -->
+        <div class="bento-card bento-card-feedback" data-cursor="VIEW">
+          <div class="bento-card-header">
+            <span class="bento-tag">RAPID ITERATIONS</span>
+            <h3 class="bento-card-title">Direct Channel &amp; Fast Revisions</h3>
+            <p class="bento-card-desc">Skip the bureaucratic ticket queues. Direct Slack or Discord access with lightning-fast same-day iteration cycles.</p>
+          </div>
+
+          <!-- Simulated Slack / Collaboration Chat Widget -->
+          <div class="bento-chat-widget" aria-label="Client collaboration feedback feed">
+            <div class="chat-widget-header">
+              <div class="chat-title-wrap">
+                <span class="chat-star">✦</span>
+                <span class="chat-title-text">Reel Cut v3.2 Feedback</span>
+              </div>
+              <div class="chat-avatar-stack">
+                <span class="chat-avatar-circle" title="Client">JD</span>
+                <span class="chat-avatar-circle aldrin" title="Aldrin Abir">AA</span>
+                <span class="chat-avatar-badge">3+ active</span>
+              </div>
+            </div>
+
+            <div class="chat-messages-container">
+              <!-- Message 1 -->
+              <div class="chat-msg-row">
+                <div class="chat-user-avatar">JD</div>
+                <div class="chat-bubble-wrap">
+                  <div class="chat-meta"><span class="chat-sender">Julian Davis</span> <span class="chat-time">Today at 2:47 PM</span></div>
+                  <p class="chat-text">Hey Aldrin, loving the hook transition! Can we punch up the Foley sound design at 0:03?</p>
+                </div>
+              </div>
+
+              <!-- Message 2 -->
+              <div class="chat-msg-row aldrin-reply">
+                <div class="chat-user-avatar aldrin">AA</div>
+                <div class="chat-bubble-wrap">
+                  <div class="chat-meta"><span class="chat-sender">Aldrin Abir</span> <span class="chat-time">Today at 2:54 PM</span></div>
+                  <p class="chat-text">Done! Layered custom whoosh + cinematic riser and recalibrated color contrast curves. Check revision v3.4 🚀</p>
+                  <div class="chat-reaction"><span>🔥</span> <span>2</span></div>
+                </div>
+              </div>
+
+              <!-- Message 3 -->
+              <div class="chat-msg-row">
+                <div class="chat-user-avatar">JD</div>
+                <div class="chat-bubble-wrap">
+                  <div class="chat-meta"><span class="chat-sender">Julian Davis</span> <span class="chat-time">Today at 3:02 PM</span></div>
+                  <p class="chat-text">This cut is absolutely immaculate! Approved for publishing 🙌</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Dedicated Support & Cloud Archival -->
+        <div class="bento-card bento-card-support" data-cursor="VIEW">
+          <div class="bento-card-header">
+            <span class="bento-tag">PRODUCTION ASSURANCE</span>
+            <h3 class="bento-card-title">Lifetime Asset Support</h3>
+            <p class="bento-card-desc">Every deliverable is safeguarded with cloud project backup, lossless formats, and ongoing assistance.</p>
+          </div>
+
+          <!-- Dark Glass Glow Box with Checklist -->
+          <div class="support-glow-box">
+            <ul class="support-check-list">
+              <li class="support-check-item">
+                <span class="check-icon-circle">
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 11 8 15 16 6"></polyline>
+                  </svg>
+                </span>
+                <div class="check-text-group">
+                  <strong>Multi-Platform Exports</strong>
+                  <span>9:16 Reels, 16:9 YouTube, 1:1 Feed &amp; 4:5 Ads</span>
+                </div>
+              </li>
+              <li class="support-check-item">
+                <span class="check-icon-circle">
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 11 8 15 16 6"></polyline>
+                  </svg>
+                </span>
+                <div class="check-text-group">
+                  <strong>Priority Turnarounds</strong>
+                  <span>Fast 24h iteration windows for urgent launch days</span>
+                </div>
+              </li>
+              <li class="support-check-item">
+                <span class="check-icon-circle">
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 11 8 15 16 6"></polyline>
+                  </svg>
+                </span>
+                <div class="check-text-group">
+                  <strong>Cloud Project Archiving</strong>
+                  <span>Raw footage, stems, and project files backed up securely</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Multi-Discipline Arsenal & Platform Reach -->
+        <div class="bento-card bento-card-ecosystem" data-cursor="VIEW">
+          <div class="bento-card-header">
+            <span class="bento-tag">FULL SPECTRUM</span>
+            <h3 class="bento-card-title">Creative Capabilities &amp; Platform Reach</h3>
+            <p class="bento-card-desc">Comprehensive production skills tuned to the algorithms and visual standards of modern channels.</p>
+          </div>
+
+          <div class="ecosystem-split-wrap">
+            <!-- Left Sub-panel: Skill Capabilities -->
+            <div class="eco-skills-panel">
+              <h4 class="eco-panel-title">Production Specialties</h4>
+              <div class="eco-skill-items">
+                <div class="eco-skill-row">
+                  <span class="eco-avatar">🎬</span>
+                  <div class="eco-skill-info">
+                    <span class="eco-name">Cinematography &amp; Direction</span>
+                    <span class="eco-role">Camera Lighting · Audio Rigging</span>
+                  </div>
+                  <span class="eco-badge">PRODUCTION</span>
+                </div>
+                <div class="eco-skill-row">
+                  <span class="eco-avatar">✂️</span>
+                  <div class="eco-skill-info">
+                    <span class="eco-name">Retention Video Editing</span>
+                    <span class="eco-role">Premiere Pro · DaVinci Resolve</span>
+                  </div>
+                  <span class="eco-badge">POST-PRO</span>
+                </div>
+                <div class="eco-skill-row">
+                  <span class="eco-avatar">✨</span>
+                  <div class="eco-skill-info">
+                    <span class="eco-name">Motion Design &amp; Sound</span>
+                    <span class="eco-role">After Effects · Sound Engineering</span>
+                  </div>
+                  <span class="eco-badge">MOTION</span>
+                </div>
+                <div class="eco-skill-row">
+                  <span class="eco-avatar">🎨</span>
+                  <div class="eco-skill-info">
+                    <span class="eco-name">Brand &amp; AI Systems</span>
+                    <span class="eco-role">Photoshop · Midjourney Pipelines</span>
+                  </div>
+                  <span class="eco-badge">CREATIVE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Sub-panel: Concentric Radar Constellation -->
+            <div class="eco-radar-panel">
+              <h4 class="eco-panel-title">Distribution Ecosystem</h4>
+              <div class="radar-constellation-stage" aria-hidden="true">
+                <div class="radar-ring radar-ring-1"></div>
+                <div class="radar-ring radar-ring-2"></div>
+                <div class="radar-ring radar-ring-3"></div>
+                <div class="radar-sweep-beam"></div>
+
+                <!-- Center Core -->
+                <div class="radar-core-hub">
+                  <span>ALDRIN</span>
+                </div>
+
+                <!-- Constellation Platform Nodes -->
+                <div class="radar-node node-yt" title="YouTube 4K Long-Form">
+                  <span class="node-icon">▶</span>
+                  <span class="node-label">YouTube</span>
+                </div>
+                <div class="radar-node node-reels" title="Instagram Reels">
+                  <span class="node-icon">📷</span>
+                  <span class="node-label">Reels</span>
+                </div>
+                <div class="radar-node node-tiktok" title="TikTok Viral Cuts">
+                  <span class="node-icon">🎵</span>
+                  <span class="node-label">TikTok</span>
+                </div>
+                <div class="radar-node node-ads" title="High-Converting Meta Ads">
+                  <span class="node-icon">📈</span>
+                  <span class="node-label">Meta Ads</span>
+                </div>
+                <div class="radar-node node-fashion" title="Brand Lookbooks">
+                  <span class="node-icon">✦</span>
+                  <span class="node-label">Lookbooks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8.6 · INTERACTIVE PRICING & SCOPE ESTIMATOR
+  ============================================================ -->
+  <section class="pricing-estimator-section" id="pricing">
+    <div class="pricing-container">
+      <div class="pricing-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>TRANSPARENT VALUE &amp; ESTIMATION</span>
+        </div>
+        <h2 class="pricing-title">Predictable Pricing, <em>High-Impact</em> ROI</h2>
+        <p class="pricing-subtitle">Select a production tier, customize your deliverables with live add-ons, and calculate your exact investment.</p>
+      </div>
+
+      <!-- Pricing Tier Cards Grid -->
+      <div class="pricing-tiers-grid" data-reveal>
+        <!-- Tier 1: SaaS Product Walkthrough -->
+        <div class="pricing-card active" data-tier="saas" data-base-price="1450" data-base-days="10" data-tilt>
+          <div class="pricing-card-badge">FOUNDER FAVORITE</div>
+          <div class="pricing-card-header">
+            <h3 class="tier-name">SaaS Product Demo</h3>
+            <p class="tier-tagline">High-converting walkthrough turning software features into crystal-clear user value.</p>
+            <div class="tier-price-row">
+              <span class="tier-currency">$</span>
+              <span class="tier-amount">1,450</span>
+              <span class="tier-term">/ production</span>
+            </div>
+          </div>
+          <div class="tier-specs-row">
+            <span class="spec-pill">⏱ 60s Runtime</span>
+            <span class="spec-pill">🚀 10 Business Days</span>
+            <span class="spec-pill">✦ 4K DCI</span>
+          </div>
+          <ul class="tier-features-list">
+            <li><span class="check-bullet">✓</span> Custom Scripting &amp; Narrative Hooks</li>
+            <li><span class="check-bullet">✓</span> High-Fidelity UI &amp; Vector Motion Graphics</li>
+            <li><span class="check-bullet">✓</span> Studio Master Voiceover &amp; Sound Foley</li>
+            <li><span class="check-bullet">✓</span> 2 Rounds of Rapid Revision Included</li>
+          </ul>
+          <button type="button" class="tier-select-btn active" data-tier-btn="saas">
+            <span>Selected Package</span>
+          </button>
+        </div>
+
+        <!-- Tier 2: Viral Reels Sprint -->
+        <div class="pricing-card" data-tier="reels" data-base-price="850" data-base-days="5" data-tilt>
+          <div class="pricing-card-badge">GROWTH SPEED</div>
+          <div class="pricing-card-header">
+            <h3 class="tier-name">Viral Reels &amp; Ads</h3>
+            <p class="tier-tagline">Fast-paced, kinetic short-form videos tailored for Instagram Reels, TikTok, and Meta Ads.</p>
+            <div class="tier-price-row">
+              <span class="tier-currency">$</span>
+              <span class="tier-amount">850</span>
+              <span class="tier-term">/ 3 cuts</span>
+            </div>
+          </div>
+          <div class="tier-specs-row">
+            <span class="spec-pill">⏱ 3 × 30s Vertical</span>
+            <span class="spec-pill">⚡ 5 Business Days</span>
+            <span class="spec-pill">✦ 9:16 Optimized</span>
+          </div>
+          <ul class="tier-features-list">
+            <li><span class="check-bullet">✓</span> 3 Distinct Hook Angle Variations</li>
+            <li><span class="check-bullet">✓</span> Kinetic Dynamic Subtitles &amp; Sound Punch</li>
+            <li><span class="check-bullet">✓</span> Algorithm-Optimized Pacing &amp; Retention</li>
+            <li><span class="check-bullet">✓</span> Royalty-Free Commercial Music Licensing</li>
+          </ul>
+          <button type="button" class="tier-select-btn" data-tier-btn="reels">
+            <span>Select Package</span>
+          </button>
+        </div>
+
+        <!-- Tier 3: Brand Commercial Film -->
+        <div class="pricing-card featured-tier" data-tier="commercial" data-base-price="2800" data-base-days="14" data-tilt>
+          <div class="pricing-card-badge featured-badge">CINEMATIC MASTER</div>
+          <div class="pricing-card-header">
+            <h3 class="tier-name">Brand Commercial</h3>
+            <p class="tier-tagline">Flagship brand commercial film with high-fashion lookbook aesthetic and cinema color mastering.</p>
+            <div class="tier-price-row">
+              <span class="tier-currency">$</span>
+              <span class="tier-amount">2,800</span>
+              <span class="tier-term">/ flagship</span>
+            </div>
+          </div>
+          <div class="tier-specs-row">
+            <span class="spec-pill">⏱ Up to 90s Film</span>
+            <span class="spec-pill">🎬 14 Business Days</span>
+            <span class="spec-pill">✦ DaVinci Color</span>
+          </div>
+          <ul class="tier-features-list">
+            <li><span class="check-bullet">✓</span> Concept Direction, Moodboards &amp; Storyboards</li>
+            <li><span class="check-bullet">✓</span> 4K Cinema Color Grading (S-Log3/Rec.709)</li>
+            <li><span class="check-bullet">✓</span> Bespoke 3D Perspective Animation Layers</li>
+            <li><span class="check-bullet">✓</span> Multi-Channel Sound Design &amp; Dolby Mix</li>
+          </ul>
+          <button type="button" class="tier-select-btn" data-tier-btn="commercial">
+            <span>Select Package</span>
+          </button>
+        </div>
+
+        <!-- Tier 4: Monthly Retainer -->
+        <div class="pricing-card" data-tier="retainer" data-base-price="3400" data-base-days="30" data-tilt>
+          <div class="pricing-card-badge">AGENCY PIPELINE</div>
+          <div class="pricing-card-header">
+            <h3 class="tier-name">Creative Retainer</h3>
+            <p class="tier-tagline">An embedded post-production partner delivering a steady stream of elite video assets every month.</p>
+            <div class="tier-price-row">
+              <span class="tier-currency">$</span>
+              <span class="tier-amount">3,400</span>
+              <span class="tier-term">/ month</span>
+            </div>
+          </div>
+          <div class="tier-specs-row">
+            <span class="spec-pill">📦 4-6 Videos / mo</span>
+            <span class="spec-pill">⚡ Priority Turnaround</span>
+            <span class="spec-pill">✦ Dedicated Slack</span>
+          </div>
+          <ul class="tier-features-list">
+            <li><span class="check-bullet">✓</span> Continuous Production &amp; Iteration Queue</li>
+            <li><span class="check-bullet">✓</span> Direct Slack / WhatsApp Creative Channel</li>
+            <li><span class="check-bullet">✓</span> Uncapped Minor Tweaks &amp; Platform Re-Sizes</li>
+            <li><span class="check-bullet">✓</span> Monthly Strategy &amp; Video Audit Call</li>
+          </ul>
+          <button type="button" class="tier-select-btn" data-tier-btn="retainer">
+            <span>Select Package</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Customizer & Estimation HUD -->
+      <div class="pricing-calculator-hud" data-reveal>
+        <div class="hud-left-options">
+          <h4 class="hud-options-title">Optional Production Add-ons</h4>
+          <div class="hud-addons-list">
+            <label class="hud-addon-checkbox">
+              <input type="checkbox" class="addon-input" data-price="350" data-days-delta="-4" id="addonRush" />
+              <span class="addon-custom-check"></span>
+              <div class="addon-info">
+                <span class="addon-name">48-Hour Rush Delivery</span>
+                <span class="addon-desc">Immediate front-of-line priority sprint</span>
+              </div>
+              <span class="addon-price">+$350</span>
+            </label>
+
+            <label class="hud-addon-checkbox">
+              <input type="checkbox" class="addon-input" data-price="200" data-days-delta="1" id="addonMultiCut" checked />
+              <span class="addon-custom-check"></span>
+              <div class="addon-info">
+                <span class="addon-name">Multi-Platform Re-Cuts (16:9 + 9:16 + 1:1)</span>
+                <span class="addon-desc">Native re-framed cuts for YouTube, Reels, and Feed</span>
+              </div>
+              <span class="addon-price">+$200</span>
+            </label>
+
+            <label class="hud-addon-checkbox">
+              <input type="checkbox" class="addon-input" data-price="180" data-days-delta="1" id="addonVoiceover" />
+              <span class="addon-custom-check"></span>
+              <div class="addon-info">
+                <span class="addon-name">Studio Voiceover Master</span>
+                <span class="addon-desc">Native English/International voice talent recording</span>
+              </div>
+              <span class="addon-price">+$180</span>
+            </label>
+
+            <label class="hud-addon-checkbox">
+              <input type="checkbox" class="addon-input" data-price="450" data-days-delta="3" id="addon3D" />
+              <span class="addon-custom-check"></span>
+              <div class="addon-info">
+                <span class="addon-name">Custom 3D Product &amp; Device Rigging</span>
+                <span class="addon-desc">Blender/Cinema 4D photorealistic physical mockups</span>
+              </div>
+              <span class="addon-price">+$450</span>
+            </label>
+
+            <label class="hud-addon-checkbox">
+              <input type="checkbox" class="addon-input" data-price="300" data-days-delta="0" id="addonSourceFiles" />
+              <span class="addon-custom-check"></span>
+              <div class="addon-info">
+                <span class="addon-name">Full Premiere / DaVinci Source Files</span>
+                <span class="addon-desc">Complete project archives, assets, and color LUTs</span>
+              </div>
+              <span class="addon-price">+$300</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="hud-right-summary">
+          <div class="hud-summary-card">
+            <div class="hud-summary-header">
+              <span class="summary-label">Estimated Investment</span>
+              <div class="hud-total-price-wrap">
+                <span class="hud-currency">$</span>
+                <span class="hud-amount" id="hudTotalPrice">1,650</span>
+              </div>
+            </div>
+
+            <div class="hud-summary-timeline">
+              <div class="summary-metric">
+                <span class="metric-title">Package</span>
+                <span class="metric-value" id="hudSelectedTierName">SaaS Product Demo</span>
+              </div>
+              <div class="summary-metric">
+                <span class="metric-title">Timeline</span>
+                <span class="metric-value highlight-cyan" id="hudTurnaround">11 Business Days</span>
+              </div>
+            </div>
+
+            <div class="hud-summary-breakdown" id="hudScopeBreakdown">
+              <span>Includes: 60s Demo + Multi-Platform Re-Cuts</span>
+            </div>
+
+            <button type="button" class="hud-lock-scope-btn" id="lockScopeBtn" data-cursor="CLICK">
+              <span>Lock in Scope &amp; Reserve Slot</span>
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="10" x2="16" y2="10"></line>
+                <polyline points="10 4 16 10 10 16"></polyline>
+              </svg>
+            </button>
+
+            <p class="hud-guarantee-note">🔒 Transparent fixed-rate quote · No hidden agency retainers · 100% satisfaction revision policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8.5 · CLIENT TESTIMONIALS & SOCIAL PROOF (Design Monks Style)
+  ============================================================ -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="testimonials-container">
+      <div class="testimonials-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>CLIENT TESTIMONIALS &amp; SOCIAL PROOF</span>
+        </div>
+        <h2 class="testimonials-title">Trusted By High-Growth <em>Founders &amp; Brands</em></h2>
+        <p class="testimonials-subtitle">Real feedback from venture-backed founders, marketing leads, and creative directors across global commercial campaigns.</p>
+      </div>
+
+      <!-- Infinite Dual-Row Smooth Marquee -->
+      <div class="testimonials-marquee-wrapper" data-reveal data-delay="1">
+        <!-- Row 1: Flowing Left -->
+        <div class="testimonials-track track-left" aria-label="Client reviews stream row 1">
+          <div class="testimonials-card-strip">
+            <!-- Card 1: Ted Nash -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“Aldrin delivered beautiful, high-retention cuts that truly drove conversions. His expert team blends creative rhythm with real business ROI, elevating our user engagement and watch time across YouTube and Meta.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-cyan">TN</div>
+                <div class="author-info">
+                  <strong class="author-name">Ted Nash</strong>
+                  <span class="author-role">Founder &amp; CEO @ Yenex</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Jenna Carvalho -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“We had the pleasure of collaborating with Aldrin for our commercial launch. He is lightning-quick in addressing feedback, and consistently went the extra mile to make sure the color grade and sound mix were immaculate.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-emerald">JC</div>
+                <div class="author-info">
+                  <strong class="author-name">Jenna Carvalho</strong>
+                  <span class="author-role">Principal @ Guardian Estate Company</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Shuvo Al Faruque -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“Great experience working with Aldrin. His editing is professional, responsive, and delivered a polished narrative pacing that matched our brand vision perfectly. Highly recommended!”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-amber">SF</div>
+                <div class="author-info">
+                  <strong class="author-name">Shuvo Al Faruque</strong>
+                  <span class="author-role">Founder &amp; CEO @ Zantrik</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Duplicated strip for seamless infinite CSS marquee loop -->
+          <div class="testimonials-card-strip" aria-hidden="true">
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“Aldrin delivered beautiful, high-retention cuts that truly drove conversions. His expert team blends creative rhythm with real business ROI, elevating our user engagement and watch time across YouTube and Meta.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-cyan">TN</div>
+                <div class="author-info">
+                  <strong class="author-name">Ted Nash</strong>
+                  <span class="author-role">Founder &amp; CEO @ Yenex</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“We had the pleasure of collaborating with Aldrin for our commercial launch. He is lightning-quick in addressing feedback, and consistently went the extra mile to make sure the color grade and sound mix were immaculate.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-emerald">JC</div>
+                <div class="author-info">
+                  <strong class="author-name">Jenna Carvalho</strong>
+                  <span class="author-role">Principal @ Guardian Estate Company</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“Great experience working with Aldrin. His editing is professional, responsive, and delivered a polished narrative pacing that matched our brand vision perfectly. Highly recommended!”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-amber">SF</div>
+                <div class="author-info">
+                  <strong class="author-name">Shuvo Al Faruque</strong>
+                  <span class="author-role">Founder &amp; CEO @ Zantrik</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Flowing Right -->
+        <div class="testimonials-track track-right" aria-label="Client reviews stream row 2">
+          <div class="testimonials-card-strip">
+            <!-- Card 4: Laiza Lamyea Lia -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“I've collaborated with Aldrin for over a year, and the experience has been truly remarkable. His cooperative nature, combined with innovative storytelling ideas, made our partnership a fruitful one.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-rose">LL</div>
+                <div class="author-info">
+                  <strong class="author-name">Laiza Lamyea Lia</strong>
+                  <span class="author-role">Marketing Lead @ Akij Group</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Irfan Siraj Deen -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“Professional, responsive, and always willing to go the extra mile. When we needed quick turnaround for product announcements, Aldrin handled the timeline with total precision and high caliber.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-blue">ID</div>
+                <div class="author-info">
+                  <strong class="author-name">Irfan Siraj Deen</strong>
+                  <span class="author-role">Director @ Beyon Cyber</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: Samir Rahman -->
+            <div class="testimonial-card" data-cursor="VIEW">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  Verified Commission
+                </span>
+              </div>
+              <p class="testimonial-quote">“Amazing experience! The team is experienced, diligent, and follows a solid process from rough assembly to sound mastering. Truly a standout post-production partner for video campaigns.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-violet">SR</div>
+                <div class="author-info">
+                  <strong class="author-name">Samir Rahman</strong>
+                  <span class="author-role">Creative Director @ Studio Pulse</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Duplicated strip for seamless infinite CSS marquee loop -->
+          <div class="testimonials-card-strip" aria-hidden="true">
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“I've collaborated with Aldrin for over a year, and the experience has been truly remarkable. His cooperative nature, combined with innovative storytelling ideas, made our partnership a fruitful one.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-rose">LL</div>
+                <div class="author-info">
+                  <strong class="author-name">Laiza Lamyea Lia</strong>
+                  <span class="author-role">Marketing Lead @ Akij Group</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“Professional, responsive, and always willing to go the extra mile. When we needed quick turnaround for product announcements, Aldrin handled the timeline with total precision and high caliber.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-blue">ID</div>
+                <div class="author-info">
+                  <strong class="author-name">Irfan Siraj Deen</strong>
+                  <span class="author-role">Director @ Beyon Cyber</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-rating-row">
+                <span class="star-rating">★★★★★</span>
+                <span class="verified-badge">Verified Commission</span>
+              </div>
+              <p class="testimonial-quote">“Amazing experience! The team is experienced, diligent, and follows a solid process from rough assembly to sound mastering. Truly a standout post-production partner for video campaigns.”</p>
+              <div class="testimonial-author">
+                <div class="author-avatar avatar-violet">SR</div>
+                <div class="author-info">
+                  <strong class="author-name">Samir Rahman</strong>
+                  <span class="author-role">Creative Director @ Studio Pulse</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -668,6 +2665,159 @@
           <div class="macbook-bottom-base">
             <div class="macbook-notch-indent"></div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 10 · COLLABORATION & PRODUCTION FAQ ACCORDION
+  ============================================================ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-container">
+      <div class="faq-header" data-reveal>
+        <div class="section-tag-pill">
+          <span class="tag-pulse-dot"></span>
+          <span>COLLABORATION INTELLIGENCE</span>
+        </div>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <p class="faq-subtitle">Everything you need to know about production turnaround, remote cloud workflows, raw footage ingestion, and creative revisions.</p>
+      </div>
+
+      <!-- Interactive FAQ Search & Category Filter Bar -->
+      <div class="faq-filter-bar" data-reveal>
+        <div class="faq-search-wrap">
+          <svg class="faq-search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="faq-search-input" id="faqSearchInput" placeholder="Search questions (e.g. turnaround, pricing, revisions, 4K)..." aria-label="Search frequently asked questions" autocomplete="off" />
+          <button type="button" class="faq-search-clear" id="faqSearchClear" aria-label="Clear search" style="display: none;">✕</button>
+          <span class="faq-kbd-hint">/</span>
+        </div>
+
+        <div class="faq-category-pills" role="tablist">
+          <button type="button" class="faq-pill-btn active" data-faq-cat="all">All Queries <span class="pill-count">06</span></button>
+          <button type="button" class="faq-pill-btn" data-faq-cat="turnaround">Turnaround &amp; Speed <span class="pill-count">02</span></button>
+          <button type="button" class="faq-pill-btn" data-faq-cat="pricing">Pricing &amp; Retainers <span class="pill-count">02</span></button>
+          <button type="button" class="faq-pill-btn" data-faq-cat="technical">Technical &amp; Revisions <span class="pill-count">02</span></button>
+        </div>
+      </div>
+
+      <div class="faq-accordion-list" id="faqAccordionList" data-reveal>
+        <!-- FAQ Item 1 -->
+        <div class="faq-item" data-category="turnaround">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">What is your typical turnaround time for commercial videos and reels?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              For high-retention short-form reels and commercial ads, first cuts are typically delivered within <strong>48 to 72 hours</strong>. Expedited <strong>24-hour rush turnaround</strong> is also available upon request for time-sensitive launches, event recaps, and breaking brand announcements.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item" data-category="technical">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">How does remote cloud collaboration and footage ingestion work?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              We leverage cloud-native post-production pipelines including <strong>Frame.io</strong> for timecoded frame-by-frame annotations, alongside high-speed Google Drive, Dropbox Replay, and MASV for terabyte-scale raw media transfers. You can leave precise notes directly on the video timeline from any browser or phone.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item" data-category="technical">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">What camera formats, color profiles, and raw codecs do you support?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              Full native support for industry cinema standards: <strong>REDCODE RAW (R3D), Apple ProRes 422 HQ / 4444 XQ, Blackmagic RAW (BRAW), Sony S-Log3 / XAVC, Canon Cinema RAW Light</strong>, and ARRI LogC3/C4 in DaVinci Resolve Studio and Premiere Pro with ACES/color-managed workflows.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item" data-category="turnaround">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">How are feedback rounds and revisions structured?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              Every project comes with <strong>two comprehensive revision cycles</strong> included in the scope. Revisions are tracked systematically through timecoded markers to guarantee that narrative pacing, rhythm, sound design adjustments, and color grading shifts are resolved rapidly with zero ambiguity.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item" data-category="pricing">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">Do you provide licensed commercial audio scoring and custom sound design?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              Yes. Every deliverable features multi-layered sound design (whooshes, impacts, textural foley, spatial riser sweeps) plus fully licensed commercial music stems cleared for global YouTube, Meta Ads, TikTok, and TV broadcast usage with perpetual licensing rights.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item" data-category="pricing">
+          <button type="button" class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">How does onboarding work for monthly creative retainers?</span>
+            <span class="faq-indicator" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body">
+              Onboarding takes under <strong>24 hours</strong>. We set up a private shared Slack channel, integrate with your Notion or Asana production board, and establish brand asset kits (logos, fonts, color palettes, motion templates). You submit video requests directly via Slack or Loom, and production begins immediately.
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty Results State -->
+        <div class="faq-empty-state" id="faqEmptyState" style="display: none;">
+          <p class="faq-empty-title">No matching questions found</p>
+          <p class="faq-empty-desc">Have a specific question about your production? Reach out directly via our live inquiry drawer.</p>
+          <button type="button" class="faq-empty-cta" id="faqEmptyCta">Ask Directly in Contact Drawer</button>
         </div>
       </div>
     </div>
@@ -861,7 +3011,7 @@
         </svg>
       </a>
       <a href="#about" class="dock-item-link dock-item--optional" data-cursor="LINK">About</a>
-      <a href="#tools" class="dock-item-link dock-item--optional" data-cursor="LINK">Tools</a>
+      <a href="#testimonials" class="dock-item-link dock-item--optional" data-cursor="LINK">Reviews</a>
     </nav>
   </div>
 
@@ -940,20 +3090,28 @@
           <span class="form-label" id="servicesGroupLabel">Service Deliverables</span>
           <div class="service-pill-selector" role="group" aria-labelledby="servicesGroupLabel">
             <label class="service-checkbox-pill">
-              <input type="checkbox" name="services" value="Video Production & Editing" checked />
+              <input type="checkbox" name="services" value="Video Production" />
+              <span>Video Production</span>
+            </label>
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Video Editing" checked />
               <span>Video Editing</span>
             </label>
             <label class="service-checkbox-pill">
-              <input type="checkbox" name="services" value="Motion Graphics & 3D" />
-              <span>Motion Graphics</span>
+              <input type="checkbox" name="services" value="Static Content Design" />
+              <span>Static Content</span>
             </label>
             <label class="service-checkbox-pill">
               <input type="checkbox" name="services" value="Brand Identity" />
               <span>Brand Identity</span>
             </label>
             <label class="service-checkbox-pill">
-              <input type="checkbox" name="services" value="Social Media Creatives" />
-              <span>Social Ads</span>
+              <input type="checkbox" name="services" value="AI Content Design" />
+              <span>AI Content</span>
+            </label>
+            <label class="service-checkbox-pill">
+              <input type="checkbox" name="services" value="Printables & Merch" />
+              <span>Printables</span>
             </label>
           </div>
         </div>
@@ -989,13 +3147,153 @@
     </div>
   </div>
 
+  <!-- ============================================================
+       SERVICE DETAIL SLIDE-OVER DRAWER MODAL (BizChemists Style)
+  ============================================================ -->
+  <div class="service-drawer-overlay" id="serviceDrawerOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="serviceDrawerTitle">
+    <div class="service-drawer-container" id="serviceDrawerContainer">
+      <button type="button" class="service-drawer-close" id="serviceDrawerClose" aria-label="Close service details">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="service-drawer-content">
+        <div class="service-drawer-eyebrow" id="serviceDrawerEyebrow">CORE DISCIPLINE</div>
+        <h2 class="service-drawer-title" id="serviceDrawerTitle">Service Title</h2>
+        <p class="service-drawer-summary" id="serviceDrawerSummary">Comprehensive summary of the service...</p>
+
+        <div class="service-drawer-section">
+          <h3 class="service-drawer-section-title">WHAT'S INCLUDED</h3>
+          <ul class="service-drawer-checklist" id="serviceDrawerChecklist">
+            <!-- Populated dynamically via JS -->
+          </ul>
+        </div>
+
+        <div class="service-drawer-outcome-box">
+          <h3 class="service-drawer-outcome-title">WHAT YOU END UP WITH</h3>
+          <p class="service-drawer-outcome-text" id="serviceDrawerOutcome">Definitive outcome delivered to your brand.</p>
+        </div>
+
+        <div class="service-drawer-actions">
+          <button type="button" class="service-drawer-cta-btn" id="serviceDrawerCtaBtn" data-cursor="LINK">
+            <span id="serviceDrawerCtaLabel">Start a Project with This Service</span>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="10" x2="16" y2="10"></line>
+              <polyline points="10 4 16 10 10 16"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PROJECT CASE STUDY SLIDE-OVER DRAWER MODAL (BizChemists Style)
+  ============================================================ -->
+  <div class="project-drawer-overlay" id="projectDrawerOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projectDrawerTitle">
+    <div class="project-drawer-container" id="projectDrawerContainer">
+      <button type="button" class="project-drawer-close" id="projectDrawerClose" aria-label="Close project case study">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="project-drawer-content">
+        <div class="project-drawer-media-stage" id="projectDrawerMediaStage">
+          <img src="assets/project_cosmetics.jpg" alt="Project preview" id="projectDrawerImage" class="project-drawer-img" />
+          <video id="projectDrawerVideo" class="project-drawer-video" playsinline loop muted style="display: none;"></video>
+          
+          <!-- Cinema Player Controls Overlay -->
+          <div class="drawer-video-controls" id="drawerVideoControls">
+            <button type="button" class="drawer-play-btn" id="drawerPlayBtn" aria-label="Play or pause case study video">
+              <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <polygon points="5 3 19 12 5 21"></polygon>
+              </svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: none;">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+            <div class="drawer-scrubber-track" id="drawerScrubberTrack">
+              <div class="drawer-scrubber-fill" id="drawerScrubberFill"></div>
+            </div>
+            <span class="drawer-timecode" id="drawerTimecode">00:00 / 00:30</span>
+            <button type="button" class="drawer-sound-btn" id="drawerSoundBtn" aria-label="Mute or unmute video">
+              <svg class="sound-off-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="sound-on-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="project-drawer-image-badge" id="projectDrawerCategory">Brand Identity</div>
+        </div>
+
+        <div class="project-drawer-header">
+          <div class="project-drawer-eyebrow" id="projectDrawerEyebrow">CASE STUDY SHOWCASE</div>
+          <h2 class="project-drawer-title" id="projectDrawerTitle">Project Title</h2>
+          <p class="project-drawer-tagline" id="projectDrawerTagline">Impactful summary of project mission...</p>
+        </div>
+
+        <div class="project-drawer-metrics-grid" id="projectDrawerMetrics">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="project-drawer-section">
+          <h3 class="project-drawer-section-title">THE CREATIVE CHALLENGE &amp; APPROACH</h3>
+          <p class="project-drawer-body" id="projectDrawerDescription">Detailed narrative...</p>
+        </div>
+
+        <div class="project-drawer-section">
+          <h3 class="project-drawer-section-title">CORE DELIVERABLES &amp; TOOLCHAIN</h3>
+          <div class="project-drawer-tags" id="projectDrawerTags">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <div class="project-drawer-section">
+          <h3 class="project-drawer-section-title">COLOR GRADE &amp; SENSOR PIPELINE</h3>
+          <div class="grade-pipeline-card">
+            <div class="grade-meta-row">
+              <span class="grade-sensor-badge" id="gradeSensorBadge">Sony FX6 · S-Log3 / S-Gamut3.Cine · CineEI 800</span>
+              <span class="grade-software-badge">DaVinci Resolve 19 Studio</span>
+            </div>
+            <div class="grade-palette-chips" id="gradePaletteChips">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="project-drawer-actions">
+          <button type="button" class="project-drawer-cta-btn" id="projectDrawerInquireBtn" data-cursor="LINK">
+            <span id="projectDrawerCtaLabel">Inquire About Similar Production</span>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="10" x2="16" y2="10"></line>
+              <polyline points="10 4 16 10 10 16"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Global Floating Toast Notification -->
   <div class="portfolio-toast" id="portfolioToast" role="status" aria-live="polite" aria-atomic="true">
     <div class="toast-indicator"></div>
     <span class="toast-message" id="toastMessage"></span>
   </div>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
+  <!-- High-Performance Smooth Scroll Engine (Lenis) -->
+  <script src="assets/lenis.min.js"></script>
+  <!-- Main Portfolio Scripts -->
+  <script src="script.js?v=17937"></script>
 </body>
 </html>
