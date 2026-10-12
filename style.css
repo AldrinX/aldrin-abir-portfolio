@@ -1681,6 +1681,130 @@ body.cursor-play .cursor-label {
   background: #05070a;
 }
 
+/* Phone Mockup Floating Physics & Dynamic Controls */
+@keyframes phoneFloatingDesktop {
+  0%, 100% {
+    transform: translateX(-90px) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-90px) translateY(-12px) rotate(-0.5deg);
+  }
+}
+
+.phone-mockup-frame {
+  animation: phoneFloatingDesktop 6s ease-in-out infinite;
+}
+
+.phone-mockup-frame:hover {
+  animation-play-state: paused;
+  transform: translateX(-90px) translateY(-10px) scale(1.03);
+}
+
+.phone-dynamic-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 16px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 6;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.phone-dynamic-notch::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #081a24;
+  border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.phone-screen-badge {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 6;
+  pointer-events: none;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.phone-screen-badge .phone-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00f2fe;
+  box-shadow: 0 0 8px #00f2fe;
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.phone-screen-badge .phone-live-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #00f2fe;
+  text-transform: uppercase;
+}
+
+.phone-tap-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(0, 242, 254, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(0, 242, 254, 0.8);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  z-index: 7;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.phone-mockup-frame.is-paused .phone-tap-indicator {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.phone-mockup-frame.is-paused .phone-screen-badge {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.phone-mockup-frame.is-paused .phone-screen-badge .phone-live-dot {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.phone-mockup-frame.is-paused .phone-screen-badge .phone-live-text {
+  color: #ef4444;
+}
+
 /* Enlarged Tablet Mockup Card (O'Play Brand Identity) */
 .flyer-mockup-card {
   position: absolute;
@@ -4741,11 +4865,20 @@ body.cursor-play .cursor-label {
     margin-inline: auto;
   }
 
+  @keyframes phoneFloatingTab {
+    0%, 100% {
+      transform: translateX(-35px) translateY(0);
+    }
+    50% {
+      transform: translateX(-35px) translateY(-8px);
+    }
+  }
+
   .phone-mockup-frame,
   .phone-mockup-wrap {
     width: 220px;
     border-radius: 32px;
-    transform: translateX(-35px);
+    animation: phoneFloatingTab 6s ease-in-out infinite;
   }
 
   .flyer-mockup-card {
@@ -4866,11 +4999,20 @@ body.cursor-play .cursor-label {
     max-width: 380px;
   }
 
+  @keyframes phoneFloatingMobile {
+    0%, 100% {
+      transform: translateX(-25px) translateY(0);
+    }
+    50% {
+      transform: translateX(-25px) translateY(-6px);
+    }
+  }
+
   .phone-mockup-frame,
   .phone-mockup-wrap {
     width: 185px;
     border-radius: 28px;
-    transform: translateX(-25px);
+    animation: phoneFloatingMobile 6s ease-in-out infinite;
   }
 
   .flyer-mockup-card {

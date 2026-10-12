@@ -2423,6 +2423,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let soloActive = null; // Track ID if in solo mode
+    let userHasUnmutedAudio = false;
+
+    // Guaranteed initial muted autoplay on mobile and desktop
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('webkit-playsinline', 'true');
+    video.play().catch(() => {});
 
     function updateState() {
       // 1. Update Video Color Grade
@@ -2458,9 +2465,13 @@ document.addEventListener('DOMContentLoaded', () => {
         layerV2.classList.toggle('is-muted', !stems.v2);
       }
 
-      // 3. Update Audio state
+      // 3. Update Audio state (stay muted on load so browsers never block playback)
       const hasAnyAudio = stems.a1 || stems.a2 || stems.a3;
-      video.muted = !hasAnyAudio;
+      if (userHasUnmutedAudio) {
+        video.muted = !hasAnyAudio;
+      } else {
+        video.muted = true;
+      }
 
       // 4. Update Lane Rows UI
       laneRows.forEach(lane => {
@@ -2553,6 +2564,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof audioFx !== 'undefined') audioFx.playClick();
         stems.v1Grade = !stems.v1Grade;
         updateState();
+        video.play().catch(() => {});
       });
     }
 
@@ -2560,11 +2572,13 @@ document.addEventListener('DOMContentLoaded', () => {
     muteBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         if (typeof audioFx !== 'undefined') audioFx.playClick();
+        userHasUnmutedAudio = true;
         const stem = btn.getAttribute('data-stem-mute');
         if (stem && stems.hasOwnProperty(stem)) {
           stems[stem] = !stems[stem];
           soloActive = null;
           updateState();
+          video.play().catch(() => {});
         }
       });
     });
@@ -2573,6 +2587,7 @@ document.addEventListener('DOMContentLoaded', () => {
     soloBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         if (typeof audioFx !== 'undefined') audioFx.playClick();
+        userHasUnmutedAudio = true;
         const stem = btn.getAttribute('data-stem-solo');
         if (!stem) return;
 
@@ -2586,6 +2601,7 @@ document.addEventListener('DOMContentLoaded', () => {
           Object.keys(stems).forEach(k => stems[k] = (k === stem || k === 'v1Grade'));
         }
         updateState();
+        video.play().catch(() => {});
       });
     });
 
@@ -2593,6 +2609,7 @@ document.addEventListener('DOMContentLoaded', () => {
     presetBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         if (typeof audioFx !== 'undefined') audioFx.playClick();
+        userHasUnmutedAudio = true;
         presetBtns.forEach(p => p.classList.remove('is-active'));
         btn.classList.add('is-active');
 
@@ -2630,8 +2647,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateState();
+        video.play().catch(() => {});
       });
     });
+
+    // Tap/Click Monitor to Toggle Play/Pause
+    const monitorViewport = document.getElementById('stemMonitorViewport');
+    if (monitorViewport) {
+      monitorViewport.addEventListener('click', () => {
+        if (video.paused) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }
 
     // Sync Playhead and Timecode with Video Playback
     video.addEventListener('timeupdate', () => {
@@ -2701,6 +2731,108 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNleStemsSandbox();
   initPerspectiveCardTilt();
+
+  /* ── 27. Smartphone Mockup Playback Controller ───────── */
+  function initPhoneMockupController() {
+    const phoneFrame = document.getElementById('phoneMockupFrame');
+    const phoneVideo = document.getElementById('phoneMockupVideo');
+    const phoneTapIndicator = document.getElementById('phoneTapIndicator');
+    const phoneLiveText = document.getElementById('phoneLiveText');
+    const phonePlayIcon = phoneTapIndicator ? phoneTapIndicator.querySelector('.phone-play-icon') : null;
+    const phonePauseIcon = phoneTapIndicator ? phoneTapIndicator.querySelector('.phone-pause-icon') : null;
+
+    if (!phoneVideo) return;
+
+    phoneVideo.muted = true;
+    phoneVideo.playsInline = true;
+    phoneVideo.setAttribute('webkit-playsinline', 'true');
+    phoneVideo.play().catch(() => {});
+
+    function togglePhonePlayback() {
+      if (typeof audioFx !== 'undefined') audioFx.playClick();
+      if (phoneVideo.paused) {
+        phoneVideo.play().then(() => {
+          if (phoneFrame) phoneFrame.classList.remove('is-paused');
+          if (phoneLiveText) phoneLiveText.textContent = 'LIVE UI';
+          if (phonePlayIcon) phonePlayIcon.style.display = 'none';
+          if (phonePauseIcon) phonePauseIcon.style.display = 'block';
+        }).catch(() => {});
+      } else {
+        phoneVideo.pause();
+        if (phoneFrame) phoneFrame.classList.add('is-paused');
+        if (phoneLiveText) phoneLiveText.textContent = 'PAUSED';
+        if (phonePlayIcon) phonePlayIcon.style.display = 'block';
+        if (phonePauseIcon) phonePauseIcon.style.display = 'none';
+      }
+    }
+
+    if (phoneFrame) {
+      phoneFrame.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePhonePlayback();
+      });
+      phoneFrame.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePhonePlayback();
+        }
+      });
+    }
+  }
+  initPhoneMockupController();
+
+  /* ── 28. Universal Mobile Video Autoplay & Intersection Engine ── */
+  function initUniversalMobileVideoAutoplay() {
+    const mediaVideos = document.querySelectorAll('video');
+
+    mediaVideos.forEach(v => {
+      if (v.hasAttribute('autoplay') || v.classList.contains('phone-screen-video') || v.classList.contains('nle-monitor-video')) {
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute('webkit-playsinline', 'true');
+        v.play().catch(() => {});
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      const looperObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const vid = entry.target;
+          if (entry.isIntersecting) {
+            if (vid.paused && (vid.hasAttribute('autoplay') || vid.classList.contains('phone-screen-video') || vid.classList.contains('nle-monitor-video'))) {
+              vid.muted = true;
+              vid.playsInline = true;
+              vid.play().catch(() => {});
+            }
+          }
+        });
+      }, { threshold: 0.15 });
+
+      mediaVideos.forEach(v => {
+        if (v.hasAttribute('autoplay') || v.classList.contains('phone-screen-video') || v.classList.contains('nle-monitor-video')) {
+          looperObserver.observe(v);
+        }
+      });
+    }
+
+    // Touch, Pointer, and Scroll Gesture Unlocker for iOS Safari and Android Chrome
+    const unlockVideosOnGesture = () => {
+      mediaVideos.forEach(v => {
+        if (v.hasAttribute('autoplay') || v.classList.contains('phone-screen-video') || v.classList.contains('nle-monitor-video')) {
+          if (v.paused) {
+            v.muted = true;
+            v.playsInline = true;
+            v.play().catch(() => {});
+          }
+        }
+      });
+    };
+
+    ['touchstart', 'touchend', 'pointerdown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, unlockVideosOnGesture, { passive: true, once: true });
+    });
+  }
+  initUniversalMobileVideoAutoplay();
 
   /* ── 19. Digital Rights & Media Download Prevention ───────── */
   // Prevent right-click context menu on all images, videos, canvas, and media showcases
