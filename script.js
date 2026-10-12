@@ -82,14 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (floatingDock) {
-      if (scrollPos > 320) {
-        floatingDock.classList.add('is-visible');
-      } else {
-        floatingDock.classList.remove('is-visible');
-      }
-    }
-
     if (floatingChatTrigger) {
       if (scrollPos > 320) {
         floatingChatTrigger.classList.add('is-visible');
@@ -108,13 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => handleUnifiedScroll(window.scrollY), { passive: true });
   handleUnifiedScroll(window.scrollY || 0);
 
-  // 1e. Zero-Layout-Thrashing Active Nav Indicator via IntersectionObserver
+  // 1e. Zero-Layout-Thrashing Active Nav Indicator for Floating Dock
+  const dockLinks = document.querySelectorAll('.dock-item-link, .dock-brand-link');
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        topNavLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        dockLinks.forEach(link => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
         });
       }
     });
@@ -129,13 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function scrollToTarget(target) {
     if (!target) return;
     if (lenis) {
-      lenis.scrollTo(target, { offset: -65, duration: 1.25 });
+      lenis.scrollTo(target, { offset: -30, duration: 1.25 });
     } else {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
-  topNavLinks.forEach(link => {
+  dockLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href && href.startsWith('#')) {
