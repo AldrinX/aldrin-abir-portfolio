@@ -4247,14 +4247,16 @@ body.cursor-play .cursor-label {
   font-size: var(--text-md);
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: var(--space-1);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
 }
 
 .card-address-text {
   font-family: var(--font-body);
-  font-size: var(--text-xs);
-  color: #8fa0b2;
-  line-height: var(--lh-snug);
+  font-size: 0.8rem;
+  color: rgba(220, 235, 248, 0.78);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
 }
 
 /* Multi-Column Directory */
