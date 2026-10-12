@@ -71,7 +71,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="style.css?v=17937" />
+  <link rel="stylesheet" href="style.css?v=17938" />
 </head>
 <body>
 
@@ -499,7 +499,7 @@
       <div class="project-filter-row" data-reveal role="tablist" aria-label="Filter portfolio categories">
         <button type="button" class="project-filter-btn is-active" data-filter="all" role="tab" aria-selected="true" data-cursor="CLICK">
           <span>All Productions</span>
-          <span class="filter-count">06</span>
+          <span class="filter-count">09</span>
         </button>
         <button type="button" class="project-filter-btn" data-filter="commercial" role="tab" aria-selected="false" data-cursor="CLICK">
           <span>Commercials</span>
@@ -507,11 +507,11 @@
         </button>
         <button type="button" class="project-filter-btn" data-filter="reels" role="tab" aria-selected="false" data-cursor="CLICK">
           <span>Viral Reels</span>
-          <span class="filter-count">02</span>
+          <span class="filter-count">05</span>
         </button>
         <button type="button" class="project-filter-btn" data-filter="brand" role="tab" aria-selected="false" data-cursor="CLICK">
-          <span>Brand Systems</span>
-          <span class="filter-count">02</span>
+          <span>Brand &amp; Motion</span>
+          <span class="filter-count">03</span>
         </button>
       </div>
 
@@ -526,7 +526,7 @@
           </button>
           <div class="coverflow-drag-pill">
             <span class="drag-pulse-indicator" aria-hidden="true"></span>
-            <span class="coverflow-drag-hint">DRAG TO EXPLORE</span>
+            <span class="coverflow-drag-hint">DRAG TO EXPLORE · CLICK CENTER TO WATCH WITH SOUND</span>
           </div>
           <button type="button" class="coverflow-nav-btn next" id="coverflowNextBtn" aria-label="Next project" data-cursor="CLICK">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -537,12 +537,12 @@
         </div>
         <div class="coverflow-counter-wrap">
           <p class="coverflow-counter-text" id="projectCounter">
-            <span class="counter-curr">01</span> / <span class="counter-total">06</span>
+            <span class="counter-curr">01</span> / <span class="counter-total">09</span>
           </p>
         </div>
       </div>
 
-      <!-- 3D Coverflow Carousel Stage (Exact BizChemists Mechanics) -->
+      <!-- 3D Coverflow Carousel Stage (9 Authentic Canva Vertical Reels) -->
       <div
         class="work-stage"
         id="workStage"
@@ -551,111 +551,165 @@
         aria-label="Selected work carousel — use arrow keys or drag to browse"
         data-reveal
       >
-        <!-- Slide 0: Aurora Skincare -->
+        <!-- Slide 0: Creator Studio Reel (Center Featured Reel on Canva) -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="0"
-          data-category="commercial"
-          aria-label="Aurora Skincare — Commercial Video Production"
-          data-cursor="VIEW"
+          data-category="reels"
+          aria-label="Creator Studio Reel — High-Retention Talking Head Edit"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/project_cosmetics.jpg" alt="Aurora Skincare commercial shoot" class="work-frame-img" width="534" height="800" loading="eager" decoding="async" />
+            <video src="assets/proj_1_creator.mp4" poster="assets/proj_1_creator_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Aurora Skincare</h3>
-            <p class="work-category-tag">Commercial Video Production</p>
+            <h3 class="work-client-name">Creator Studio Reel</h3>
+            <p class="work-category-tag">Talking-Head &amp; Visual Hooks</p>
           </div>
         </button>
 
-        <!-- Slide 1: Neo Tech Creator -->
+        <!-- Slide 1: Specialty Iced Latte Commercial -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="1"
-          data-category="reels"
-          aria-label="Neo Tech Creator — Viral Social Campaign"
-          data-cursor="VIEW"
+          data-category="commercial"
+          aria-label="Specialty Iced Latte — Commercial Beverage Shoot"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/project_smartphones.jpg" alt="Creator smartphone video production" class="work-frame-img" width="533" height="800" loading="eager" decoding="async" />
+            <video src="assets/proj_2_coffee.mp4" poster="assets/proj_2_coffee_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Neo Tech Creator</h3>
-            <p class="work-category-tag">Viral Social Campaign</p>
+            <h3 class="work-client-name">Artisan Iced Latte</h3>
+            <p class="work-category-tag">Commercial Product Shoot</p>
           </div>
         </button>
 
-        <!-- Slide 2: Atelier Noir -->
+        <!-- Slide 2: Raw Footage vs After Edit -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="2"
-          data-category="commercial"
-          aria-label="Atelier Noir — High-Fashion Lookbook"
-          data-cursor="VIEW"
+          data-category="reels"
+          aria-label="Raw Footage vs After Edit — Before & After Transformation"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/project_fashion.jpg" alt="Atelier Noir fashion editorial" class="work-frame-img" width="533" height="800" loading="eager" decoding="async" />
+            <video src="assets/proj_3_raw_edit.mp4" poster="assets/proj_3_raw_edit_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Atelier Noir</h3>
-            <p class="work-category-tag">Editorial Direction &amp; Stills</p>
+            <h3 class="work-client-name">Raw vs. After Edit</h3>
+            <p class="work-category-tag">Before &amp; After Post-Production</p>
           </div>
         </button>
 
-        <!-- Slide 3: Cinema Labs -->
+        <!-- Slide 3: KMF Global Education -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="3"
-          data-category="brand"
-          aria-label="Cinema Labs — Studio Lighting & Set Direction"
-          data-cursor="VIEW"
+          data-category="commercial brand"
+          aria-label="KMF Global Education — International Study Reel"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/editor_frame.jpg" alt="Studio lighting video production" class="work-frame-img" width="1080" height="1920" loading="lazy" decoding="async" />
+            <video src="assets/proj_4_kmf.mp4" poster="assets/proj_4_kmf_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Cinema Labs</h3>
-            <p class="work-category-tag">Lighting &amp; Set Production</p>
+            <h3 class="work-client-name">KMF Global Education</h3>
+            <p class="work-category-tag">Brand Campaign &amp; Motion</p>
           </div>
         </button>
 
-        <!-- Slide 4: Pulse Hardware -->
+        <!-- Slide 4: Bespoke Menswear Walk -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="4"
-          data-category="commercial brand"
-          aria-label="Pulse Hardware — Product Content Creation"
-          data-cursor="VIEW"
+          data-category="commercial"
+          aria-label="Bespoke Menswear — Editorial Fashion Commercial"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/study_greece_phone.webp" alt="Pulse Hardware mobile showcase" class="work-frame-img" width="700" height="700" loading="lazy" decoding="async" />
+            <video src="assets/proj_5_suit.mp4" poster="assets/proj_5_suit_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Pulse Hardware</h3>
-            <p class="work-category-tag">Product Content Creation</p>
+            <h3 class="work-client-name">Sartorial Menswear</h3>
+            <p class="work-category-tag">Fashion Commercial &amp; Grade</p>
           </div>
         </button>
 
-        <!-- Slide 5: Tastebud Artisan -->
+        <!-- Slide 5: AI Search & UI Motion -->
         <button
           type="button"
           class="work-slide"
           data-project-idx="5"
-          data-category="reels brand"
-          aria-label="Tastebud Artisan — Brand Identity & Media"
-          data-cursor="VIEW"
+          data-category="brand"
+          aria-label="Next-Gen AI Interface — UI Motion Graphics"
+          data-cursor="PLAY"
         >
           <div class="work-frame">
-            <img src="assets/tastebud.webp" alt="Tastebud artisan brand styling" class="work-frame-img" width="700" height="700" loading="lazy" decoding="async" />
+            <video src="assets/proj_6_ai_ui.mp4" poster="assets/proj_6_ai_ui_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="work-meta-block">
-            <h3 class="work-client-name">Tastebud Artisan</h3>
-            <p class="work-category-tag">Brand Identity &amp; Media</p>
+            <h3 class="work-client-name">AI Search Interface</h3>
+            <p class="work-category-tag">UI Motion &amp; Kinetic Design</p>
+          </div>
+        </button>
+
+        <!-- Slide 6: "Spend On" Kinetic Typography -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="6"
+          data-category="reels brand"
+          aria-label="Spend On — 3D Motion & Kinetic Typography"
+          data-cursor="PLAY"
+        >
+          <div class="work-frame">
+            <video src="assets/proj_7_spend_on.mp4" poster="assets/proj_7_spend_on_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Time &amp; Value Motion</h3>
+            <p class="work-category-tag">Kinetic Typography &amp; VFX</p>
+          </div>
+        </button>
+
+        <!-- Slide 7: Clinical & Dermatology Reel -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="7"
+          data-category="reels"
+          aria-label="Healthcare Specialist — Clinical Talking-Head Edit"
+          data-cursor="PLAY"
+        >
+          <div class="work-frame">
+            <video src="assets/proj_8_doctor.mp4" poster="assets/proj_8_doctor_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Clinical Aesthetics</h3>
+            <p class="work-category-tag">Educational Talking-Head</p>
+          </div>
+        </button>
+
+        <!-- Slide 8: "Is The Day" Creator Storytelling -->
+        <button
+          type="button"
+          class="work-slide"
+          data-project-idx="8"
+          data-category="reels"
+          aria-label="Creator Storytelling — Paced Narrative Reel"
+          data-cursor="PLAY"
+        >
+          <div class="work-frame">
+            <video src="assets/proj_9_is_the_day.mp4" poster="assets/proj_9_is_the_day_poster.jpg" class="work-frame-img work-frame-video" width="540" height="960" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="work-meta-block">
+            <h3 class="work-client-name">Creator Narrative</h3>
+            <p class="work-category-tag">Storytelling &amp; Sound Design</p>
           </div>
         </button>
       </div>
@@ -700,25 +754,25 @@
         </div>
         <div class="client-logos-marquee" aria-label="Client brand partners list">
           <div class="client-logos-track">
-            <!-- 8 brand badges duplicated for seamless infinite loop -->
-            <div class="brand-item"><span class="brand-sym">◈</span><span class="brand-txt">APEX STUDIOS</span></div>
-            <div class="brand-item"><span class="brand-sym">▲</span><span class="brand-txt">VESPER MEDIA</span></div>
-            <div class="brand-item"><span class="brand-sym">⬡</span><span class="brand-txt">HORIZON FILMS</span></div>
-            <div class="brand-item"><span class="brand-sym">❖</span><span class="brand-txt">HYPERSCALE</span></div>
-            <div class="brand-item"><span class="brand-sym">✦</span><span class="brand-txt">LUMINA CREATIVE</span></div>
-            <div class="brand-item"><span class="brand-sym">◆</span><span class="brand-txt">REDLINE DIGITAL</span></div>
-            <div class="brand-item"><span class="brand-sym">●</span><span class="brand-txt">PULSE AGENCY</span></div>
-            <div class="brand-item"><span class="brand-sym">■</span><span class="brand-txt">FRAMECRAFT</span></div>
+            <!-- 8 authentic client brand badges duplicated for seamless infinite loop -->
+            <div class="brand-item"><span class="brand-sym">◈</span><span class="brand-txt">KMF GLOBAL EDUCATION</span></div>
+            <div class="brand-item"><span class="brand-sym">▲</span><span class="brand-txt">TASTEBUD PATISSERIE</span></div>
+            <div class="brand-item"><span class="brand-sym">⬡</span><span class="brand-txt">MASALA MEZE</span></div>
+            <div class="brand-item"><span class="brand-sym">❖</span><span class="brand-txt">TRIPLE A BUILDERS</span></div>
+            <div class="brand-item"><span class="brand-sym">✦</span><span class="brand-txt">KUDO CAFE (KUDOS)</span></div>
+            <div class="brand-item"><span class="brand-sym">◆</span><span class="brand-txt">O’PLAY CULINARY</span></div>
+            <div class="brand-item"><span class="brand-sym">●</span><span class="brand-txt">SWEET MOMENTS</span></div>
+            <div class="brand-item"><span class="brand-sym">■</span><span class="brand-txt">APEX STUDIOS</span></div>
 
             <!-- duplicate set for seamless infinite marquee loop -->
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◈</span><span class="brand-txt">APEX STUDIOS</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">▲</span><span class="brand-txt">VESPER MEDIA</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">⬡</span><span class="brand-txt">HORIZON FILMS</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">❖</span><span class="brand-txt">HYPERSCALE</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">✦</span><span class="brand-txt">LUMINA CREATIVE</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◆</span><span class="brand-txt">REDLINE DIGITAL</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">●</span><span class="brand-txt">PULSE AGENCY</span></div>
-            <div class="brand-item" aria-hidden="true"><span class="brand-sym">■</span><span class="brand-txt">FRAMECRAFT</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◈</span><span class="brand-txt">KMF GLOBAL EDUCATION</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">▲</span><span class="brand-txt">TASTEBUD PATISSERIE</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">⬡</span><span class="brand-txt">MASALA MEZE</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">❖</span><span class="brand-txt">TRIPLE A BUILDERS</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">✦</span><span class="brand-txt">KUDO CAFE (KUDOS)</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">◆</span><span class="brand-txt">O’PLAY CULINARY</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">●</span><span class="brand-txt">SWEET MOMENTS</span></div>
+            <div class="brand-item" aria-hidden="true"><span class="brand-sym">■</span><span class="brand-txt">APEX STUDIOS</span></div>
           </div>
         </div>
       </div>
@@ -791,19 +845,30 @@
         </div>
       </div>
 
-      <!-- Right Column: 3D Mockup Display (Study in Greece Phone + Anniversary Menu Tablet) -->
+      <!-- Right Column: 3D Mockup Display (Canva Slide 3: Smartphone Video + O'Play Tablet Mockup) -->
       <div class="tools-right-col" data-reveal data-delay="2">
         <div class="brand-pill-badge">Brand Identity</div>
         
         <div class="brand-mockups-stage">
-          <!-- Smartphone Mockup ("Study in Greece" Campaign Flyer) -->
-          <div class="phone-mockup-frame" data-cursor="VIEW" tabindex="0" role="region" aria-label="Smartphone Mockup: Study in Greece flyer poster">
-            <img src="assets/study_greece_phone.webp" alt="Study in Greece mobile flyer poster" class="phone-screen-img" width="401" height="799" loading="lazy" decoding="async" />
+          <!-- Smartphone Mockup Playing Authentic Canva Slide 3 Video -->
+          <div class="phone-mockup-frame" data-cursor="PLAY" tabindex="0" role="region" aria-label="Smartphone Mockup: Interactive UI & Brand Motion Reel">
+            <video
+              src="assets/proj_6_ai_ui.mp4"
+              poster="assets/proj_6_ai_ui_poster.jpg"
+              class="phone-screen-img phone-screen-video"
+              width="401"
+              height="799"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+            ></video>
           </div>
 
-          <!-- Tablet / Print Promo Mockup ("Anniversary Month" Restaurant Menu) -->
-          <div class="flyer-mockup-card" data-cursor="VIEW" tabindex="0" role="region" aria-label="Tablet Mockup: Anniversary Month food menu promotional creative">
-            <img src="assets/anniversary_menu_focused.webp" alt="Anniversary Month food menu promo on tablet" class="flyer-card-img" width="740" height="780" loading="lazy" decoding="async" />
+          <!-- Tablet / Brand Mockup (Canva Slide 3: O'Play "Pasta That Deserves a Spot on Your Table") -->
+          <div class="flyer-mockup-card" data-cursor="VIEW" tabindex="0" role="region" aria-label="Tablet Mockup: O'Play Brand Identity & Culinary Creative">
+            <img src="assets/brand_tablet_mockup.png" alt="O'Play Pasta That Deserves a Spot on Your Table tablet mockup" class="flyer-card-img" width="1200" height="800" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -811,46 +876,196 @@
   </section>
 
   <!-- ============================================================
-       SLIDE 4 · CAMPAIGN CREATIVES SHOWCASE (Dark Luxury Gallery)
+       SLIDE 4 · CAMPAIGN CREATIVES SHOWCASE (12 Authentic Canva Designs)
   ============================================================ -->
   <section class="campaign-showcase-section" id="campaigns">
     <div class="campaign-container">
       <div class="campaign-header" data-reveal>
         <div class="section-tag-pill">
           <span class="tag-pulse-dot"></span>
-          <span>PAID &amp; ORGANIC VISUALS</span>
+          <span>STATIC CONTENT &amp; SOCIAL CAMPAIGNS</span>
         </div>
         <h2 class="campaign-title">High-Conversion Campaigns</h2>
-        <p class="campaign-subtitle">Static visual assets, promotional flyers, and social campaigns engineered to maximize click-throughs and customer acquisition.</p>
+        <p class="campaign-subtitle">All 12 static social media graphics, promotional flyers, and brand creatives crafted for KMF Global Education, Masala Meze, Tastebud Patisserie, Kudo Cafe, and O’Play.</p>
       </div>
 
-      <div class="campaign-grid">
-        <!-- Tastebud Patisserie Card -->
+      <div class="campaign-grid campaign-grid--12">
+        <!-- 01: KMF Global Education — Dream Study Destination -->
         <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
           <div class="campaign-card-inner">
-            <img src="assets/tastebud.webp" alt="Tastebud Patisserie campaign graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+            <img src="assets/campaign_kmf_destinations.png" alt="KMF Global Education — Your Dream Study Destination" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
             <div class="campaign-card-meta">
               <div class="meta-tag-row">
-                <span class="campaign-tag-badge">FOOD &amp; HOSPITALITY</span>
-                <span class="campaign-stat-badge">250% SALES LIFT</span>
+                <span class="campaign-tag-badge">HIGHER EDUCATION</span>
+                <span class="campaign-stat-badge">GLOBAL INTAKE</span>
               </div>
-              <h3 class="campaign-client-title">Tastebud Patisserie</h3>
-              <p class="campaign-client-sub">Late-night anniversary launch campaign &amp; promotional visuals.</p>
+              <h3 class="campaign-client-title">KMF Global Education</h3>
+              <p class="campaign-client-sub">Dream study destination campaign featuring 3D flag portals.</p>
             </div>
           </div>
         </div>
 
-        <!-- UK Universities Card -->
+        <!-- 02: Masala Meze — Welcome Platter -->
         <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
           <div class="campaign-card-inner">
-            <img src="assets/uk_uni.webp" alt="Applying to UK Universities graphic" class="campaign-graphic-img" width="800" height="800" loading="lazy" decoding="async" />
+            <img src="assets/campaign_masala_welcome.png" alt="Welcome to Masala Meze — Authentic Tradition" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
             <div class="campaign-card-meta">
               <div class="meta-tag-row">
-                <span class="campaign-tag-badge">HIGHER EDUCATION</span>
-                <span class="campaign-stat-badge">HIGH CTR AD CAMPAIGN</span>
+                <span class="campaign-tag-badge">FINE DINING</span>
+                <span class="campaign-stat-badge">HERO LAUNCH</span>
               </div>
-              <h3 class="campaign-client-title">Study in the UK</h3>
-              <p class="campaign-client-sub">Educational recruitment campaign &amp; intake admissions creative.</p>
+              <h3 class="campaign-client-title">Welcome to Masala Meze</h3>
+              <p class="campaign-client-sub">Signature mixed grill platter launch creative for social feeds.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03: Tastebud Patisserie — Uttara 3D Map -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_tastebud_map.png" alt="Tastebud Patisserie — Your Coffee Spot in Uttara" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">CAFE &amp; PATISSERIE</span>
+                <span class="campaign-stat-badge">3D LOCATION AD</span>
+              </div>
+              <h3 class="campaign-client-title">Tastebud Uttara Spot</h3>
+              <p class="campaign-client-sub">Isometric 3D street map pinpointing Sector 3, Uttara flagship.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04: Sweet Moments — Ready to Celebrate Cakes -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_sweet_moments.png" alt="Sweet Moments — Ready to Celebrate Cakes" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">ARTISAN BAKERY</span>
+                <span class="campaign-stat-badge">SURREAL 3D</span>
+              </div>
+              <h3 class="campaign-client-title">Sweet Moments Cakes</h3>
+              <p class="campaign-client-sub">Levitating celebration cakes with dynamic chocolate ribbons.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05: Kudo Cafe (Kudos) — BOGO Week -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_kudos_bogo.png" alt="Kudo Cafe — BOGO Week Buy 1 Get 1" class="campaign-graphic-img" width="1080" height="1350" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">QSR &amp; BEVERAGE</span>
+                <span class="campaign-stat-badge">PROMO CAMPAIGN</span>
+              </div>
+              <h3 class="campaign-client-title">Kudo Cafe BOGO Week</h3>
+              <p class="campaign-client-sub">High-energy Buy 1 Get 1 burger &amp; Choco Coffee Freeze promo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06: Tastebud Patisserie — International Coffee Day -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_coffee_day.png" alt="Tastebud Patisserie — Happy International Coffee Day" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">SEASONAL CAMPAIGN</span>
+                <span class="campaign-stat-badge">LATTE ART MAP</span>
+              </div>
+              <h3 class="campaign-client-title">International Coffee Day</h3>
+              <p class="campaign-client-sub"> Liquid espresso world map crafted for Tastebud BOGO event.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07: Kudos Badda — Yoggy Mango Freeze Map -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_kudos_badda.png" alt="Kudos Badda — Yoggy Mango Freeze Directions" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">BEVERAGE LAUNCH</span>
+                <span class="campaign-stat-badge">POV COMPOSITE</span>
+              </div>
+              <h3 class="campaign-client-title">Kudos Badda Location</h3>
+              <p class="campaign-client-sub">Surreal POV street-level navigation card with Yoggy Mango Freeze.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08: Masala Meze — A Feast Worth Stopping For -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_masala_feast.png" alt="Masala Meze — A Feast Worth Stopping For" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">CULINARY EDITORIAL</span>
+                <span class="campaign-stat-badge">MENU SHOWCASE</span>
+              </div>
+              <h3 class="campaign-client-title">Masala Meze Feast</h3>
+              <p class="campaign-client-sub">Overhead architectural flat-lay showcasing signature platters.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 09: KMF Global Education — Study in Greece -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_kmf_greece.png" alt="KMF Global Education — Study in Greece" class="campaign-graphic-img" width="1080" height="1350" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">EUROPEAN ADMISSIONS</span>
+                <span class="campaign-stat-badge">HIGH CONVERSION</span>
+              </div>
+              <h3 class="campaign-client-title">Study in Greece</h3>
+              <p class="campaign-client-sub">Cross-border student recruitment poster from Dhaka to Athens.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10: O'Play — October Looks Better Calendar -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal>
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_oplay_october.png" alt="O'Play — October Looks Better" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">RESTAURANT &amp; CAFE</span>
+                <span class="campaign-stat-badge">EDITORIAL GRID</span>
+              </div>
+              <h3 class="campaign-client-title">O’Play October Specials</h3>
+              <p class="campaign-client-sub">Minimalist calendar perspective pairing artisan pizza and pasta.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11: KMF Global Education — Study in South Korea -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="1">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_kmf_korea.png" alt="KMF Global Education — Study in South Korea" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">ASIAN UNIVERSITIES</span>
+                <span class="campaign-stat-badge">ADMISSIONS AD</span>
+              </div>
+              <h3 class="campaign-client-title">Study in South Korea</h3>
+              <p class="campaign-client-sub">Creative flag hammock composite overlooking Seoul skyline.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12: KMF Global Education — Applying to UK Universities -->
+        <div class="campaign-card campaign-card--tilt" data-cursor="VIEW" data-reveal data-delay="2">
+          <div class="campaign-card-inner">
+            <img src="assets/campaign_kmf_uk_uni.png" alt="Applying to UK Universities on Your Own?" class="campaign-graphic-img" width="1080" height="1080" loading="lazy" decoding="async" />
+            <div class="campaign-card-meta">
+              <div class="meta-tag-row">
+                <span class="campaign-tag-badge">CONCEPTUAL AD</span>
+                <span class="campaign-stat-badge">SCROLL STOPPER</span>
+              </div>
+              <h3 class="campaign-client-title">UK University Admissions</h3>
+              <p class="campaign-client-sub">Conceptual visual metaphor engineered to stop the scroll.</p>
             </div>
           </div>
         </div>
@@ -859,11 +1074,11 @@
   </section>
 
   <!-- ============================================================
-       SLIDE 5 · EDIT WITH AI
+       SLIDE 5 · EDIT WITH AI (2 Authentic Canva AI Videos)
   ============================================================ -->
   <section class="ai-section" id="ai">
     <div class="ai-container">
-      <!-- Left Column: AI Philosophy Copy -->
+      <!-- Left Column: AI Philosophy Copy + AI Desk Transformation Video -->
       <div class="ai-left-col" data-reveal>
         <h2 class="ai-heading">Edit with Ai</h2>
 
@@ -875,38 +1090,77 @@
           I combine traditional editing skills with AI-powered tools to improve visuals, generate creative elements, remove distractions, enhance compositions, and turn simple concepts into polished, engaging content.
         </p>
 
+        <!-- Canva Slide 5 Left Video: AI Desk Setup Transformation (16:9) -->
+        <div class="ai-secondary-video-card" data-reveal>
+          <video
+            src="assets/ai_desk.mp4"
+            poster="assets/ai_desk_poster.jpg"
+            class="ai-desk-video"
+            width="1920"
+            height="1080"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="ai-secondary-badge">
+            <span class="tag-pulse-dot"></span>
+            <span>AI ENVIRONMENT &amp; SET EXTENSION</span>
+          </div>
+        </div>
+
         <!-- Interactive AI Tools Terminal / Flow -->
         <div class="ai-workflow-tags" data-reveal>
           <span class="ai-chip">Generative Object Removal</span>
+          <span class="ai-chip">3D Architectural AI Synthesis</span>
           <span class="ai-chip">4K Neural Upscaling</span>
           <span class="ai-chip">Smart Color Match</span>
           <span class="ai-chip">Speech Clarity Enhancer</span>
-          <span class="ai-chip">Automated Scene Edit Detection</span>
         </div>
       </div>
 
-      <!-- Right Column: Video Player Container with "Website" Pill -->
+      <!-- Right Column: Canva Slide 5 Featured AI Reel (Triple A Builders 3D Architectural Reel) -->
       <div class="ai-right-col" data-reveal data-delay="1">
         <div class="ai-header-pill">Website</div>
 
-        <div class="ai-player-mockup" data-cursor="PLAY">
-          <img src="assets/editor_frame.jpg" alt="AI video editing demonstration" class="ai-player-poster" width="1600" height="1000" loading="lazy" decoding="async" />
+        <div class="ai-player-mockup ai-player-mockup--vertical" id="aiPlayerMockup" data-cursor="PLAY">
+          <video
+            id="aiFeaturedVideo"
+            src="assets/ai_triple_a.mp4"
+            poster="assets/ai_triple_a_poster.jpg"
+            class="ai-player-poster ai-player-video"
+            width="1080"
+            height="1920"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
           
           <div class="ai-player-overlay">
-            <button type="button" class="ai-play-btn-large" aria-label="Play AI editing demonstration">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <button type="button" class="ai-play-btn-large" id="aiPlayToggleBtn" aria-label="Toggle AI video playback">
+              <svg class="ai-icon-play" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display: none;">
                 <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="ai-icon-pause" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+                <rect x="14" y="4" width="4" height="16" rx="1.5"/>
               </svg>
             </button>
             
             <!-- Custom Player Controls Bar -->
             <div class="player-controls-bar">
               <div class="player-timeline-track">
-                <div class="player-timeline-fill" style="width: 45%;"></div>
+                <div class="player-timeline-fill" id="aiTimelineFill" style="width: 0%;"></div>
               </div>
               <div class="player-buttons-flex">
-                <span class="player-time-text">00:15 / 00:30</span>
-                <span class="player-quality-pill">4K HDR · AI Assisted</span>
+                <span class="player-time-text" id="aiTimeText">00:00 / 00:53</span>
+                <button type="button" class="ai-sound-pill-btn" id="aiSoundToggleBtn" aria-label="Toggle AI reel sound">
+                  <span id="aiSoundBtnText">🔇 UNMUTE AI REEL</span>
+                </button>
+                <span class="player-quality-pill">TRIPLE A BUILDERS · AI 3D</span>
               </div>
             </div>
           </div>
@@ -946,10 +1200,21 @@
         </div>
       </div>
 
-      <!-- Right Column: Black and White Editor Portrait -->
+      <!-- Right Column: Authentic Canva Slide 6 B&W Creative Editing Video -->
       <div class="split-right-col" data-reveal data-delay="2">
-        <div class="editor-portrait-frame" data-cursor="VIEW">
-          <img src="assets/editor_frame.jpg" alt="Aldrin Abir video editor close up" class="editor-portrait-img" width="1080" height="1920" loading="lazy" decoding="async" />
+        <div class="editor-portrait-frame" data-cursor="PLAY">
+          <video
+            src="assets/creative_editing.mp4"
+            poster="assets/creative_editing_poster.jpg"
+            class="editor-portrait-img editor-portrait-video"
+            width="1080"
+            height="1920"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
           <div class="portrait-shadow-vignette"></div>
         </div>
       </div>
@@ -3203,7 +3468,7 @@
 
       <div class="project-drawer-content">
         <div class="project-drawer-media-stage" id="projectDrawerMediaStage">
-          <img src="assets/project_cosmetics.jpg" alt="Project preview" id="projectDrawerImage" class="project-drawer-img" />
+          <img src="assets/proj_1_creator_poster.jpg" alt="Project preview" id="projectDrawerImage" class="project-drawer-img" />
           <video id="projectDrawerVideo" class="project-drawer-video" playsinline loop muted style="display: none;"></video>
           
           <!-- Cinema Player Controls Overlay -->
@@ -3294,6 +3559,6 @@
   <!-- High-Performance Smooth Scroll Engine (Lenis) -->
   <script src="assets/lenis.min.js"></script>
   <!-- Main Portfolio Scripts -->
-  <script src="script.js?v=17937"></script>
+  <script src="script.js?v=17938"></script>
 </body>
 </html>

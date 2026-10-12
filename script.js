@@ -1246,6 +1246,8 @@ document.addEventListener('DOMContentLoaded', () => {
           slide.removeAttribute('aria-current');
           slide.setAttribute('tabindex', '-1');
           slide.setAttribute('aria-hidden', 'true');
+          const vid = slide.querySelector('video');
+          if (vid && !vid.paused) vid.pause();
           return;
         }
 
@@ -1256,12 +1258,18 @@ document.addEventListener('DOMContentLoaded', () => {
         slide.setAttribute('tabindex', isCentre ? '0' : '-1');
         slide.setAttribute('aria-hidden', String(!isCentre));
 
+        const vid = slide.querySelector('video');
         if (isCentre) {
           slide.classList.add('is-centre');
           slide.setAttribute('aria-current', 'true');
+          if (vid && !isDirect && vid.paused) {
+            vid.muted = true;
+            vid.play().catch(() => {});
+          }
         } else {
           slide.classList.remove('is-centre');
           slide.removeAttribute('aria-current');
+          if (vid && !vid.paused) vid.pause();
         }
       });
 
@@ -1361,7 +1369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-selected', 'true');
 
         if (filter === 'all') {
-          showToast('Showing all production reels');
+          showToast('Showing all 9 production reels');
           return;
         }
 
@@ -1385,151 +1393,282 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initProjectsCoverflow();
 
-  /* ── 19. Project Case Study Slide-Over Drawer with Cinema Player ── */
+  /* ── 18b. Slide 5 AI Video Player Controller ───────────────── */
+  const aiFeaturedVideo = document.getElementById('aiFeaturedVideo');
+  const aiPlayerMockup = document.getElementById('aiPlayerMockup');
+  const aiPlayToggleBtn = document.getElementById('aiPlayToggleBtn');
+  const aiSoundToggleBtn = document.getElementById('aiSoundToggleBtn');
+  const aiSoundBtnText = document.getElementById('aiSoundBtnText');
+  const aiTimelineFill = document.getElementById('aiTimelineFill');
+  const aiTimeText = document.getElementById('aiTimeText');
+
+  if (aiFeaturedVideo) {
+    const aiIconPlay = aiPlayToggleBtn ? aiPlayToggleBtn.querySelector('.ai-icon-play') : null;
+    const aiIconPause = aiPlayToggleBtn ? aiPlayToggleBtn.querySelector('.ai-icon-pause') : null;
+
+    function toggleAiVideoPlay(e) {
+      if (e) e.stopPropagation();
+      if (aiFeaturedVideo.paused) {
+        aiFeaturedVideo.play().then(() => {
+          aiPlayerMockup?.classList.remove('is-paused');
+          if (aiIconPlay) aiIconPlay.style.display = 'none';
+          if (aiIconPause) aiIconPause.style.display = 'block';
+        }).catch(() => {});
+      } else {
+        aiFeaturedVideo.pause();
+        aiPlayerMockup?.classList.add('is-paused');
+        if (aiIconPlay) aiIconPlay.style.display = 'block';
+        if (aiIconPause) aiIconPause.style.display = 'none';
+      }
+    }
+
+    aiPlayToggleBtn?.addEventListener('click', toggleAiVideoPlay);
+    aiPlayerMockup?.addEventListener('click', (e) => {
+      if (e.target.closest('#aiSoundToggleBtn') || e.target.closest('#aiPlayToggleBtn')) return;
+      toggleAiVideoPlay();
+    });
+
+    aiSoundToggleBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      aiFeaturedVideo.muted = !aiFeaturedVideo.muted;
+      if (aiSoundBtnText) {
+        aiSoundBtnText.textContent = aiFeaturedVideo.muted ? '🔇 UNMUTE AI REEL' : '🔊 SOUND ON';
+      }
+      if (aiFeaturedVideo.paused && !aiFeaturedVideo.muted) {
+        aiFeaturedVideo.play().catch(() => {});
+      }
+    });
+
+    aiFeaturedVideo.addEventListener('timeupdate', () => {
+      const cur = aiFeaturedVideo.currentTime || 0;
+      const dur = aiFeaturedVideo.duration || 53.7;
+      if (aiTimelineFill && dur > 0) {
+        aiTimelineFill.style.width = `${(cur / dur) * 100}%`;
+      }
+      if (aiTimeText) {
+        const formatSec = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+        aiTimeText.textContent = `${formatSec(cur)} / ${formatSec(dur)}`;
+      }
+    });
+  }
+
+  /* ── 19. Project Case Study Slide-Over Drawer with Cinema Player (9 Canva Reels) ── */
   const projectCaseStudies = [
     {
       idx: 0,
-      title: "Midnight Glow",
-      category: "Cosmetics & Skincare",
-      eyebrow: "COMMERCIAL COLOR & RETENTION",
-      tagline: "High-contrast luxury cosmetic visual campaign engineered for viral organic TikTok and Instagram engagement.",
-      image: "assets/project_cosmetics.jpg",
-      video: "assets/hero_bg.mp4",
-      sensor: "ARRI Alexa Mini LF · ProRes 4444XQ · 800 ISO",
+      title: "Creator Studio Reel",
+      category: "Talking-Head & Visual Hooks",
+      eyebrow: "CENTER FEATURED CANVA REEL",
+      tagline: "High-retention creator studio talking-head edit featuring dynamic kinetic captions, zoom cuts, and spatial sound design.",
+      image: "assets/proj_1_creator_poster.jpg",
+      video: "assets/proj_1_creator.mp4",
+      sensor: "Sony FX3 · 4K 10-bit 4:2:2 · S-Cinetone",
       palette: [
-        { hex: '#0A0E17', name: 'Deep Obsidian' },
-        { hex: '#1D2A44', name: 'Midnight Navy' },
-        { hex: '#00F2FE', name: 'Electric Cyan' },
-        { hex: '#F0E6D2', name: 'Champagne Silk' },
-        { hex: '#FFFFFF', name: 'High Key' }
+        { hex: '#090D16', name: 'Studio Shadow' },
+        { hex: '#1E293B', name: 'Slate Keylight' },
+        { hex: '#00F2FE', name: 'Hook Cyan' },
+        { hex: '#F59E0B', name: 'Warm Practical' },
+        { hex: '#FFFFFF', name: 'Caption White' }
       ],
       metrics: [
-        { val: "3.8M", lbl: "Organic Impressions" },
-        { val: "84%", lbl: "Completion Rate" },
-        { val: "4K", lbl: "ProRes Cinema Master" }
+        { val: "25s", lbl: "Tightly Paced Cut" },
+        { val: "88%", lbl: "3-Sec Hook Retention" },
+        { val: "1080x1920", lbl: "Vertical Master" }
       ],
-      description: "Midnight Glow required an editorial approach to cosmetic advertising that steered clear of generic commercial tropes. We developed a fluid 4K macro visual cadence, combining tactile product textures, dynamic speed-ramping, custom luminous color grading in DaVinci Resolve, and micro-foley sound design that makes textures feel palpably close.",
-      tags: ["DaVinci Resolve Studio", "Film Emulation LUTs", "Foley Sound Design", "4K HDR Master", "9:16 & 16:9 Cuts", "24h Turnaround"]
+      description: "Featured at the center of the portfolio showcase, this creator talking-head reel demonstrates how intentional pacing, micro-zoom punch-ins, and bold kinetic captions transform a studio recording into a scroll-stopping social asset.",
+      tags: ["Premiere Pro", "After Effects", "Kinetic Captions", "Sound Design & Risers", "Studio Color Grade"]
     },
     {
       idx: 1,
-      title: "Tastebud Artisan",
-      category: "Culinary & Brand Identity",
-      eyebrow: "CULINARY CINEMA & RETENTION",
-      tagline: "Sizzling culinary storytelling and social promotional creatives that increased dine-in reservations.",
-      image: "assets/tastebud.webp",
-      video: "assets/tastebud_reel.mp4",
-      sensor: "Sony FX3 · XAVC S-I 4K · S-Cinetone",
+      title: "Artisan Iced Latte",
+      category: "Commercial Product Shoot",
+      eyebrow: "BEVERAGE CINEMATOGRAPHY & EDIT",
+      tagline: "Sensory commercial beverage shoot pairing slow-motion espresso pours, fresh citrus garnishes, and rhythmic sound foley.",
+      image: "assets/proj_2_coffee_poster.jpg",
+      video: "assets/proj_2_coffee.mp4",
+      sensor: "Sony A7S III · 4K 120fps High Frame Rate",
       palette: [
-        { hex: '#180B05', name: 'Cast Iron' },
-        { hex: '#7C2D12', name: 'Charred Hickory' },
-        { hex: '#EA580C', name: 'Searing Flame' },
-        { hex: '#FBBF24', name: 'Warm Amber' },
-        { hex: '#FFFBEB', name: 'Plating Cream' }
+        { hex: '#1C110A', name: 'Roasted Espresso' },
+        { hex: '#78350F', name: 'Amber Crema' },
+        { hex: '#F97316', name: 'Citrus Zest' },
+        { hex: '#FDE68A', name: 'Cold Foam' },
+        { hex: '#FFFBEB', name: 'Ice Highlight' }
       ],
       metrics: [
-        { val: "250%", lbl: "Reservation Surge" },
-        { val: "1.2M+", lbl: "Reel Plays" },
-        { val: "100%", lbl: "Custom Sound Score" }
+        { val: "51s", lbl: "Full Commercial Cut" },
+        { val: "120fps", lbl: "Slow-Motion Pour" },
+        { val: "100%", lbl: "Tactile Foley Mix" }
       ],
-      description: "Tastebud Artisan needed a cohesive identity refresh spanning both mouthwatering high-framerate sizzle reels and promotional print flyers. We synchronized slow-motion flame sears, knife-chops, and sauce garnishes to rhythmic percussive beats, producing an irresistible sensory appetite hook.",
-      tags: ["Premiere Pro", "Dynamic Speed Ramps", "Commercial Sound Stems", "Print & Social Assets", "Color Grading"]
+      description: "Filmed on location with macro lens optics and high-speed frame rates, this specialty coffee commercial captures every ice clink, citrus slice, and espresso swirl with rich warm color grading and appetite-inducing sound design.",
+      tags: ["Commercial Shoot", "120fps Speed Ramps", "Foley Audio Stems", "DaVinci Resolve Grade", "Hospitality Reel"]
     },
     {
       idx: 2,
-      title: "Urban Monolith",
-      category: "Fashion & Editorial",
-      eyebrow: "HAUTE COUTURE DIRECTION",
-      tagline: "Atmospheric street editorial campaign combining brutalist urban architecture with modern silhouette aesthetics.",
-      image: "assets/project_fashion.jpg",
-      video: "assets/showreel.mp4",
-      sensor: "RED V-Raptor 8K VV · REDCODE RAW 5:1",
+      title: "Raw vs. After Edit",
+      category: "Before & After Post-Production",
+      eyebrow: "RAW FOOTAGE TO FINAL MASTER",
+      tagline: "Side-by-side transformation proving how raw camera footage becomes an authoritative, high-engagement educational reel.",
+      image: "assets/proj_3_raw_edit_poster.jpg",
+      video: "assets/proj_3_raw_edit.mp4",
+      sensor: "Sony FX30 · S-Log3 to Rec.709 Master LUT",
       palette: [
-        { hex: '#090A0F', name: 'Asphalt Dark' },
-        { hex: '#27272A', name: 'Brutalist Concrete' },
-        { hex: '#64748B', name: 'Slate Midtone' },
-        { hex: '#38BDF8', name: 'Sky Accent' },
-        { hex: '#F8FAFC', name: 'Pure White' }
+        { hex: '#0F172A', name: 'Deep Navy' },
+        { hex: '#0284C7', name: 'Academic Blue' },
+        { hex: '#EAB308', name: 'Highlight Gold' },
+        { hex: '#22C55E', name: 'After Badge' },
+        { hex: '#F8FAFC', name: 'Clean Studio' }
       ],
       metrics: [
-        { val: "5.4M", lbl: "Campaign Reach" },
-        { val: "+340%", lbl: "Profile Visits" },
-        { val: "100%", lbl: "Color Match Precision" }
+        { val: "27s", lbl: "Before/After Showcase" },
+        { val: "+310%", lbl: "Watch Time Lift" },
+        { val: "4K", lbl: "Color & Audio Polish" }
       ],
-      description: "Shot across raw brutalist concrete backdrops, Urban Monolith demanded high-grain film texture and rhythmic editorial pacing. We applied analog 35mm grain passes, stylized typography track-ins in After Effects, and ambient electronic synthesizer sound design to deliver an unforgettable runway-to-street aesthetic.",
-      tags: ["35mm Film Grain", "After Effects Tracking", "Kinetic Typography", "Sub-Bass Sound Design", "Social Deliverables"]
+      description: "Raw camera footage is only the starting point. This breakdown compares ungraded, static talking-head footage directly against the final edited master — complete with background cleanup, color correction, animated callouts, and vocal EQ.",
+      tags: ["Before & After", "Vocal EQ & Mastering", "Motion Callouts", "Color Transformation", "Retention Editing"]
     },
     {
       idx: 3,
-      title: "Pulse Smartwatch",
-      category: "Hardware & Tech",
-      eyebrow: "3D HARDWARE MOTION GRAPHICS",
-      tagline: "Futuristic wearable tech launch video highlighting sensor arrays, UI telemetry, and IP68 waterproof chassis.",
-      image: "assets/project_smartphones.jpg",
-      video: "assets/showreel.mp4",
-      sensor: "Sony FX6 · S-Log3 / S-Gamut3.Cine · CineEI 800",
+      title: "KMF Global Education",
+      category: "Brand Campaign & Motion",
+      eyebrow: "INTERNATIONAL EDUCATION CAMPAIGN",
+      tagline: "High-conversion promotional reel engineered for KMF Global Education Ltd. to drive student consultations and visa inquiries.",
+      image: "assets/proj_4_kmf_poster.jpg",
+      video: "assets/proj_4_kmf.mp4",
+      sensor: "Cinema 4K · Brand Motion Graphics Pipeline",
       palette: [
-        { hex: '#020617', name: 'OLED Black' },
-        { hex: '#0F172A', name: 'Chassis Dark' },
-        { hex: '#3B82F6', name: 'Telemetry Blue' },
-        { hex: '#06B6D4', name: 'Sensor Cyan' },
-        { hex: '#E2E8F0', name: 'Titanium' }
+        { hex: '#081226', name: 'KMF Oxford Blue' },
+        { hex: '#1D4ED8', name: 'Global Royal' },
+        { hex: '#DC2626', name: 'Action Crimson' },
+        { hex: '#38BDF8', name: 'Sky Accent' },
+        { hex: '#FFFFFF', name: 'Crisp White' }
       ],
       metrics: [
-        { val: "2.1M", lbl: "Launch Views" },
-        { val: "4.8x", lbl: "Pre-Order ROAS" },
-        { val: "60fps", lbl: "Ultra-Smooth UI Renders" }
+        { val: "35s", lbl: "Promotional Reel" },
+        { val: "High CTR", lbl: "Paid Ad Creative" },
+        { val: "9:16", lbl: "Meta & TikTok Ready" }
       ],
-      description: "Engineered for consumer tech enthusiasts, this commercial breaks down intricate biometric sensors through explosive layer separations and holographic telemetry overlays. We paired sharp camera dollies with crisp UI notification soundscapes to communicate premium build quality.",
-      tags: ["After Effects", "UI Motion Graphics", "Cinema 4K Compositing", "Product Exploder", "Digital Ad Deliverables"]
+      description: "Created for KMF Global Education Ltd., this promotional video combines presenter delivery with branded motion graphics, country pathway callouts, and clear calls-to-action tailored for prospective international students.",
+      tags: ["KMF Global Education", "Paid Ad Creative", "Brand Motion Graphics", "Lower Thirds", "Conversion CTA"]
     },
     {
       idx: 4,
-      title: "UK Universities",
-      category: "Educational Campaign",
-      eyebrow: "INTERNATIONAL ADMISSIONS",
-      tagline: "Strategic promotional campaign empowering students with admissions pathway clarity across British universities.",
-      image: "assets/uk_uni.webp",
-      video: "assets/study_uk_reel.mp4",
-      sensor: "Blackmagic URSA Mini Pro 12K · BRAW 8:1",
+      title: "Sartorial Menswear",
+      category: "Fashion Commercial & Grade",
+      eyebrow: "MENSWEAR EDITORIAL PRODUCTION",
+      tagline: "Cinematic menswear commercial walk blending tailored suiting, natural urban daylight, and filmic color grading.",
+      image: "assets/proj_5_suit_poster.jpg",
+      video: "assets/proj_5_suit.mp4",
+      sensor: "Sony FX3 · 35mm Prime Gimbal Tracking",
       palette: [
-        { hex: '#030712', name: 'Dark Indigo' },
-        { hex: '#1E1B4B', name: 'Oxbridge Blue' },
-        { hex: '#4F46E5', name: 'Royal Accent' },
-        { hex: '#818CF8', name: 'Sky Highlight' },
-        { hex: '#F1F5F9', name: 'Parchment White' }
+        { hex: '#141413', name: 'Espresso Wool' },
+        { hex: '#44403C', name: 'Warm Charcoal' },
+        { hex: '#A8A29E', name: 'Stone Pavement' },
+        { hex: '#D6D3D1', name: 'Linen Shirt' },
+        { hex: '#F5F5F4', name: 'Daylight Key' }
       ],
       metrics: [
-        { val: "18k+", lbl: "Student Inquiries" },
-        { val: "94%", lbl: "Engagement Index" },
-        { val: "10+", lbl: "University Partners" }
+        { val: "15s", lbl: "Fashion Spot" },
+        { val: "60fps", lbl: "Gimbal Tracking" },
+        { val: "235:1", lbl: "Film Emulation Grade" }
       ],
-      description: "Navigating international university applications can feel overwhelming. We designed a clear, trustworthy graphic campaign and accompanying informational video series breaking down scholarship requirements, visa timelines, and campus life with modern typographic hierarchy.",
-      tags: ["Adobe Illustrator", "Photoshop", "Brand Systems", "Informational Carousel", "Social Ad Creative"]
+      description: "A sleek fashion lookbook reel capturing movement, fabric drape, and confidence. Smooth gimbal tracking and seamless speed-ramped transitions highlight the bespoke tailoring.",
+      tags: ["Fashion Cinematography", "Gimbal Direction", "Film Print Emulation", "Speed Ramping", "Luxury Lookbook"]
     },
     {
       idx: 5,
-      title: "Study in Greece",
-      category: "Global Brand Campaign",
-      eyebrow: "INTERNATIONAL EDUCATION",
-      tagline: "Mobile-first European university pathway visual identity designed for modern international applicants.",
-      image: "assets/study_greece_phone.webp",
-      video: "assets/tastebud_reel.mp4",
-      sensor: "Sony A7S III · 4K 10-bit 4:2:2 · S-Log3",
+      title: "AI Search Interface",
+      category: "UI Motion & Kinetic Design",
+      eyebrow: "SAAS & UI MOTION GRAPHICS",
+      tagline: "Sleek dark-mode UI animation showcasing conversational AI prompts, glassmorphic cards, and fluid cursor choreography.",
+      image: "assets/proj_6_ai_ui_poster.jpg",
+      video: "assets/proj_6_ai_ui.mp4",
+      sensor: "After Effects 60fps Vector Raster Engine",
       palette: [
-        { hex: '#020D1A', name: 'Aegean Abyss' },
-        { hex: '#0369A1', name: 'Mediterranean' },
-        { hex: '#38BDF8', name: 'Cerulean Dome' },
-        { hex: '#FCD34D', name: 'Sunlit Marble' },
-        { hex: '#FFFFFF', name: 'Chalk Stucco' }
+        { hex: '#050507', name: 'OLED Pitch' },
+        { hex: '#18181B', name: 'Surface Glass' },
+        { hex: '#00F2FE', name: 'Prompt Cyan' },
+        { hex: '#A855F7', name: 'Neural Violet' },
+        { hex: '#FAFAFA', name: 'UI Typography' }
       ],
       metrics: [
-        { val: "320%", lbl: "Application Lift" },
-        { val: "12+", lbl: "Institutions Represented" },
-        { val: "99.4%", lbl: "Brand Approval" }
+        { val: "15s", lbl: "UI Motion Loop" },
+        { val: "60fps", lbl: "Vector Smoothness" },
+        { val: "100%", lbl: "Custom After Effects" }
       ],
-      description: "Designed specifically for vertical mobile consumption, Study in Greece marries iconic Mediterranean architectural motifs with clear, actionable academic program details. High contrast typography and engaging visual flow ensured high retention and click-through rates.",
-      tags: ["Mobile Optimization", "Typography Hierarchy", "Conversion Design", "Social Ad Campaign", "Figma to Final"]
+      description: "Designed for digital product launches and brand identity showcases, this UI motion reel brings software interfaces to life using custom cubic-bezier motion curves, tactile typing sound effects, and depth-of-field camera pans.",
+      tags: ["After Effects", "UI/UX Animation", "60fps Motion", "Tactile UI SFX", "Product Teaser"]
+    },
+    {
+      idx: 6,
+      title: "Time & Value Motion",
+      category: "Kinetic Typography & VFX",
+      eyebrow: "3D MOTION GRAPHICS & COMPOSITING",
+      tagline: "Visual metaphor reel using 3D clocks, hourglasses, and kinetic typography to illustrate time investment and audience attention.",
+      image: "assets/proj_7_spend_on_poster.jpg",
+      video: "assets/proj_7_spend_on.mp4",
+      sensor: "After Effects 3D Camera & Compositing Suite",
+      palette: [
+        { hex: '#07090E', name: 'Void Black' },
+        { hex: '#1E293B', name: 'Clockwork Slate' },
+        { hex: '#38BDF8', name: 'Chrono Cyan' },
+        { hex: '#FACC15', name: 'Sand Gold' },
+        { hex: '#FFFFFF', name: 'Kinetic Type' }
+      ],
+      metrics: [
+        { val: "33s", lbl: "Motion Essay" },
+        { val: "3D", lbl: "Camera Space Rig" },
+        { val: "92%", lbl: "Average Watch Time" }
+      ],
+      description: "When abstract concepts need visual impact, custom motion graphics bridge the gap. This piece layers 3D depth, animated timepieces, and synchronized kinetic typography to keep viewers locked in from frame one.",
+      tags: ["3D Camera Tracker", "Kinetic Typography", "Visual Metaphors", "Sound Riser Stems", "After Effects"]
+    },
+    {
+      idx: 7,
+      title: "Clinical Aesthetics",
+      category: "Educational Talking-Head",
+      eyebrow: "HEALTHCARE & EXPERT AUTHORITY",
+      tagline: "Clean, authoritative medical talking-head production featuring picture-in-picture visual callouts and clarity-first captions.",
+      image: "assets/proj_8_doctor_poster.jpg",
+      video: "assets/proj_8_doctor.mp4",
+      sensor: "Sony FX3 · Dual-Lav Broadcast Audio Chain",
+      palette: [
+        { hex: '#0B131E', name: 'Clinical Slate' },
+        { hex: '#0EA5E9', name: 'Medical Cyan' },
+        { hex: '#E2E8F0', name: 'Lab Coat White' },
+        { hex: '#F43F5E', name: 'Callout Accent' },
+        { hex: '#FFFFFF', name: 'Pure Key' }
+      ],
+      metrics: [
+        { val: "44s", lbl: "Expert Breakdown" },
+        { val: "Crystal", lbl: "De-Essed Voice Master" },
+        { val: "PiP", lbl: "Visual Evidence Overlays" }
+      ],
+      description: "Healthcare and specialist creators rely on trust and clarity. We paired flattering clinical lighting and pristine vocal mastering with dynamic picture-in-picture visual callouts that illustrate medical points in real time.",
+      tags: ["Healthcare Content", "Visual Callout Boxes", "Broadcast Vocal Chain", "Clean Typography", "Expert Positioning"]
+    },
+    {
+      idx: 8,
+      title: "Creator Narrative",
+      category: "Storytelling & Sound Design",
+      eyebrow: "LONG-FORM RETENTION REEL",
+      tagline: "74-second narrative creator reel demonstrating sustained storytelling pacing, B-roll cutaways, and emotional music swells.",
+      image: "assets/proj_9_is_the_day_poster.jpg",
+      video: "assets/proj_9_is_the_day.mp4",
+      sensor: "Sony FX3 · 24fps Narrative Cadence",
+      palette: [
+        { hex: '#090A0F', name: 'Cinema Black' },
+        { hex: '#1F2937', name: 'Moody Midtone' },
+        { hex: '#60A5FA', name: 'Rim Light Blue' },
+        { hex: '#FBBF24', name: 'Tungsten Practical' },
+        { hex: '#F9FAFB', name: 'Soft Highlight' }
+      ],
+      metrics: [
+        { val: "74s", lbl: "Narrative Arc" },
+        { val: "Multi-Layer", lbl: "Music & SFX Stems" },
+        { val: "4K", lbl: "Cinema Grade" }
+      ],
+      description: "Holding viewer attention across a 74-second vertical video requires deliberate narrative rhythm. We structured the edit around curiosity loops, expressive typography, and dynamic audio ducking.",
+      tags: ["Narrative Storytelling", "Curiosity Loops", "Audio Ducking", "Dynamic Captions", "Creator Growth"]
     }
   ];
 
