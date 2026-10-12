@@ -2767,8 +2767,8 @@ body.cursor-play .cursor-label {
 .reel-center-play-btn {
   pointer-events: auto;
   align-self: center;
-  width: 80px;
-  height: 80px;
+  width: clamp(56px, 6vw, 76px);
+  height: clamp(56px, 6vw, 76px);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   color: #000000;
@@ -2778,13 +2778,28 @@ body.cursor-play .cursor-label {
   border: none;
   cursor: pointer;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s var(--ease-bounce),
+  transition: opacity 0.35s ease, transform 0.3s var(--ease-bounce),
               background-color 0.3s ease,
               color 0.3s ease;
 }
 
+/* Hide center play button while video is playing so video is 100% clean and unobstructed */
+.reel-expanding-container.is-playing .reel-center-play-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+}
+
+/* Reveal center play button on hover or when paused */
+.reel-expanding-container.is-playing:hover .reel-center-play-btn,
+.reel-expanding-container:not(.is-playing) .reel-center-play-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
 .reel-center-play-btn:hover {
-  transform: scale(1.18);
+  transform: scale(1.15) !important;
   background: var(--cyan-bright);
   color: #000000;
   box-shadow: 0 12px 40px rgba(0, 242, 254, 0.5);
@@ -2793,32 +2808,10 @@ body.cursor-play .cursor-label {
 .reel-hud-bottom {
   pointer-events: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
   gap: var(--space-4);
-  flex-wrap: wrap;
-}
-
-.reel-title-meta {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.reel-hud-heading {
-  font-family: var(--font-main);
-  font-size: var(--text-md);
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 2px;
-}
-
-.reel-hud-sub {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
 }
 
 .reel-sound-toggle-btn {

@@ -1154,14 +1154,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     reelVideo.addEventListener('play', () => {
+      reelExpandingContainer?.classList.add('is-playing');
       if (reelPlaySvg) reelPlaySvg.style.display = 'none';
       if (reelPauseSvg) reelPauseSvg.style.display = 'block';
     });
 
     reelVideo.addEventListener('pause', () => {
+      reelExpandingContainer?.classList.remove('is-playing');
       if (reelPlaySvg) reelPlaySvg.style.display = 'block';
       if (reelPauseSvg) reelPauseSvg.style.display = 'none';
     });
+
+    if (!reelVideo.paused) {
+      reelExpandingContainer?.classList.add('is-playing');
+    }
   }
 
   // Sound Toggle Controller
