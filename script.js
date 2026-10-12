@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const topNavLinks = document.querySelectorAll('.top-nav-link');
   const navSections = document.querySelectorAll('section[id]');
   const backToTopBtn = document.getElementById('backToTopBtn');
+  const floatingDock = document.getElementById('floatingDock');
+  const floatingChatTrigger = document.getElementById('floatingChatTrigger');
   const reelScrollTrack = document.getElementById('reelScrollTrack');
   const reelExpandingContainer = document.getElementById('reelExpandingContainer');
 
@@ -71,12 +73,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 1c. Back To Top Button
+    // 1c. Back To Top & Floating Controls (Revealed after leaving clean hero)
     if (backToTopBtn) {
       if (scrollPos > 450) {
         backToTopBtn.classList.add('is-visible');
       } else {
         backToTopBtn.classList.remove('is-visible');
+      }
+    }
+
+    if (floatingDock) {
+      if (scrollPos > 320) {
+        floatingDock.classList.add('is-visible');
+      } else {
+        floatingDock.classList.remove('is-visible');
+      }
+    }
+
+    if (floatingChatTrigger) {
+      if (scrollPos > 320) {
+        floatingChatTrigger.classList.add('is-visible');
+      } else {
+        floatingChatTrigger.classList.remove('is-visible');
       }
     }
 
